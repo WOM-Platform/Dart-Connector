@@ -21,11 +21,11 @@ class Voucher extends Equatable {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'Latitude': lat,
-      'Longitude': long,
-      'Aim': aim,
-      'Count': count,
-      'Timestamp': dateTime.toIso8601String(),
+      'latitude': lat,
+      'longitude': long,
+      'aim': aim,
+      'count': count,
+      'timestamp': dateTime.toIso8601String(),
       'secret': secret,
     };
   }

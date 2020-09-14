@@ -1,5 +1,4 @@
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
-import 'package:dart_wom_connector/src/instrument/domain/entities/request_wom_creation.dart';
 
 class ResponseRedeem {
   static const String VOUCHERS = 'vouchers';

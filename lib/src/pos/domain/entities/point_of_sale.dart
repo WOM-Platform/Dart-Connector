@@ -1,7 +1,4 @@
-import 'package:dart_wom_connector/src/core/domain/entities/actor.dart';
-
-class PointOfSale{
-
+class PointOfSale {
   static String dbPrivateKey = 'privateKey';
   static String dbId = 'id';
   static String dbUrl = 'url';

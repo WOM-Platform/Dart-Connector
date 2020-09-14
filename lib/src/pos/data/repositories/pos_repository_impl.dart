@@ -5,10 +5,8 @@ import 'package:dart_wom_connector/src/pos/domain/entities/payment_request_respo
 import '../../../core/error/failures.dart';
 import '../../../core/error/exceptions.dart';
 import 'package:dart_wom_connector/src/pos/data/data_sources/pos_remote_data_sources.dart';
-import 'package:dart_wom_connector/src/pos/data/mapper/request_paymeny_payload_mapper.dart';
 import 'package:dart_wom_connector/src/pos/data/models/payment_register_payload.dart';
 import 'package:dart_wom_connector/src/pos/data/models/payment_register_response_model.dart';
-import 'package:dart_wom_connector/src/pos/domain/entities/payment_register_response.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/request_payment_payload.dart';
 import 'package:dart_wom_connector/src/pos/domain/repositories/pos_repository.dart';
 import 'package:dartz/dartz.dart';

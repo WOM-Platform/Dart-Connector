@@ -2,22 +2,17 @@ import 'dart:convert';
 
 import 'package:dart_wom_connector/src/core/domain/entities/transaction_type.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
-import 'package:dart_wom_connector/src/core/error/exceptions.dart';
-import 'package:dart_wom_connector/src/core/error/failures.dart';
 import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/pocket/data/data_sources/pocket_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/info_pay_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/response_redeem.dart';
-import 'package:dartz/dartz.dart';
 import 'package:encrypt/encrypt.dart';
 
 abstract class PocketRepository {
-  Future<Either<Failure, ResponseRedeem>> redeemVouchers(
-      String otc, String password);
-  Future<Either<Failure, InfoPayResponse>> requestInfoPay(
-      String otc, String password);
-  Future<Either<Failure, String>> pay(String otc, String password,
-      InfoPayResponse infoPay, List<Voucher> vouchers);
+  Future<ResponseRedeem> redeemVouchers(String otc, String password);
+  Future<InfoPayResponse> requestInfoPay(String otc, String password);
+  Future<String> pay(String otc, String password, InfoPayResponse infoPay,
+      List<Voucher> vouchers);
 }
 
 class PocketRepositoryImpl extends PocketRepository {
@@ -32,36 +27,23 @@ class PocketRepositoryImpl extends PocketRepository {
   }
 
   @override
-  Future<Either<Failure, ResponseRedeem>> redeemVouchers(
-      String otc, String password) async {
-    try {
-      final jsonDecrypted = await performRequestAndDecrypt(
-          TransactionType.VOUCHERS, otc, password);
-      final responseRedeem = ResponseRedeem.fromJson(jsonDecrypted);
-      return right(responseRedeem);
-    } on ServerException catch (ex) {
-      print(ex.error);
-      return left(UnknownFailure(ex.error));
-    } catch (ex) {
-      print(ex);
-      return left(UnknownFailure(ex.toString()));
-    }
+  Future<ResponseRedeem> redeemVouchers(String otc, String password) async {
+    final jsonDecrypted =
+        await performRequestAndDecrypt(TransactionType.VOUCHERS, otc, password);
+    final responseRedeem = ResponseRedeem.fromJson(jsonDecrypted);
+    return responseRedeem;
   }
 
   @override
-  Future<Either<Failure, InfoPayResponse>> requestInfoPay(
-      String otc, String password) async {
+  Future<InfoPayResponse> requestInfoPay(String otc, String password) async {
     try {
       final jsonDecrypted = await performRequestAndDecrypt(
           TransactionType.PAYMENT, otc, password);
       final responseRedeem = InfoPayResponse.fromMap(jsonDecrypted);
-      return right(responseRedeem);
-    } on ServerException catch (ex) {
-      print(ex.error);
-      return left(UnknownFailure(ex.error));
+      return responseRedeem;
     } catch (ex) {
       print(ex);
-      return left(UnknownFailure(ex.toString()));
+      rethrow;
     }
   }
 
@@ -110,8 +92,9 @@ class PocketRepositoryImpl extends PocketRepository {
     return jsonDecrypted;
   }
 
-  Future<Either<Failure, String>> pay(String otc, String password,
-      InfoPayResponse infoPay, List<Voucher> vouchers) async {
+  @override
+  Future<String> pay(String otc, String password, InfoPayResponse infoPay,
+      List<Voucher> vouchers) async {
     print('pay');
     try {
       //generate temporary key from this transaction
@@ -150,10 +133,10 @@ class PocketRepositoryImpl extends PocketRepository {
       final jsonDecryptedPayload =
           json.decode(decryptedPayload) as Map<String, dynamic>;
 
-      return right(jsonDecryptedPayload['ackUrl'] as String);
+      return jsonDecryptedPayload['ackUrl'] as String;
     } catch (ex) {
       print(ex);
-      return left(UnknownFailure(ex.toString()));
+      rethrow;
     }
   }
 }

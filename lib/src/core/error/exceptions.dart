@@ -5,6 +5,11 @@ class ServerException implements Exception {
 }
 
 class CacheException implements Exception {}
+
 class TimeoutException implements Exception {}
+
 class VerifyPaymentException implements Exception {}
+
 class RedeemVoucherExcpetion implements Exception {}
+
+class InsufficientVouchers implements Exception {}
