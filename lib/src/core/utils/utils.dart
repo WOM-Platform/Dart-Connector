@@ -52,4 +52,78 @@ class Utils {
     var encoder = Base64Encoder();
     return encoder.convert(generate(length));
   }
+
+  static encryptLongString(Encrypter encrypter, Uint8List inputBytes, int outBlockSize){
+
+    print('inputBytes length: ${inputBytes.length}');
+
+    final blockSize = 245;
+    final blocks = (inputBytes.length / blockSize.toDouble()).ceil().toInt();
+    var output = Uint8List(blocks*outBlockSize);
+    var outputSize = 0;
+    for(var i = 0; i< blocks;i++){
+      final offset = i * blockSize;
+      final blockLength = min(blockSize, inputBytes.length - offset);
+      final sublist = inputBytes.sublist(offset, offset + blockLength);
+      final cryptoBlock = encrypter.encryptBytes(sublist);
+      output.setRange(outputSize, outputSize + cryptoBlock.bytes.length, cryptoBlock.bytes);
+      outputSize += cryptoBlock.bytes.length;
+    }
+
+    print('output length before: ${output.length}');
+    if (outputSize != output.length) {
+      final tmp = output.sublist(0, outputSize);
+      output = tmp;
+    }
+    print('output length: ${output.length}');
+    var encoder = Base64Encoder();
+    return encoder.convert(output);
+
+    /*private fun encryptData(txt: String, publicKey: String): String {
+        val encoded: String
+        try {
+            val publicBytes = Base64.decode(publicKey, Base64.DEFAULT)
+            val keySpec = X509EncodedKeySpec(publicBytes)
+            val keyFactory = KeyFactory.getInstance("RSA")
+            val pubKey = keyFactory.generatePublic(keySpec)
+            val cipher = Cipher.getInstance("RSA/ECB/PKCS1PADDING")
+            cipher.init(Cipher.ENCRYPT_MODE, pubKey)
+
+            val bytes = txt.toByteArray()
+            val blockSize = cipher.blockSize
+            val outBlockSize = cipher.getOutputSize(bytes.size)
+            val blocks: Int = Math.ceil(bytes.size / blockSize.toDouble()).toInt()
+            var output = ByteArray(blocks * outBlockSize)
+            var outputSize = 0
+
+            for (i in 0 until blocks) {
+                val offset = i * blockSize
+                val blockLength = Math.min(blockSize, bytes.size - offset)
+                val cryptoBlock = cipher.doFinal(bytes, offset, blockLength)
+                System.arraycopy(cryptoBlock, 0, output, outputSize, cryptoBlock.size)
+                outputSize += cryptoBlock.size
+            }
+
+            if (outputSize != output.size) {
+                val tmp = output.copyOfRange(0, outputSize)
+                output = tmp
+            }
+
+            encoded = Base64.encodeToString(output, Base64.DEFAULT)
+            return encoded
+
+        } catch (e: Exception) {
+            throw Exception(e.toString())
+        }
+    }*/
+
+  }
+
+ static int outputBlockSize (int bitSize, bool forEncryption){
+    if (forEncryption) {
+      return (bitSize + 7) ~/ 8;
+    } else {
+      return ((bitSize + 7) ~/ 8) - 1;
+    }
+  }
 }

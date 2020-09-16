@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:dart_wom_connector/src/core/domain/entities/user.dart';
+import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/payment_request_response.dart';
 import '../../../core/error/failures.dart';
 import '../../../core/error/exceptions.dart';
@@ -54,20 +55,27 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
   Future<PaymentRegisterResponseModel> _registerPayment(
       RequestPaymentPayload requestPaymentPayload, String privateKey) async {
     print('[PointOfSaleRepositoryImpl] _registerPayment');
-    final encrypter = _getEncrypter(publicKey, privateKey);
+    final encrypter = _getEncrypter(publicKeyString, privateKey);
 
     final requestPaymentPayloadJSON =
         json.encode(requestPaymentPayload.toMap());
 
     print(requestPaymentPayloadJSON);
 
-    final requestPaymentPayloadJSONEncrypted =
-        await encrypter.encrypt(requestPaymentPayloadJSON);
+//    final requestPaymentPayloadJSONEncrypted =
+//        await encrypter.encrypt(requestPaymentPayloadJSON);
+
+    final rsaKeyParser = RSAKeyParser();
+    final publicKey = rsaKeyParser.parse(publicKeyString);
+    final requestPaymentPayloadJSONEncrypted = await Utils.encryptLongString(
+        encrypter,
+        utf8.encode(requestPaymentPayloadJSON),
+        Utils.outputBlockSize(publicKey.modulus.bitLength, true));
 
     final paymentRegisterPayload = PaymentRegisterPayload(
         nonce: requestPaymentPayload.nonce,
         posId: requestPaymentPayload.posId,
-        payload: requestPaymentPayloadJSONEncrypted.base64);
+        payload: requestPaymentPayloadJSONEncrypted);
 
     final responseBody = await posRemoteDataSources.registerPayment(
         'payment/register', paymentRegisterPayload);
@@ -86,7 +94,7 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
 
   Future<bool> _verifyPayment(String otc, String privateKey) async {
     print('[PointOfSaleRepositoryImpl] _verifyPayment');
-    final encrypter = _getEncrypter(publicKey, privateKey);
+    final encrypter = _getEncrypter(publicKeyString, privateKey);
     final payloadMap = {
       'otc': otc,
     };

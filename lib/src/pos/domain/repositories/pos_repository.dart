@@ -7,9 +7,9 @@ import 'package:dartz/dartz.dart';
 import '../../../../dart_wom_connector.dart';
 
 abstract class PointOfSaleRepository {
-  final String publicKey;
+  final String publicKeyString;
 
-  PointOfSaleRepository(this.publicKey);
+  PointOfSaleRepository(this.publicKeyString);
 
   Future<Either<Failure, PaymentRequestResponse>> requestPayment(String privateKeyString,
     RequestPaymentPayload requestPayment
