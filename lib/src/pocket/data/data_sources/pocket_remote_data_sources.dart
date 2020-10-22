@@ -17,28 +17,21 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
     assert(domain != null);
     assert(map != null);
     final responseBody = await HttpHelper.genericHttpPost(
-        'https://$domain/api/v1/voucher/redeem', map);
+        'http://$domain/api/v1/voucher/redeem', map);
     return json.decode(responseBody);
-
-/*    if ((await HttpHelper.genericHttpPost(
-            'https://$domain/api/v1/voucher/redeem', map)) !=
-        null) {
-      return true;
-    }
-    throw RedeemVoucherExcpetion();*/
   }
 
   @override
   Future<Map<String, dynamic>> getInfoPayments(Map<String, String> map) async {
     final responseBody = await HttpHelper.genericHttpPost(
-        'https://$domain/api/v1/payment/info', map);
+        'http://$domain/api/v1/payment/info', map);
     return json.decode(responseBody);
   }
 
   @override
   Future<Map<String, dynamic>> confirmPayments(Map<String, String> map) async {
     final responseBody = await HttpHelper.genericHttpPost(
-        'https://$domain/api/v1/payment/confirm', map);
+        'http://$domain/api/v1/payment/confirm', map);
     return json.decode(responseBody);
   }
 }

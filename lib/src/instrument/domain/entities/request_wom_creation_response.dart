@@ -1,8 +1,8 @@
 class RequestWomCreationResponse {
-  static String REGISTRY_URL = "registryUrl";
-  static String NONCE = "nonce";
-  static String OTC = "otc";
-  static String PASSWORD = "password";
+  static String REGISTRY_URL = 'registryUrl';
+  static String NONCE = 'nonce';
+  static String OTC = 'otc';
+  static String PASSWORD = 'password';
 
   String registryUrl;
   String nonce;
@@ -21,7 +21,7 @@ class RequestWomCreationResponse {
         otc = map[OTC] as String;
 
   @override
-  String toString(){
+  String toString() {
     return 'otc: $otc, nonce: $nonce, password: $password, registryUrl: $registryUrl';
   }
 }

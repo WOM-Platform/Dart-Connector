@@ -14,14 +14,12 @@ class InstrumentRemoteDataSourcesImpl extends InstrumentRemoteDataSources {
     final resp = await http.post(
       url,
       body: json.encode(map),
-      headers: {HttpHeaders.contentTypeHeader: "application/json"},
+      headers: {HttpHeaders.contentTypeHeader: 'application/json'},
     );
     if (resp.statusCode == 200) {
-      print(resp.body);
       return resp.body;
     }
-    final jsonError =
-    json.decode(resp.body) as Map<String, dynamic>;
+    final jsonError = json.decode(resp.body) as Map<String, dynamic>;
     throw Exception(jsonError['title']);
   }
 
@@ -30,13 +28,12 @@ class InstrumentRemoteDataSourcesImpl extends InstrumentRemoteDataSources {
     final resp = await http.post(
       url,
       body: json.encode(map),
-      headers: {HttpHeaders.contentTypeHeader: "application/json"},
+      headers: {HttpHeaders.contentTypeHeader: 'application/json'},
     );
     if (resp.statusCode == 200) {
       return true;
     }
-    final Map<String, dynamic> jsonError =
-    json.decode(resp.body) as Map<String, dynamic>;
+    final jsonError = json.decode(resp.body) as Map<String, dynamic>;
     throw Exception(jsonError['title']);
   }
 }

@@ -1,1 +1,1 @@
-export 'presentation/instrument.dart';
+export 'domain/instrument.dart';

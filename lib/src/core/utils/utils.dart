@@ -52,4 +52,56 @@ class Utils {
     var encoder = Base64Encoder();
     return encoder.convert(generate(length));
   }
+
+  static String encryptLongInput(
+      Encrypter encrypter, Uint8List inputBytes, int outBlockSize) {
+    final blockSize = 501;
+    final blocks = (inputBytes.length / blockSize.toDouble()).ceil().toInt();
+    var output = Uint8List(blocks * outBlockSize);
+    var outputSize = 0;
+    for (var i = 0; i < blocks; i++) {
+      final offset = i * blockSize;
+      final blockLength = min(blockSize, inputBytes.length - offset);
+      final sublist = inputBytes.sublist(offset, offset + blockLength);
+      final cryptoBlock = encrypter.encryptBytes(sublist);
+      output.setRange(
+          outputSize, outputSize + cryptoBlock.bytes.length, cryptoBlock.bytes);
+      outputSize += cryptoBlock.bytes.length;
+    }
+    if (outputSize != output.length) {
+      final tmp = output.sublist(0, outputSize);
+      output = tmp;
+    }
+    var encoder = Base64Encoder();
+    return encoder.convert(output);
+  }
+
+  static String decryptLongInput(
+      Encrypter encrypter, Uint8List inputBytes, int outBlockSize) {
+    final blockSize = 512;
+    final blocks = (inputBytes.length / blockSize.toDouble()).ceil().toInt();
+    var output = Uint8List(blocks * outBlockSize);
+    var outputSize = 0;
+    for (var i = 0; i < blocks; i++) {
+      final offset = i * blockSize;
+      final blockLength = min(blockSize, inputBytes.length - offset);
+      final sublist = inputBytes.sublist(offset, offset + blockLength);
+      final cryptoBlock = encrypter.decryptBytes(Encrypted(sublist));
+      output.setRange(outputSize, outputSize + cryptoBlock.length, cryptoBlock);
+      outputSize += cryptoBlock.length;
+    }
+    if (outputSize != output.length) {
+      final tmp = output.sublist(0, outputSize);
+      output = tmp;
+    }
+    return utf8.decode(output);
+  }
+
+  static int outputBlockSize(int bitSize, bool forEncryption) {
+    if (forEncryption) {
+      return (bitSize + 7) ~/ 8;
+    } else {
+      return ((bitSize + 7) ~/ 8) - 1;
+    }
+  }
 }

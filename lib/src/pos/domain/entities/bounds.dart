@@ -27,8 +27,8 @@ class Bounds {
 
   @override
   String toString() {
-    return "LT: ${leftTop[0].toStringAsFixed(2)},${leftTop[1].toStringAsFixed(2)};\n"
-        "RB: ${rightBottom[0].toStringAsFixed(2)},${rightBottom[1].toStringAsFixed(2)}";
+    return 'LT: ${leftTop[0].toStringAsFixed(2)},${leftTop[1].toStringAsFixed(2)};\n'
+        'RB: ${rightBottom[0].toStringAsFixed(2)},${rightBottom[1].toStringAsFixed(2)}';
   }
 
   bool contains(double lat, double long) {

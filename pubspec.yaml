@@ -9,10 +9,10 @@ environment:
 dependencies:
   http:
   encrypt: ^4.0.2
-  dartz: ^0.9.1
   equatable:
-  uuid: ^2.1.0
+  uuid: ^2.2.2
   geodesy: ^0.3.2
+  meta:
 
 dev_dependencies:
   pedantic: ^1.9.0

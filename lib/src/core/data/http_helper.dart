@@ -12,10 +12,7 @@ class HttpHelper {
       body: json.encode(map),
       headers: {'content-type': 'application/json'},
     ).timeout(Duration(seconds: TIMEOUT_SECONDS), onTimeout: onTimeout);
-    print(response.request.toString());
-    print(response.statusCode.toString());
     if (response.statusCode == 200) {
-      print(response.body);
       return response.body;
     }
     final jsonError = json.decode(response.body) as Map<String, dynamic>;
@@ -30,10 +27,7 @@ class HttpHelper {
         'content-type': 'application/json'
       },
     ).timeout(Duration(seconds: TIMEOUT_SECONDS), onTimeout: onTimeout);
-    print(response.request.toString());
-    print(response.statusCode.toString());
     if (response.statusCode == 200) {
-      print(response.body);
       return response.body;
     }
     final Map<String, dynamic> jsonError = json.decode(response.body);

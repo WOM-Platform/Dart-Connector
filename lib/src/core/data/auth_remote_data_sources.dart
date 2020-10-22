@@ -12,8 +12,12 @@ abstract class AuthRemoteDataSources {
 
 class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
   final UserType userType;
+  final String domain;
 
-  AuthRemoteDataSourcesImpl(this.userType);
+  AuthRemoteDataSourcesImpl(
+    this.userType,
+    this.domain,
+  );
 
   @override
   Future<User> authenticate({String username, String password}) async {
@@ -28,7 +32,7 @@ class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
 
   Future<User> _authenticatePos({String base64String}) async {
     final body = await HttpHelper.authenticate(
-        'https://wom.social/api/v2/auth/merchant', base64String);
+        'https://$domain/api/v2/auth/merchant', base64String);
     final map = json.decode(body);
     final name = map[User.dbName];
     final surname = map[User.dbSurname];

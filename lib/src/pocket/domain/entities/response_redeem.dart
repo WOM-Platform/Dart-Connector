@@ -1,5 +1,4 @@
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
-import 'package:dart_wom_connector/src/instrument/domain/entities/request_wom_creation.dart';
 
 class ResponseRedeem {
   static const String VOUCHERS = 'vouchers';
@@ -13,13 +12,12 @@ class ResponseRedeem {
   ResponseRedeem({this.vouchers, this.sourceName});
 
   ResponseRedeem.fromJson(Map<String, dynamic> json) {
-    print(json);
     if (json[VOUCHERS] != null) {
       vouchers = <Voucher>[];
       json[VOUCHERS].forEach((v) {
         vouchers.add(Voucher.fromMap(v));
       });
-      sourceName = json[SOURCE_NAME] ?? "";
+      sourceName = json[SOURCE_NAME] ?? '';
       sourceId = json[SOURCE_ID].toString();
     }
   }
