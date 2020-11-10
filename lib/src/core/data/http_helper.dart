@@ -15,8 +15,13 @@ class HttpHelper {
     if (response.statusCode == 200) {
       return response.body;
     }
-    final jsonError = json.decode(response.body) as Map<String, dynamic>;
-    throw ServerException(error: jsonError['title']);
+    String error;
+    try {
+      final jsonError = json.decode(response.body) as Map<String, dynamic>;
+      error = jsonError['error'];
+    } finally {
+      throw ServerException(error: error);
+    }
   }
 
   static Future<String> authenticate(String url, String auth) async {
@@ -35,6 +40,6 @@ class HttpHelper {
   }
 
   static Future<http.Response> onTimeout() {
-    throw TimeoutException();
+    throw ServerException();
   }
 }
