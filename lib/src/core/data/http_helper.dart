@@ -35,8 +35,13 @@ class HttpHelper {
     if (response.statusCode == 200) {
       return response.body;
     }
-    final Map<String, dynamic> jsonError = json.decode(response.body);
-    throw Exception(jsonError['title']);
+    String error;
+    try {
+      final jsonError = json.decode(response.body) as Map<String, dynamic>;
+      error = jsonError['error'];
+    } finally {
+      throw ServerException(error: error);
+    }
   }
 
   static Future<http.Response> onTimeout() {
