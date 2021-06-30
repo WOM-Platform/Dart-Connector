@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
 class Voucher extends Equatable {
-  final String id;
-  final double lat;
-  final double long;
-  final String aim;
-  final int count;
-  final DateTime dateTime;
-  final String secret;
+  final String? id;
+  final double? lat;
+  final double? long;
+  final String? aim;
+  final int? count;
+  final DateTime? dateTime;
+  final String? secret;
 
   Voucher(
       {this.id,
@@ -25,7 +25,7 @@ class Voucher extends Equatable {
       'longitude': long,
       'aim': aim,
       'count': count,
-      'timestamp': dateTime.toIso8601String(),
+      'timestamp': dateTime!.toIso8601String(),
       'secret': secret,
     };
   }
@@ -42,7 +42,7 @@ class Voucher extends Equatable {
   }
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         id,
         lat,
         long,

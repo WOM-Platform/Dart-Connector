@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart' as http;
 
 abstract class InstrumentRemoteDataSources {
@@ -12,7 +13,7 @@ class InstrumentRemoteDataSourcesImpl extends InstrumentRemoteDataSources {
   Future<String> requestWomCreation(
       String url, Map<String, dynamic> map) async {
     final resp = await http.post(
-      url,
+      Uri.parse(url),
       body: json.encode(map),
       headers: {HttpHeaders.contentTypeHeader: 'application/json'},
     );
@@ -26,7 +27,7 @@ class InstrumentRemoteDataSourcesImpl extends InstrumentRemoteDataSources {
   @override
   Future<bool> verifyWomCreation(String url, Map<String, dynamic> map) async {
     final resp = await http.post(
-      url,
+      Uri.parse(url),
       body: json.encode(map),
       headers: {HttpHeaders.contentTypeHeader: 'application/json'},
     );

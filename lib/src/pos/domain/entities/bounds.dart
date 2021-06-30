@@ -8,8 +8,8 @@ class Bounds {
   static String RIGHT_BOT_LAT = 'rightBottomLat';
   static String RIGHT_BOT_LONG = 'rightBottomLong';
 
-  List<double> leftTop;
-  List<double> rightBottom;
+  List<double>? leftTop;
+  List<double>? rightBottom;
 
   Bounds({this.leftTop, this.rightBottom});
 
@@ -27,13 +27,13 @@ class Bounds {
 
   @override
   String toString() {
-    return 'LT: ${leftTop[0].toStringAsFixed(2)},${leftTop[1].toStringAsFixed(2)};\n'
-        'RB: ${rightBottom[0].toStringAsFixed(2)},${rightBottom[1].toStringAsFixed(2)}';
+    return 'LT: ${leftTop![0].toStringAsFixed(2)},${leftTop![1].toStringAsFixed(2)};\n'
+        'RB: ${rightBottom![0].toStringAsFixed(2)},${rightBottom![1].toStringAsFixed(2)}';
   }
 
   bool contains(double lat, double long) {
     final geo = Geodesy();
     return geo.isGeoPointInBoudingBox(LatLng(lat, long),
-        LatLng(leftTop[0], leftTop[1]), LatLng(rightBottom[0], rightBottom[1]));
+        LatLng(leftTop![0], leftTop![1]), LatLng(rightBottom![0], rightBottom![1]));
   }
 }

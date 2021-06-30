@@ -1,7 +1,7 @@
 class PaymentRegisterPayload {
-  final String nonce;
-  final String payload;
-  final String posId;
+  final String? nonce;
+  final String? payload;
+  final String? posId;
 
   PaymentRegisterPayload({this.nonce, this.payload, this.posId});
 

@@ -8,7 +8,7 @@ import 'entities/request_payment_payload.dart';
 import 'repositories/pos_repository.dart';
 
 class Pos extends Client {
-  PointOfSaleRepository _pointOfSaleRepository;
+  late PointOfSaleRepository _pointOfSaleRepository;
 
   Pos(String domain, String registryKey)
       : super(domain: domain, registryKey: registryKey) {
@@ -23,7 +23,7 @@ class Pos extends Client {
   }
 
   Future<PaymentRequestResponse> requestPayment(
-      RequestPaymentPayload requestPaymentPayload, String privateKey) async {
+      RequestPaymentPayload requestPaymentPayload, String? privateKey) async {
     return _pointOfSaleRepository.requestPayment(
       privateKey,
       requestPaymentPayload,

@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 class RequestWomCreation {
 
   final String sourceId;
-  String nonce;
+  String? nonce;
   final List<Voucher> vouchers;
 
   RequestWomCreation(this.sourceId, this.vouchers){

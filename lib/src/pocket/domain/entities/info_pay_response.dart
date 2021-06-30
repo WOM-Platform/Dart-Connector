@@ -6,10 +6,10 @@ class InfoPayResponse {
   static const String AMOUNT = 'amount';
   static const String SIMPLE_FILTER = 'simpleFilter';
 
-  String posId;
-  int amount;
-  String posName;
-  SimpleFilter simpleFilter;
+  String? posId;
+  int? amount;
+  String? posName;
+  SimpleFilter? simpleFilter;
 
   InfoPayResponse.fromMap(Map<String, dynamic> map)
       : posId = map[POS_ID],
@@ -24,7 +24,7 @@ class InfoPayResponse {
     data[POS_ID] = posId.toString();
     data[AMOUNT] = amount;
     data[POS_NAME] = posName;
-    data[SIMPLE_FILTER] = simpleFilter.toMap();
+    data[SIMPLE_FILTER] = simpleFilter!.toMap();
     return data;
   }
 

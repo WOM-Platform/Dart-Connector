@@ -10,7 +10,7 @@ abstract class PointOfSaleRepository {
   PointOfSaleRepository(this.publicKey);
 
   Future<PaymentRequestResponse> requestPayment(
-      String privateKeyString, RequestPaymentPayload requestPayment);
+      String? privateKeyString, RequestPaymentPayload requestPayment);
 
   Future<User> authenticate(String username, String password);
 }

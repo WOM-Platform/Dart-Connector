@@ -1,14 +1,16 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:dart_wom_connector/src/core/domain/entities/user.dart';
 import 'package:dart_wom_connector/src/core/utils/utils.dart';
-import 'package:dart_wom_connector/src/pos/domain/entities/payment_request_response.dart';
 import 'package:dart_wom_connector/src/pos/data/data_sources/pos_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/pos/data/models/payment_register_payload.dart';
 import 'package:dart_wom_connector/src/pos/data/models/payment_register_response_model.dart';
+import 'package:dart_wom_connector/src/pos/domain/entities/payment_request_response.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/request_payment_payload.dart';
 import 'package:dart_wom_connector/src/pos/domain/repositories/pos_repository.dart';
 import 'package:encrypt/encrypt.dart';
+import 'package:pointycastle/asymmetric/api.dart';
 
 class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
   final PointOfSaleRemoteDataSources posRemoteDataSources;
@@ -21,15 +23,17 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
   Encrypter _getEncrypter(String publicKeyString, String privateKeyString) {
     final publicKey = rsaKeyParser.parse(publicKeyString);
     final privateKey = rsaKeyParser.parse(privateKeyString);
-    return Encrypter(RSA(publicKey: publicKey, privateKey: privateKey));
+    return Encrypter(RSA(
+        publicKey: publicKey as RSAPublicKey?,
+        privateKey: privateKey as RSAPrivateKey?));
   }
 
   @override
-  Future<PaymentRequestResponse> requestPayment(String privateKeyString,
+  Future<PaymentRequestResponse> requestPayment(String? privateKeyString,
       RequestPaymentPayload requestPaymentPayload) async {
     try {
       final paymentRegisterResponse =
-          await _registerPayment(requestPaymentPayload, privateKeyString);
+          await _registerPayment(requestPaymentPayload, privateKeyString!);
 
       final isVerified =
           await _verifyPayment(paymentRegisterResponse.otc, privateKeyString);
@@ -49,9 +53,9 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
 
     final requestPaymentPayloadJSONEncrypted = await Utils.encryptLongInput(
         encrypter,
-        utf8.encode(requestPaymentPayloadJSON),
+        Uint8List.fromList(utf8.encode(requestPaymentPayloadJSON)),
         Utils.outputBlockSize(
-            rsaKeyParser.parse(publicKey).modulus.bitLength, true));
+            rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
     final paymentRegisterPayload = PaymentRegisterPayload(
         nonce: requestPaymentPayload.nonce,
@@ -72,7 +76,7 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
     return PaymentRegisterResponseModel.fromMap(jsonDecrypted);
   }
 
-  Future<bool> _verifyPayment(String otc, String privateKey) async {
+  Future<bool> _verifyPayment(String? otc, String privateKey) async {
     final encrypter = _getEncrypter(publicKey, privateKey);
     final payloadMap = {
       'otc': otc,
@@ -82,9 +86,9 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
 
     final payloadEncrypted = await Utils.encryptLongInput(
         encrypter,
-        utf8.encode(payloadMapEncoded),
+        utf8.encode(payloadMapEncoded) as Uint8List,
         Utils.outputBlockSize(
-            rsaKeyParser.parse(publicKey).modulus.bitLength, true));
+            rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
     final verifyMap = {
       'payload': payloadEncrypted,

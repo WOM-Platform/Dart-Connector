@@ -5,11 +5,11 @@ class PointOfSale {
   static String dbName = 'name';
   static String dbCoordinates = 'coordinates';
 
-  final String privateKey;
+  final String? privateKey;
   final String id;
-  final String name;
-  final String url;
-  final List<double> coordinates;
+  final String? name;
+  final String? url;
+  final List<double>? coordinates;
 
   PointOfSale(this.id, this.name, this.url, this.privateKey, this.coordinates);
 

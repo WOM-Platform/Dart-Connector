@@ -5,9 +5,9 @@ class ResponseRedeem {
   static const String SOURCE_NAME = 'sourceName';
   static const String SOURCE_ID = 'sourceId';
 
-  List<Voucher> vouchers;
-  String sourceName;
-  String sourceId;
+  List<Voucher>? vouchers;
+  String? sourceName;
+  String? sourceId;
 
   ResponseRedeem({this.vouchers, this.sourceName});
 
@@ -15,7 +15,7 @@ class ResponseRedeem {
     if (json[VOUCHERS] != null) {
       vouchers = <Voucher>[];
       json[VOUCHERS].forEach((v) {
-        vouchers.add(Voucher.fromMap(v));
+        vouchers!.add(Voucher.fromMap(v));
       });
       sourceName = json[SOURCE_NAME] ?? '';
       sourceId = json[SOURCE_ID].toString();

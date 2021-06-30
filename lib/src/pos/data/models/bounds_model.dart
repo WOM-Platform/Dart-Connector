@@ -6,7 +6,7 @@ class BoundsModel extends Bounds {
   static String LEFT_TOP = 'leftTop';
   static String RIGHT_BOT = 'rightBottom';
 
-  BoundsModel({List<double> leftTop, List<double> rightBottom})
+  BoundsModel({List<double>? leftTop, List<double>? rightBottom})
       : super(leftTop: leftTop, rightBottom: rightBottom);
 
   factory BoundsModel.fromMap(Map<String, dynamic> map) {

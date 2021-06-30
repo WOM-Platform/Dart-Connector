@@ -9,7 +9,7 @@ class PaymentRegisterResponseModel extends PaymentRegisterResponse {
   static String PASSWORD = 'password';
 
   PaymentRegisterResponseModel(
-      String registryUrl, String nonce, String otc, String password)
+      String? registryUrl, String? nonce, String? otc, String? password)
       : super(
           registryUrl: registryUrl,
           nonce: nonce,

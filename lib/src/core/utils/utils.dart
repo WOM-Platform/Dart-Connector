@@ -2,13 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
+
 import 'package:encrypt/encrypt.dart';
 import 'package:uuid/uuid.dart';
 
 class Utils {
   static String generateGUID() {
     var uuid = Uuid();
-    final guid = uuid.v1buffer(List(16));
+    final guid =
+        uuid.v1buffer(List.generate(16, (index) => Random().nextInt(16)));
     return Base64Encoder().convert(guid);
   }
 
@@ -54,7 +56,7 @@ class Utils {
   }
 
   static String encryptLongInput(
-      Encrypter encrypter, Uint8List inputBytes, int outBlockSize) {
+      Encrypter? encrypter, Uint8List inputBytes, int outBlockSize) {
     final blockSize = 501;
     final blocks = (inputBytes.length / blockSize.toDouble()).ceil().toInt();
     var output = Uint8List(blocks * outBlockSize);
@@ -63,7 +65,7 @@ class Utils {
       final offset = i * blockSize;
       final blockLength = min(blockSize, inputBytes.length - offset);
       final sublist = inputBytes.sublist(offset, offset + blockLength);
-      final cryptoBlock = encrypter.encryptBytes(sublist);
+      final cryptoBlock = encrypter!.encryptBytes(sublist);
       output.setRange(
           outputSize, outputSize + cryptoBlock.bytes.length, cryptoBlock.bytes);
       outputSize += cryptoBlock.bytes.length;
@@ -77,7 +79,7 @@ class Utils {
   }
 
   static String decryptLongInput(
-      Encrypter encrypter, Uint8List inputBytes, int outBlockSize) {
+      Encrypter? encrypter, Uint8List inputBytes, int outBlockSize) {
     final blockSize = 512;
     final blocks = (inputBytes.length / blockSize.toDouble()).ceil().toInt();
     var output = Uint8List(blocks * outBlockSize);
@@ -86,7 +88,7 @@ class Utils {
       final offset = i * blockSize;
       final blockLength = min(blockSize, inputBytes.length - offset);
       final sublist = inputBytes.sublist(offset, offset + blockLength);
-      final cryptoBlock = encrypter.decryptBytes(Encrypted(sublist));
+      final cryptoBlock = encrypter!.decryptBytes(Encrypted(sublist));
       output.setRange(outputSize, outputSize + cryptoBlock.length, cryptoBlock);
       outputSize += cryptoBlock.length;
     }

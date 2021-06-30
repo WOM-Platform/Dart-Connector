@@ -6,16 +6,16 @@ class RequestPaymentPayload {
   final int amount;
   final String pocketAckUrl;
   final String posId;
-  final String password;
-  final SimpleFilter simpleFilter;
-  final String posAckUrl;
+  final String? password;
+  final SimpleFilter? simpleFilter;
+  final String? posAckUrl;
   final bool persistent;
-  String nonce;
+  String? nonce;
 
   RequestPaymentPayload({
-    @required this.amount,
-    @required this.pocketAckUrl,
-    @required this.posId,
+    required this.amount,
+    required this.pocketAckUrl,
+    required this.posId,
     this.nonce,
     this.password,
     this.simpleFilter,

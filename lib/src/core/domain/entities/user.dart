@@ -9,10 +9,10 @@ class User {
   static String dbSurname = 'surname';
   static String dbEmail = 'email';
 
-  List<Merchant> merchants;
-  final String name;
-  final String surname;
-  final String email;
+  List<Merchant>? merchants;
+  final String? name;
+  final String? surname;
+  final String? email;
 
   User({
     this.name,

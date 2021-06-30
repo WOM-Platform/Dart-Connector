@@ -5,12 +5,12 @@ class Aim {
   static const kChildren = 'children';
   static const kTitles = 'titles';
 
-  final String iconUrl;
-  final String code;
+  final String? iconUrl;
+  final String? code;
   List<Aim> children = [];
-  final Map<String, dynamic> titles;
+  final Map<String, dynamic>? titles;
 
-  String get title => titles['en'] ?? null;
+  String? get title => titles!['en'] ?? null;
 
   Aim({this.iconUrl, this.code, this.titles = const <String, dynamic>{}});
 

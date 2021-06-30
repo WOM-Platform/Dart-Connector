@@ -9,9 +9,10 @@ abstract class ApiKeyRemoteDataSources {
 class ApiKeyRemoteDataSourcesImpl extends ApiKeyRemoteDataSources {
   @override
   Future<String> getRegistryKey(String domain) async {
-    final response = await http.get('https://$domain/api/v2/auth/key').timeout(
-        Duration(seconds: HttpHelper.TIMEOUT_SECONDS),
-        onTimeout: HttpHelper.onTimeout);
+    final response = await http
+        .get(Uri.parse('https://$domain/api/v2/auth/key'))
+        .timeout(Duration(seconds: HttpHelper.TIMEOUT_SECONDS),
+            onTimeout: HttpHelper.onTimeout);
     if (response.statusCode == 200) {
       return response.body;
     }

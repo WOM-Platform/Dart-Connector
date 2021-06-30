@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/instrument/data/data_sources/instruement_remote_data_sources.dart';
@@ -6,10 +7,11 @@ import 'package:dart_wom_connector/src/instrument/domain/entities/request_wom_cr
 import 'package:dart_wom_connector/src/instrument/domain/entities/request_wom_creation_response.dart';
 import 'package:dart_wom_connector/src/instrument/domain/repositories/instrument_repository.dart';
 import 'package:encrypt/encrypt.dart';
+import 'package:pointycastle/asymmetric/api.dart';
 
 class InstrumentRepositoryImpl extends InstrumentRepository {
   InstrumentRemoteDataSources instrumentRemoteDataSources;
-  Encrypter encrypter;
+  Encrypter? encrypter;
   final rsaKeyParser = RSAKeyParser();
   InstrumentRepositoryImpl(
       this.instrumentRemoteDataSources,
@@ -20,7 +22,9 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
       : super(privateKeyString, publicKeyString, sourceId, domain) {
     final publicKey = rsaKeyParser.parse(publicKeyString);
     final privateKey = rsaKeyParser.parse(privateKeyString);
-    encrypter = Encrypter(RSA(publicKey: publicKey, privateKey: privateKey));
+    encrypter = Encrypter(RSA(
+        publicKey: publicKey as RSAPublicKey?,
+        privateKey: privateKey as RSAPrivateKey?));
   }
 
   @override
@@ -34,9 +38,9 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
 
       final encrypted = Utils.encryptLongInput(
           encrypter,
-          utf8.encode(payloadMapEncoded),
+          utf8.encode(payloadMapEncoded) as Uint8List,
           Utils.outputBlockSize(
-              rsaKeyParser.parse(publicKey).modulus.bitLength, true));
+              rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
       final map = <String, dynamic>{
         'SourceId': requestWomCreation.sourceId,
@@ -66,7 +70,7 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
 
   @override
   Future<bool> verifyWomCreation(RequestWomCreationResponse response) async {
-    final payloadMap = <String, String>{
+    final payloadMap = <String, String?>{
       'Otc': response.otc,
     };
 
@@ -75,9 +79,9 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
 
       final payloadEncrypted = Utils.encryptLongInput(
           encrypter,
-          utf8.encode(payloadMapEncoded),
+          Uint8List.fromList(utf8.encode(payloadMapEncoded)),
           Utils.outputBlockSize(
-              rsaKeyParser.parse(publicKey).modulus.bitLength, true));
+              rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
       final map = <String, dynamic>{
         'Payload': payloadEncrypted,

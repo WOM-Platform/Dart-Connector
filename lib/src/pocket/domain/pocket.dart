@@ -8,7 +8,7 @@ import 'package:dart_wom_connector/src/pocket/domain/entities/response_redeem.da
 import 'package:meta/meta.dart';
 
 class Pocket extends Client {
-  PocketRepository _pocketRepository;
+  late PocketRepository _pocketRepository;
 
   @visibleForTesting
   List<Voucher> get vouchers => _vouchers;
@@ -22,9 +22,9 @@ class Pocket extends Client {
 
   @visibleForTesting
   Future<ResponseRedeem> redeemVouchersForTest(
-      String otc, String password) async {
+      String? otc, String? password) async {
     final response = await _pocketRepository.redeemVouchers(otc, password);
-    vouchers.addAll(response.vouchers);
+    vouchers.addAll(response.vouchers!);
     return response;
   }
 
@@ -33,32 +33,32 @@ class Pocket extends Client {
   }
 
   Future<InfoPayResponse> requestInfoPayment(
-      String otc, String password) async {
+      String? otc, String? password) async {
     return _pocketRepository.requestInfoPay(otc, password);
   }
 
   @visibleForTesting
-  Future<String> payWithRandomVouchers(
-      InfoPayResponse infoPay, String otc, String password) async {
+  Future<String?> payWithRandomVouchers(
+      InfoPayResponse infoPay, String? otc, String? password) async {
     // final infoPay = await _pocketRepository.requestInfoPay(otc, password);
     List<Voucher> satisfyingVouchers;
     if (infoPay.simpleFilter != null) {
       satisfyingVouchers = _vouchers.where((v) {
-        if (infoPay.simpleFilter.aimCode != null &&
-            !v.aim.startsWith(infoPay.simpleFilter.aimCode)) {
+        if (infoPay.simpleFilter!.aimCode != null &&
+            !v.aim!.startsWith(infoPay.simpleFilter!.aimCode!)) {
           // Voucher does not match aim filter
           return false;
         }
 
-        if (infoPay.simpleFilter.bounds != null &&
-            !infoPay.simpleFilter.bounds.contains(v.lat, v.long)) {
+        if (infoPay.simpleFilter!.bounds != null &&
+            !infoPay.simpleFilter!.bounds!.contains(v.lat!, v.long!)) {
           // Voucher not contained in geographical bounds
           return false;
         }
 
-        if (infoPay.simpleFilter.maxAge != null &&
-            DateTime.now().toUtc().difference(v.dateTime) >
-                Duration(days: infoPay.simpleFilter.maxAge)) {
+        if (infoPay.simpleFilter!.maxAge != null &&
+            DateTime.now().toUtc().difference(v.dateTime!) >
+                Duration(days: infoPay.simpleFilter!.maxAge!)) {
           // Voucher too old
           return false;
         }
@@ -69,12 +69,12 @@ class Pocket extends Client {
       satisfyingVouchers = _vouchers;
     }
 
-    if (infoPay.amount > satisfyingVouchers.length) {
+    if (infoPay.amount! > satisfyingVouchers.length) {
       throw InsufficientVouchers();
     }
 
     satisfyingVouchers.shuffle();
-    final v = satisfyingVouchers.getRange(0, infoPay.amount).toList();
+    final v = satisfyingVouchers.getRange(0, infoPay.amount!).toList();
     assert(v.length == infoPay.amount);
     final paymentResponse =
         await _pocketRepository.pay(otc, password, infoPay, v);
@@ -83,9 +83,9 @@ class Pocket extends Client {
     return paymentResponse;
   }
 
-  Future<String> pay(InfoPayResponse infoPay, String otc, String password,
+  Future<String?> pay(InfoPayResponse infoPay, String? otc, String? password,
       List<Voucher> vouchers) async {
-    if (infoPay.amount > vouchers.length) {
+    if (infoPay.amount! > vouchers.length) {
       throw InsufficientVouchers();
     }
     final paymentResponse =

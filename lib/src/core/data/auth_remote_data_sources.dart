@@ -7,7 +7,7 @@ import 'package:dart_wom_connector/src/pos/domain/entities/merchant.dart';
 import 'http_helper.dart';
 
 abstract class AuthRemoteDataSources {
-  Future<User> authenticate({String username, String password});
+  Future<User> authenticate({String? username, String? password});
 }
 
 class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
@@ -20,7 +20,7 @@ class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
   );
 
   @override
-  Future<User> authenticate({String username, String password}) async {
+  Future<User> authenticate({String? username, String? password}) async {
     final bytes = utf8.encode('$username:$password');
     final base64String = Base64Encoder().convert(bytes);
     if (userType == UserType.POS) {
@@ -30,7 +30,7 @@ class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
     }
   }
 
-  Future<User> _authenticatePos({String base64String}) async {
+  Future<User> _authenticatePos({String? base64String}) async {
     final body = await HttpHelper.authenticate(
         'https://$domain/api/v2/auth/merchant', base64String);
     final map = json.decode(body);
@@ -43,7 +43,7 @@ class AuthRemoteDataSourcesImpl implements AuthRemoteDataSources {
         name: name, surname: surname, email: email, merchants: merchants);
   }
 
-  Future<User> _authenticateInstrument({String base64String}) async {
+  Future<User> _authenticateInstrument({String? base64String}) async {
     throw UnimplementedError();
   }
 }

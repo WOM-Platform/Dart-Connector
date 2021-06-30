@@ -9,7 +9,7 @@ import 'entities/request_wom_creation.dart';
 class Instrument extends Client {
   final String sourceId;
   final String privKey;
-  InstrumentRepository instrumentRepository;
+  late InstrumentRepository instrumentRepository;
 
   Instrument(this.sourceId, String domain, String registryKey, this.privKey)
       : super(domain: domain, registryKey: registryKey) {

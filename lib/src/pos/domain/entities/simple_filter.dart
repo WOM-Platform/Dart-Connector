@@ -5,9 +5,9 @@ class SimpleFilter {
   static String BOUNDS = 'bounds';
   static String MAX_AGE = 'maxAge';
 
-  final String aimCode;
-  final Bounds bounds;
-  final int maxAge;
+  final String? aimCode;
+  final Bounds? bounds;
+  final int? maxAge;
 
   SimpleFilter({this.aimCode, this.bounds, this.maxAge});
 
@@ -21,13 +21,13 @@ class SimpleFilter {
     data[AIM] = aimCode;
     data[MAX_AGE] = maxAge;
     if (bounds != null) {
-      data[BOUNDS] = bounds.toMap();
+      data[BOUNDS] = bounds!.toMap();
     }
 
     return data;
   }
 
-  int get maxAgeToMilliseconds => maxAge * 86400000;
+  int get maxAgeToMilliseconds => maxAge! * 86400000;
 
   @override
   String toString() {

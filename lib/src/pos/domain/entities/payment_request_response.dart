@@ -1,6 +1,6 @@
 class PaymentRequestResponse {
-  final String otc;
-  final String password;
+  final String? otc;
+  final String? password;
 
   PaymentRequestResponse(this.otc, this.password);
 
