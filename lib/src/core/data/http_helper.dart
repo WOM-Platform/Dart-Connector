@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dart_wom_connector/src/core/domain/entities/user_type_enum.dart';
 import 'package:dart_wom_connector/src/core/error/exceptions.dart';
 import 'package:http/http.dart' as http;
 
@@ -25,16 +26,23 @@ class HttpHelper {
     }
   }
 
-  static Future<String> authenticate(String url, String? auth) async {
+  static Future<Map<String, dynamic>> authenticate(
+      String username, String password, String domain, UserType type) async {
+    final bytes = utf8.encode('$username:$password');
+    final auth = Base64Encoder().convert(bytes);
+    final endpoint =
+        'https://$domain/api/v2/auth/${type == UserType.Instrument ? 'source' : 'merchant'}';
     final response = await http.post(
-      Uri.parse(url),
+      Uri.parse(endpoint),
       headers: {
         'authorization': 'Basic $auth',
         'content-type': 'application/json'
       },
     ).timeout(Duration(seconds: TIMEOUT_SECONDS), onTimeout: onTimeout);
     if (response.statusCode == 200) {
-      return response.body;
+      final body = response.body;
+      final map = json.decode(body);
+      return map;
     }
 
     String? error;

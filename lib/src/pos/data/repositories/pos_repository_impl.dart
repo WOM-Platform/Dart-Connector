@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:dart_wom_connector/src/core/domain/entities/user.dart';
 import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/pos/data/data_sources/pos_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/pos/data/models/payment_register_payload.dart';
@@ -97,13 +96,13 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
     return posRemoteDataSources.verifyPayment('payment/verify', verifyMap);
   }
 
-  @override
-  Future<User> authenticate(String username, String password) async {
-    try {
-      final user = await posRemoteDataSources.authenticate(username, password);
-      return user;
-    } catch (e) {
-      rethrow;
-    }
-  }
+  // @override
+  // Future<POSUser> authenticate(String username, String password) async {
+  //   try {
+  //     final user = await posRemoteDataSources.authenticate(username, password);
+  //     return user as POSUser;
+  //   } catch (e) {
+  //     rethrow;
+  //   }
+  // }
 }

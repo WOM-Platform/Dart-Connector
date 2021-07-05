@@ -1,5 +1,3 @@
-import 'package:dart_wom_connector/src/pos/domain/entities/merchant.dart';
-
 class User {
   static String dbPrivateKey = 'privateKey';
   static String dbId = 'id';
@@ -9,7 +7,6 @@ class User {
   static String dbSurname = 'surname';
   static String dbEmail = 'email';
 
-  List<Merchant>? merchants;
   final String? name;
   final String? surname;
   final String? email;
@@ -18,7 +15,6 @@ class User {
     this.name,
     this.surname,
     this.email,
-    this.merchants,
   });
 
 //  User.fromMap(Map<String, dynamic> map, String actorKey)

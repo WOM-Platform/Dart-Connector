@@ -94,4 +94,15 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
       rethrow;
     }
   }
+
+/*  @override
+  Future<InstrumentUser> authenticate(String username, String password) async {
+    try {
+      final user =
+          await instrumentRemoteDataSources.authenticate(username, password);
+      return user as InstrumentUser;
+    } catch (e) {
+      rethrow;
+    }
+  }*/
 }

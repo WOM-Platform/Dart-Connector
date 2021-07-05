@@ -1,34 +1,57 @@
+import 'package:dart_wom_connector/src/core/data/http_helper.dart';
+import 'package:dart_wom_connector/src/core/domain/entities/instrument_user.dart';
+import 'package:dart_wom_connector/src/core/domain/entities/user.dart';
+import 'package:dart_wom_connector/src/core/domain/entities/user_type_enum.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
 import 'package:dart_wom_connector/src/instrument/domain/entities/request_wom_creation_response.dart';
 import 'package:dart_wom_connector/src/instrument/domain/repositories/instrument_repository.dart';
+
 import '../../core/controller/client.dart';
 import '../data/data_sources/instruement_remote_data_sources.dart';
 import '../data/repositories/instruement_repository_impl.dart';
+import 'entities/instrument.dart';
 import 'entities/request_wom_creation.dart';
 
-class Instrument extends Client {
-  final String sourceId;
-  final String privKey;
+class InstrumentClient extends Client {
+  final Instrument instrument;
   late InstrumentRepository instrumentRepository;
 
-  Instrument(this.sourceId, String domain, String registryKey, this.privKey)
-      : super(domain: domain, registryKey: registryKey) {
+  InstrumentClient(
+    this.instrument,
+    String domain,
+    String registryKey,
+  ) : super(domain: domain, registryKey: registryKey) {
     instrumentRepository = InstrumentRepositoryImpl(
-        InstrumentRemoteDataSourcesImpl(),
-        privKey,
+        InstrumentRemoteDataSourcesImpl(domain),
+        instrument.privateKey,
         registryKey,
-        sourceId,
+        instrument.id,
         domain);
   }
 
   Future<RequestWomCreationResponse> requestVouchers(
       List<Voucher> vouchers) async {
-    final request = RequestWomCreation(sourceId, vouchers);
+    final request = RequestWomCreation(instrument.id, vouchers);
     return instrumentRepository.requestWomCreation(request);
   }
 
   Future<bool> verifyRequest(
       RequestWomCreationResponse requestWomCreationResponse) async {
     return instrumentRepository.verifyWomCreation(requestWomCreationResponse);
+  }
+
+  static Future<InstrumentUser> authenticate(
+      String username, String password, String domain) async {
+    final map = await HttpHelper.authenticate(
+        username, password, domain, UserType.Instrument);
+    final name = map[User.dbName];
+    final surname = map[User.dbSurname];
+    final email = map[User.dbEmail];
+    final instruments = map['sources'] != null
+        ? List<Instrument>.from(
+            map['sources'].map<Instrument>((m) => Instrument.fromJson(m)))
+        : <Instrument>[];
+    return InstrumentUser(
+        instruments: instruments, name: name, surname: surname, email: email);
   }
 }
