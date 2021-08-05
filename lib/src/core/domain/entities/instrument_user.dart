@@ -1,8 +1,9 @@
 import 'package:dart_wom_connector/src/instrument/domain/entities/instrument.dart';
+import 'package:equatable/equatable.dart';
 
 import '../../domain/entities/user.dart';
 
-class InstrumentUser extends User {
+class InstrumentUser extends User implements Equatable {
   final List<Instrument> instruments;
 
   InstrumentUser({
@@ -15,4 +16,15 @@ class InstrumentUser extends User {
           surname: surname,
           email: email,
         );
+
+  @override
+  List<Object?> get props => [
+        name,
+        surname,
+        email,
+        instruments,
+      ];
+
+  @override
+  bool? get stringify => throw UnimplementedError();
 }

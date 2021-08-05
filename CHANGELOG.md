@@ -1,3 +1,9 @@
+## 0.0.2-nullsafety.3
+
+- Exposed Instrument class
+- Fixed typo
+- Added link property in WomCreationResponse
+
 ## 0.0.2-nullsafety.2
 
 - Exposed missing class

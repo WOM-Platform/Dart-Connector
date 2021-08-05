@@ -3,12 +3,12 @@ import 'package:dart_wom_connector/src/core/domain/entities/instrument_user.dart
 import 'package:dart_wom_connector/src/core/domain/entities/user.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/user_type_enum.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
-import 'package:dart_wom_connector/src/instrument/domain/entities/request_wom_creation_response.dart';
+import 'package:dart_wom_connector/src/instrument/domain/entities/wom_creation_response.dart';
 import 'package:dart_wom_connector/src/instrument/domain/repositories/instrument_repository.dart';
 
 import '../../core/controller/client.dart';
-import '../data/data_sources/instruement_remote_data_sources.dart';
-import '../data/repositories/instruement_repository_impl.dart';
+import '../data/data_sources/instrument_remote_data_sources.dart';
+import '../data/repositories/instrument_repository_impl.dart';
 import 'entities/instrument.dart';
 import 'entities/request_wom_creation.dart';
 
@@ -29,14 +29,13 @@ class InstrumentClient extends Client {
         domain);
   }
 
-  Future<RequestWomCreationResponse> requestVouchers(
-      List<Voucher> vouchers) async {
+  Future<WomCreationResponse> requestVouchers(List<Voucher> vouchers) async {
     final request = RequestWomCreation(instrument.id, vouchers);
     return instrumentRepository.requestWomCreation(request);
   }
 
   Future<bool> verifyRequest(
-      RequestWomCreationResponse requestWomCreationResponse) async {
+      WomCreationResponse requestWomCreationResponse) async {
     return instrumentRepository.verifyWomCreation(requestWomCreationResponse);
   }
 

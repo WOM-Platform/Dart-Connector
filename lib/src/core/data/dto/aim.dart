@@ -1,3 +1,4 @@
+import 'package:dart_wom_connector/src/core/domain/entities/aim.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // class Aim {
@@ -28,17 +29,37 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // }
 
 part 'aim.freezed.dart';
+part 'aim.g.dart';
 
 @freezed
-class Aim with _$Aim {
-  const factory Aim({
+class AimResponse with _$AimResponse {
+  const factory AimResponse({
+    required List<AimDTO> aims,
+  }) = _AimResponse;
+
+  factory AimResponse.fromJson(Map<String, dynamic> json) =>
+      _$AimResponseFromJson(json);
+}
+
+@freezed
+class AimDTO with _$AimDTO {
+  const factory AimDTO({
     required String code,
     String? iconFile,
     required Map<String, dynamic>? titles,
-    required List<Aim> children,
-  }) = _Aim;
+    required List<AimDTO> children,
+  }) = _AimDTO;
+
+  factory AimDTO.fromJson(Map<String, dynamic> json) => _$AimDTOFromJson(json);
 }
 
-extension AimX on Aim {
-  String? get title => titles!['en'] ?? null;
+extension AimDTOX on AimDTO {
+  Aim toDomain() {
+    return Aim(
+      code: code,
+      titles: titles,
+      children: children.map((e) => e.toDomain()).toList(),
+      iconFile: iconFile,
+    );
+  }
 }
