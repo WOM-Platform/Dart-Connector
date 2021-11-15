@@ -1,11 +1,14 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:dart_wom_connector/src/core/domain/entities/transaction_type.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
 import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/pocket/data/data_sources/pocket_remote_data_sources.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/create_migration_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/info_pay_response.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/migration_info_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/response_redeem.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:pointycastle/asymmetric/api.dart';
@@ -15,6 +18,13 @@ abstract class PocketRepository {
   Future<InfoPayResponse> requestInfoPay(String? otc, String? password);
   Future<String?> pay(String? otc, String? password, InfoPayResponse infoPay,
       List<Voucher> vouchers);
+  Future<CreateMigrationResponse> createNewMigration(
+      List<int> bytes, String password);
+  Future<CreateMigrationResponse> createNewMigrationV2(
+      List<Voucher> vouchers, String password);
+  Future<MigrationInfoResponse> getInfoAboutMigration(
+      String guid, String password);
+  Future<Uint8List> retrieveMigrationPayload(String guid, String password);
 }
 
 class PocketRepositoryImpl extends PocketRepository {
@@ -64,7 +74,7 @@ class PocketRepositoryImpl extends PocketRepository {
     final mapEncoded = json.encode(map);
 
     //encrypt otc map with public_key
-    final otcEncrypted = await Utils.encryptLongInput(
+    final otcEncrypted = Utils.encryptLongInput(
         encrypter,
         Uint8List.fromList(utf8.encode(mapEncoded)),
         Utils.outputBlockSize(
@@ -141,4 +151,67 @@ class PocketRepositoryImpl extends PocketRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<CreateMigrationResponse> createNewMigration(
+      List<int> bytes, String password) async {
+    final data =
+        await pocketRemoteDataSourcesImpl.createNewMigration(bytes, password);
+    return CreateMigrationResponse.fromJson(data);
+  }
+
+  @override
+  Future<CreateMigrationResponse> createNewMigrationV2(
+      List<Voucher> vouchers, String password) async {
+    if (vouchers.isEmpty) {
+      print('woms empty');
+      //TODO
+      // throw Exception('Woms table is Empty');
+    }
+    final jsonString = jsonEncode(vouchers.map((e) => e.toMap()).toList());
+    final key = _getRandomString(28);
+    final bytes = _encryptWithAes(jsonString, '$key$password');
+
+    final data =
+        await pocketRemoteDataSourcesImpl.createNewMigration(bytes, password);
+    return CreateMigrationResponse.fromJson(data);
+  }
+
+  @override
+  Future<MigrationInfoResponse> getInfoAboutMigration(
+      String guid, String password) async {
+    final data =
+        await pocketRemoteDataSourcesImpl.getInfoAboutMigration(guid, password);
+    return MigrationInfoResponse.fromJson(data);
+  }
+
+  @override
+  Future<Uint8List> retrieveMigrationPayload(
+      String guid, String password) async {
+    final data = await pocketRemoteDataSourcesImpl.retrieveMigrationPayload(
+        guid, password);
+    return data;
+  }
+
+  List<int> _encryptWithAes(String text, String k) {
+    final key = Key.fromUtf8(k);
+    final iv = IV.fromLength(16);
+
+    final encrypter = Encrypter(AES(key));
+
+    final encrypted = encrypter.encrypt(text, iv: iv);
+    // final decrypted = encrypter.decrypt(encrypted, iv: iv);
+
+    // print(decrypted);
+    // print(encrypted.base64);
+    return encrypted.bytes;
+  }
+
+  String _getRandomString(int length) {
+    final _rnd = Random();
+    return String.fromCharCodes(Iterable.generate(
+        length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+  }
 }
+
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';

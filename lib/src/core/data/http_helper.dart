@@ -14,6 +14,24 @@ class HttpHelper {
       body: json.encode(map),
       headers: {'content-type': 'application/json'},
     ).timeout(Duration(seconds: TIMEOUT_SECONDS), onTimeout: onTimeout);
+    print('$url => status code: ${response.statusCode}');
+    if (response.statusCode == 200) {
+      return response.body;
+    }
+    String? error;
+    try {
+      final jsonError = json.decode(response.body) as Map<String, dynamic>;
+      error = jsonError['error'];
+    } finally {
+      throw ServerException(error: error);
+    }
+  }
+
+  static Future<String> genericHttpGet(String url) async {
+    final response = await http
+        .get(Uri.parse(url))
+        .timeout(Duration(seconds: TIMEOUT_SECONDS), onTimeout: onTimeout);
+    print('$url => status code: ${response.statusCode}');
     if (response.statusCode == 200) {
       return response.body;
     }

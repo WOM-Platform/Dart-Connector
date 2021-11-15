@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dart_wom_connector/src/core/controller/client.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
 import 'package:dart_wom_connector/src/core/error/exceptions.dart';
@@ -6,6 +8,9 @@ import 'package:dart_wom_connector/src/pocket/data/repositories/pocket_repositor
 import 'package:dart_wom_connector/src/pocket/domain/entities/info_pay_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/response_redeem.dart';
 import 'package:meta/meta.dart';
+
+import 'entities/create_migration_response.dart';
+import 'entities/migration_info_response.dart';
 
 class Pocket extends Client {
   late PocketRepository _pocketRepository;
@@ -91,5 +96,25 @@ class Pocket extends Client {
     final paymentResponse =
         await _pocketRepository.pay(otc, password, infoPay, vouchers);
     return paymentResponse;
+  }
+
+  Future<CreateMigrationResponse> createNewMigration(
+      List<int> bytes, String password) async {
+    return await _pocketRepository.createNewMigration(bytes, password);
+  }
+
+  Future<CreateMigrationResponse> createNewMigrationV2(
+      List<Voucher> vouchers, String password) async {
+    return await _pocketRepository.createNewMigrationV2(vouchers, password);
+  }
+
+  Future<MigrationInfoResponse> getInfoAboutMigration(
+      String guid, String password) async {
+    return await _pocketRepository.getInfoAboutMigration(guid, password);
+  }
+
+  Future<Uint8List> retrieveMigrationPayload(
+      String guid, String password) async {
+    return await _pocketRepository.retrieveMigrationPayload(guid, password);
   }
 }
