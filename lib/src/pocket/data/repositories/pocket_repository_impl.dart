@@ -11,7 +11,8 @@ import 'package:encrypt/encrypt.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 
 abstract class PocketRepository {
-  Future<ResponseRedeem> redeemVouchers(String? otc, String? password);
+  Future<ResponseRedeem> redeemVouchers(String? otc, String? password,
+      {double? lat, double? long});
   Future<InfoPayResponse> requestInfoPay(String? otc, String? password);
   Future<String?> pay(String? otc, String? password, InfoPayResponse infoPay,
       List<Voucher> vouchers);
@@ -29,9 +30,15 @@ class PocketRepositoryImpl extends PocketRepository {
   }
 
   @override
-  Future<ResponseRedeem> redeemVouchers(String? otc, String? password) async {
+  Future<ResponseRedeem> redeemVouchers(String? otc, String? password,
+      {double? lat, double? long}) async {
     final jsonDecrypted = await (performRequestAndDecrypt(
-        TransactionType.VOUCHERS, otc, password));
+      TransactionType.VOUCHERS,
+      otc,
+      password,
+      lat: lat,
+      long: long,
+    ));
     final responseRedeem = ResponseRedeem.fromJson(jsonDecrypted);
     return responseRedeem;
   }
@@ -49,16 +56,24 @@ class PocketRepositoryImpl extends PocketRepository {
   }
 
   Future<Map<String, dynamic>> performRequestAndDecrypt(
-      TransactionType type, String? otc, String? password) async {
+      TransactionType type, String? otc, String? password,
+      {double? lat, double? long}) async {
     //generate temporary key from this transaction
     final key = Utils.generateAsBase64String(32);
 
     //create json map with parameters
-    final map = <String, String?>{
+    final map = <String, dynamic>{
       'otc': otc,
       'password': password,
       'sessionKey': key,
     };
+
+    if (lat != null && long != null) {
+      map['redeemLocation'] = <String, dynamic>{
+        'latitude': lat,
+        'longitude': long,
+      };
+    }
 
     //encode map to json string
     final mapEncoded = json.encode(map);

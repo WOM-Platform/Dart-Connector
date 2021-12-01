@@ -21,15 +21,18 @@ class Pocket extends Client {
   }
 
   @visibleForTesting
-  Future<ResponseRedeem> redeemVouchersForTest(
-      String? otc, String? password) async {
-    final response = await _pocketRepository.redeemVouchers(otc, password);
+  Future<ResponseRedeem> redeemVouchersForTest(String? otc, String? password,
+      {double? lat, double? long}) async {
+    final response = await _pocketRepository.redeemVouchers(otc, password,
+        lat: lat, long: long);
     vouchers.addAll(response.vouchers!);
     return response;
   }
 
-  Future<ResponseRedeem> redeemVouchers(String otc, String password) async {
-    return await _pocketRepository.redeemVouchers(otc, password);
+  Future<ResponseRedeem> redeemVouchers(String otc, String password,
+      {double? lat, double? long}) async {
+    return await _pocketRepository.redeemVouchers(otc, password,
+        lat: lat, long: long);
   }
 
   Future<InfoPayResponse> requestInfoPayment(

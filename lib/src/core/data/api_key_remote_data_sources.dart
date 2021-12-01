@@ -9,13 +9,13 @@ abstract class ApiKeyRemoteDataSources {
 class ApiKeyRemoteDataSourcesImpl extends ApiKeyRemoteDataSources {
   @override
   Future<String> getRegistryKey(String domain) async {
-    final response = await http
-        .get(Uri.parse('https://$domain/api/v2/auth/key'))
-        .timeout(Duration(seconds: HttpHelper.TIMEOUT_SECONDS),
-            onTimeout: HttpHelper.onTimeout);
+    final url = 'https://$domain/api/v2/auth/key';
+    final response = await http.get(Uri.parse(url)).timeout(
+        Duration(seconds: HttpHelper.TIMEOUT_SECONDS),
+        onTimeout: HttpHelper.onTimeout);
     if (response.statusCode == 200) {
       return response.body;
     }
-    throw ServerException();
+    throw ServerException(url: url, statusCode: response.statusCode);
   }
 }

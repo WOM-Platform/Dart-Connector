@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_wom_connector/src/core/data/client_remote_data_sources.dart';
+import 'package:dart_wom_connector/src/core/error/exceptions.dart';
 import 'package:http/http.dart' as http;
 
 abstract class InstrumentRemoteDataSources extends WomClientRemoteDataSources {
@@ -17,29 +18,41 @@ class InstrumentRemoteDataSourcesImpl extends InstrumentRemoteDataSources {
   @override
   Future<String> requestWomCreation(
       String url, Map<String, dynamic> map) async {
-    final resp = await http.post(
+    final response = await http.post(
       Uri.parse(url),
       body: json.encode(map),
       headers: {HttpHeaders.contentTypeHeader: 'application/json'},
     );
-    if (resp.statusCode == 200) {
-      return resp.body;
+    if (response.statusCode == 200) {
+      return response.body;
     }
-    final jsonError = json.decode(resp.body) as Map<String, dynamic>;
-    throw Exception(jsonError['title']);
+    var error = 'Unknown error';
+    try {
+      final jsonError = json.decode(response.body) as Map<String, dynamic>;
+      error = jsonError['error'];
+    } finally {
+      throw ServerException(
+          url: url, statusCode: response.statusCode, error: error);
+    }
   }
 
   @override
   Future<bool> verifyWomCreation(String url, Map<String, dynamic> map) async {
-    final resp = await http.post(
+    final response = await http.post(
       Uri.parse(url),
       body: json.encode(map),
       headers: {HttpHeaders.contentTypeHeader: 'application/json'},
     );
-    if (resp.statusCode == 200) {
+    if (response.statusCode == 200) {
       return true;
     }
-    final jsonError = json.decode(resp.body) as Map<String, dynamic>;
-    throw Exception(jsonError['title']);
+    var error = 'Unknown error';
+    try {
+      final jsonError = json.decode(response.body) as Map<String, dynamic>;
+      error = jsonError['error'];
+    } finally {
+      throw ServerException(
+          url: url, statusCode: response.statusCode, error: error);
+    }
   }
 }

@@ -1,3 +1,7 @@
+## 0.1.0
+
+- Implemented creation mode (standard, setLocationOnRedeem) 
+
 ## 0.0.2-nullsafety.3
 
 - Exposed Instrument class
