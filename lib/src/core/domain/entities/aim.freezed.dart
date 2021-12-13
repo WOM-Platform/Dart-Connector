@@ -18,14 +18,14 @@ class _$AimTearOff {
 
   _Aim call(
       {required String code,
-      String? iconFile,
       required Map<String, dynamic>? titles,
-      required List<Aim> children}) {
+      List<Aim>? children,
+      String? iconFile}) {
     return _Aim(
       code: code,
-      iconFile: iconFile,
       titles: titles,
       children: children,
+      iconFile: iconFile,
     );
   }
 }
@@ -36,9 +36,9 @@ const $Aim = _$AimTearOff();
 /// @nodoc
 mixin _$Aim {
   String get code => throw _privateConstructorUsedError;
-  String? get iconFile => throw _privateConstructorUsedError;
   Map<String, dynamic>? get titles => throw _privateConstructorUsedError;
-  List<Aim> get children => throw _privateConstructorUsedError;
+  List<Aim>? get children => throw _privateConstructorUsedError;
+  String? get iconFile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AimCopyWith<Aim> get copyWith => throw _privateConstructorUsedError;
@@ -50,9 +50,9 @@ abstract class $AimCopyWith<$Res> {
       _$AimCopyWithImpl<$Res>;
   $Res call(
       {String code,
-      String? iconFile,
       Map<String, dynamic>? titles,
-      List<Aim> children});
+      List<Aim>? children,
+      String? iconFile});
 }
 
 /// @nodoc
@@ -66,19 +66,15 @@ class _$AimCopyWithImpl<$Res> implements $AimCopyWith<$Res> {
   @override
   $Res call({
     Object? code = freezed,
-    Object? iconFile = freezed,
     Object? titles = freezed,
     Object? children = freezed,
+    Object? iconFile = freezed,
   }) {
     return _then(_value.copyWith(
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      iconFile: iconFile == freezed
-          ? _value.iconFile
-          : iconFile // ignore: cast_nullable_to_non_nullable
-              as String?,
       titles: titles == freezed
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
@@ -86,7 +82,11 @@ class _$AimCopyWithImpl<$Res> implements $AimCopyWith<$Res> {
       children: children == freezed
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
-              as List<Aim>,
+              as List<Aim>?,
+      iconFile: iconFile == freezed
+          ? _value.iconFile
+          : iconFile // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -98,9 +98,9 @@ abstract class _$AimCopyWith<$Res> implements $AimCopyWith<$Res> {
   @override
   $Res call(
       {String code,
-      String? iconFile,
       Map<String, dynamic>? titles,
-      List<Aim> children});
+      List<Aim>? children,
+      String? iconFile});
 }
 
 /// @nodoc
@@ -115,19 +115,15 @@ class __$AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res>
   @override
   $Res call({
     Object? code = freezed,
-    Object? iconFile = freezed,
     Object? titles = freezed,
     Object? children = freezed,
+    Object? iconFile = freezed,
   }) {
     return _then(_Aim(
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      iconFile: iconFile == freezed
-          ? _value.iconFile
-          : iconFile // ignore: cast_nullable_to_non_nullable
-              as String?,
       titles: titles == freezed
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
@@ -135,7 +131,11 @@ class __$AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res>
       children: children == freezed
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
-              as List<Aim>,
+              as List<Aim>?,
+      iconFile: iconFile == freezed
+          ? _value.iconFile
+          : iconFile // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -144,23 +144,20 @@ class __$AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res>
 
 class _$_Aim implements _Aim {
   const _$_Aim(
-      {required this.code,
-      this.iconFile,
-      required this.titles,
-      required this.children});
+      {required this.code, required this.titles, this.children, this.iconFile});
 
   @override
   final String code;
   @override
-  final String? iconFile;
-  @override
   final Map<String, dynamic>? titles;
   @override
-  final List<Aim> children;
+  final List<Aim>? children;
+  @override
+  final String? iconFile;
 
   @override
   String toString() {
-    return 'Aim(code: $code, iconFile: $iconFile, titles: $titles, children: $children)';
+    return 'Aim(code: $code, titles: $titles, children: $children, iconFile: $iconFile)';
   }
 
   @override
@@ -169,23 +166,23 @@ class _$_Aim implements _Aim {
         (other is _Aim &&
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.iconFile, iconFile) ||
-                const DeepCollectionEquality()
-                    .equals(other.iconFile, iconFile)) &&
             (identical(other.titles, titles) ||
                 const DeepCollectionEquality().equals(other.titles, titles)) &&
             (identical(other.children, children) ||
                 const DeepCollectionEquality()
-                    .equals(other.children, children)));
+                    .equals(other.children, children)) &&
+            (identical(other.iconFile, iconFile) ||
+                const DeepCollectionEquality()
+                    .equals(other.iconFile, iconFile)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(iconFile) ^
       const DeepCollectionEquality().hash(titles) ^
-      const DeepCollectionEquality().hash(children);
+      const DeepCollectionEquality().hash(children) ^
+      const DeepCollectionEquality().hash(iconFile);
 
   @JsonKey(ignore: true)
   @override
@@ -196,18 +193,18 @@ class _$_Aim implements _Aim {
 abstract class _Aim implements Aim {
   const factory _Aim(
       {required String code,
-      String? iconFile,
       required Map<String, dynamic>? titles,
-      required List<Aim> children}) = _$_Aim;
+      List<Aim>? children,
+      String? iconFile}) = _$_Aim;
 
   @override
   String get code => throw _privateConstructorUsedError;
   @override
-  String? get iconFile => throw _privateConstructorUsedError;
-  @override
   Map<String, dynamic>? get titles => throw _privateConstructorUsedError;
   @override
-  List<Aim> get children => throw _privateConstructorUsedError;
+  List<Aim>? get children => throw _privateConstructorUsedError;
+  @override
+  String? get iconFile => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AimCopyWith<_Aim> get copyWith => throw _privateConstructorUsedError;
