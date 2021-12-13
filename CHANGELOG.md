@@ -1,3 +1,7 @@
+## 0.1.1
+
+- Fixed aim children property, it wasn't nullable
+
 ## 0.1.0
 
 - Implemented creation mode (standard, setLocationOnRedeem) 
