@@ -9,12 +9,17 @@ import '../../../../dart_wom_connector.dart';
 
 abstract class PocketRemoteDataSources {
   Future<Map<String, dynamic>?> redeemVouchers(Map<String, String> map);
+
   Future<Map<String, dynamic>?> getInfoPayments(Map<String, String> map);
+
   Future<Map<String, dynamic>?> confirmPayments(Map<String, String> map);
+
   Future<Map<String, dynamic>> createNewMigration(
       List<int> bytes, String password);
+
   Future<Map<String, dynamic>> getInfoAboutMigration(
       String guid, String password);
+
   Future<Uint8List> retrieveMigrationPayload(String guid, String password);
 }
 
@@ -96,7 +101,7 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
       final jsonError = json.decode(response.body) as Map<String, dynamic>;
       error = jsonError['error'];
     } finally {
-      throw ServerException(error: error);
+      throw ServerException(url: url, error: error);
     }
     // final responseBody = await HttpHelper.genericHttpPost(
     //     'http://$domain/api/v1/migration/$guid/retrieve',

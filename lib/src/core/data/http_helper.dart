@@ -23,7 +23,7 @@ class HttpHelper {
       final jsonError = json.decode(response.body) as Map<String, dynamic>;
       error = jsonError['error'];
     } finally {
-      throw ServerException(error: error);
+      throw ServerException(url: url, error: error);
     }
   }
 
