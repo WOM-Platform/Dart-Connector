@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Exported CreationMode enum
+
 ## 0.1.1
 
 - Fixed aim children property, it wasn't nullable
