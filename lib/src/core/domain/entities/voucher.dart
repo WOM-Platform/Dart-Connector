@@ -1,3 +1,4 @@
+import 'package:dart_wom_connector/src/instrument/domain/entities/creation_mode.dart';
 import 'package:equatable/equatable.dart';
 
 class Voucher extends Equatable {
@@ -8,15 +9,18 @@ class Voucher extends Equatable {
   final int? count;
   final DateTime? dateTime;
   final String? secret;
+  final CreationMode creationMode;
 
-  Voucher(
-      {this.id,
-      this.lat,
-      this.long,
-      this.aim,
-      this.count,
-      this.dateTime,
-      this.secret});
+  Voucher({
+    this.id,
+    this.lat,
+    this.long,
+    this.aim,
+    this.count,
+    this.dateTime,
+    this.secret,
+    this.creationMode = CreationMode.standard,
+  });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
@@ -27,6 +31,7 @@ class Voucher extends Equatable {
       'count': count,
       'timestamp': dateTime!.toIso8601String(),
       'secret': secret,
+      'creationMode': creationMode.toValue,
     };
   }
 
@@ -38,6 +43,7 @@ class Voucher extends Equatable {
       aim: map['aim'],
       dateTime: DateTime.parse(map['timestamp']),
       secret: map['secret'],
+      creationMode: creationModeFromString(map['creationMode']),
     );
   }
 
@@ -50,5 +56,6 @@ class Voucher extends Equatable {
         count,
         dateTime,
         secret,
+        creationMode,
       ];
 }

@@ -22,17 +22,17 @@ Map<String, dynamic> _$_$_AimResponseToJson(_$_AimResponse instance) =>
 _$_AimDTO _$_$_AimDTOFromJson(Map<String, dynamic> json) {
   return _$_AimDTO(
     code: json['code'] as String,
-    iconFile: json['iconFile'] as String?,
     titles: json['titles'] as Map<String, dynamic>?,
-    children: (json['children'] as List<dynamic>)
-        .map((e) => AimDTO.fromJson(e as Map<String, dynamic>))
+    iconFile: json['iconFile'] as String?,
+    children: (json['children'] as List<dynamic>?)
+        ?.map((e) => AimDTO.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }
 
 Map<String, dynamic> _$_$_AimDTOToJson(_$_AimDTO instance) => <String, dynamic>{
       'code': instance.code,
-      'iconFile': instance.iconFile,
       'titles': instance.titles,
+      'iconFile': instance.iconFile,
       'children': instance.children,
     };

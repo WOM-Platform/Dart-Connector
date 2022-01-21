@@ -33,12 +33,12 @@ part 'aim.freezed.dart';
 class Aim with _$Aim {
   const factory Aim({
     required String code,
-    String? iconFile,
     required Map<String, dynamic>? titles,
-    required List<Aim> children,
+    List<Aim>? children,
+    String? iconFile,
   }) = _Aim;
 }
 
 extension AimX on Aim {
-  String? get title => titles!['en'] ?? null;
+  String? get title => titles?['en'];
 }

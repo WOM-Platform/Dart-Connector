@@ -35,12 +35,13 @@ class HttpHelper {
     if (response.statusCode == 200) {
       return response.body;
     }
-    String? error;
+    var error = 'Unknown error';
     try {
       final jsonError = json.decode(response.body) as Map<String, dynamic>;
       error = jsonError['error'];
     } finally {
-      throw ServerException(error: error);
+      throw ServerException(
+          url: url, statusCode: response.statusCode, error: error);
     }
   }
 
@@ -48,10 +49,10 @@ class HttpHelper {
       String username, String password, String domain, UserType type) async {
     final bytes = utf8.encode('$username:$password');
     final auth = Base64Encoder().convert(bytes);
-    final endpoint =
+    final url =
         'https://$domain/api/v2/auth/${type == UserType.Instrument ? 'source' : 'merchant'}';
     final response = await http.post(
-      Uri.parse(endpoint),
+      Uri.parse(url),
       headers: {
         'authorization': 'Basic $auth',
         'content-type': 'application/json'
@@ -62,17 +63,17 @@ class HttpHelper {
       final map = json.decode(body);
       return map;
     }
-
-    String? error;
+    var error = 'Unknown error';
     try {
       final jsonError = json.decode(response.body) as Map<String, dynamic>;
       error = jsonError['error'];
     } finally {
-      throw ServerException(error: error);
+      throw ServerException(
+          url: url, statusCode: response.statusCode, error: error);
     }
   }
 
   static Future<http.Response> onTimeout() {
-    throw ServerException();
+    throw TimeoutException();
   }
 }

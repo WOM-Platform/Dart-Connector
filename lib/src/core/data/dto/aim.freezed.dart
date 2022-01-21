@@ -169,13 +169,13 @@ class _$AimDTOTearOff {
 
   _AimDTO call(
       {required String code,
-      String? iconFile,
       required Map<String, dynamic>? titles,
-      required List<AimDTO> children}) {
+      String? iconFile,
+      List<AimDTO>? children}) {
     return _AimDTO(
       code: code,
-      iconFile: iconFile,
       titles: titles,
+      iconFile: iconFile,
       children: children,
     );
   }
@@ -191,9 +191,9 @@ const $AimDTO = _$AimDTOTearOff();
 /// @nodoc
 mixin _$AimDTO {
   String get code => throw _privateConstructorUsedError;
-  String? get iconFile => throw _privateConstructorUsedError;
   Map<String, dynamic>? get titles => throw _privateConstructorUsedError;
-  List<AimDTO> get children => throw _privateConstructorUsedError;
+  String? get iconFile => throw _privateConstructorUsedError;
+  List<AimDTO>? get children => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -206,9 +206,9 @@ abstract class $AimDTOCopyWith<$Res> {
       _$AimDTOCopyWithImpl<$Res>;
   $Res call(
       {String code,
-      String? iconFile,
       Map<String, dynamic>? titles,
-      List<AimDTO> children});
+      String? iconFile,
+      List<AimDTO>? children});
 }
 
 /// @nodoc
@@ -222,8 +222,8 @@ class _$AimDTOCopyWithImpl<$Res> implements $AimDTOCopyWith<$Res> {
   @override
   $Res call({
     Object? code = freezed,
-    Object? iconFile = freezed,
     Object? titles = freezed,
+    Object? iconFile = freezed,
     Object? children = freezed,
   }) {
     return _then(_value.copyWith(
@@ -231,18 +231,18 @@ class _$AimDTOCopyWithImpl<$Res> implements $AimDTOCopyWith<$Res> {
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      iconFile: iconFile == freezed
-          ? _value.iconFile
-          : iconFile // ignore: cast_nullable_to_non_nullable
-              as String?,
       titles: titles == freezed
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      iconFile: iconFile == freezed
+          ? _value.iconFile
+          : iconFile // ignore: cast_nullable_to_non_nullable
+              as String?,
       children: children == freezed
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
-              as List<AimDTO>,
+              as List<AimDTO>?,
     ));
   }
 }
@@ -254,9 +254,9 @@ abstract class _$AimDTOCopyWith<$Res> implements $AimDTOCopyWith<$Res> {
   @override
   $Res call(
       {String code,
-      String? iconFile,
       Map<String, dynamic>? titles,
-      List<AimDTO> children});
+      String? iconFile,
+      List<AimDTO>? children});
 }
 
 /// @nodoc
@@ -271,8 +271,8 @@ class __$AimDTOCopyWithImpl<$Res> extends _$AimDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? code = freezed,
-    Object? iconFile = freezed,
     Object? titles = freezed,
+    Object? iconFile = freezed,
     Object? children = freezed,
   }) {
     return _then(_AimDTO(
@@ -280,18 +280,18 @@ class __$AimDTOCopyWithImpl<$Res> extends _$AimDTOCopyWithImpl<$Res>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      iconFile: iconFile == freezed
-          ? _value.iconFile
-          : iconFile // ignore: cast_nullable_to_non_nullable
-              as String?,
       titles: titles == freezed
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
+      iconFile: iconFile == freezed
+          ? _value.iconFile
+          : iconFile // ignore: cast_nullable_to_non_nullable
+              as String?,
       children: children == freezed
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
-              as List<AimDTO>,
+              as List<AimDTO>?,
     ));
   }
 }
@@ -300,10 +300,7 @@ class __$AimDTOCopyWithImpl<$Res> extends _$AimDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_AimDTO implements _AimDTO {
   const _$_AimDTO(
-      {required this.code,
-      this.iconFile,
-      required this.titles,
-      required this.children});
+      {required this.code, required this.titles, this.iconFile, this.children});
 
   factory _$_AimDTO.fromJson(Map<String, dynamic> json) =>
       _$_$_AimDTOFromJson(json);
@@ -311,15 +308,15 @@ class _$_AimDTO implements _AimDTO {
   @override
   final String code;
   @override
-  final String? iconFile;
-  @override
   final Map<String, dynamic>? titles;
   @override
-  final List<AimDTO> children;
+  final String? iconFile;
+  @override
+  final List<AimDTO>? children;
 
   @override
   String toString() {
-    return 'AimDTO(code: $code, iconFile: $iconFile, titles: $titles, children: $children)';
+    return 'AimDTO(code: $code, titles: $titles, iconFile: $iconFile, children: $children)';
   }
 
   @override
@@ -328,11 +325,11 @@ class _$_AimDTO implements _AimDTO {
         (other is _AimDTO &&
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
+            (identical(other.titles, titles) ||
+                const DeepCollectionEquality().equals(other.titles, titles)) &&
             (identical(other.iconFile, iconFile) ||
                 const DeepCollectionEquality()
                     .equals(other.iconFile, iconFile)) &&
-            (identical(other.titles, titles) ||
-                const DeepCollectionEquality().equals(other.titles, titles)) &&
             (identical(other.children, children) ||
                 const DeepCollectionEquality()
                     .equals(other.children, children)));
@@ -342,8 +339,8 @@ class _$_AimDTO implements _AimDTO {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(iconFile) ^
       const DeepCollectionEquality().hash(titles) ^
+      const DeepCollectionEquality().hash(iconFile) ^
       const DeepCollectionEquality().hash(children);
 
   @JsonKey(ignore: true)
@@ -360,20 +357,20 @@ class _$_AimDTO implements _AimDTO {
 abstract class _AimDTO implements AimDTO {
   const factory _AimDTO(
       {required String code,
-      String? iconFile,
       required Map<String, dynamic>? titles,
-      required List<AimDTO> children}) = _$_AimDTO;
+      String? iconFile,
+      List<AimDTO>? children}) = _$_AimDTO;
 
   factory _AimDTO.fromJson(Map<String, dynamic> json) = _$_AimDTO.fromJson;
 
   @override
   String get code => throw _privateConstructorUsedError;
   @override
-  String? get iconFile => throw _privateConstructorUsedError;
-  @override
   Map<String, dynamic>? get titles => throw _privateConstructorUsedError;
   @override
-  List<AimDTO> get children => throw _privateConstructorUsedError;
+  String? get iconFile => throw _privateConstructorUsedError;
+  @override
+  List<AimDTO>? get children => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AimDTOCopyWith<_AimDTO> get copyWith => throw _privateConstructorUsedError;

@@ -45,9 +45,9 @@ class AimResponse with _$AimResponse {
 class AimDTO with _$AimDTO {
   const factory AimDTO({
     required String code,
-    String? iconFile,
     required Map<String, dynamic>? titles,
-    required List<AimDTO> children,
+    String? iconFile,
+    List<AimDTO>? children,
   }) = _AimDTO;
 
   factory AimDTO.fromJson(Map<String, dynamic> json) => _$AimDTOFromJson(json);
@@ -58,7 +58,7 @@ extension AimDTOX on AimDTO {
     return Aim(
       code: code,
       titles: titles,
-      children: children.map((e) => e.toDomain()).toList(),
+      children: children?.map((e) => e.toDomain()).toList(),
       iconFile: iconFile,
     );
   }
