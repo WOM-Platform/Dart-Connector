@@ -4,3 +4,4 @@ export 'src/core/core.dart';
 export 'src/pos/pos.dart';
 export 'src/instrument/instrument.dart';
 export 'src/pocket/pocket.dart';
+export 'src/registry/registry.dart';
