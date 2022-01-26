@@ -1,6 +1,6 @@
 name: dart_wom_connector
 description: Dart connector to the WOM platform.
-version: 0.2.0
+version: 0.2.1
 homepage: https://www.wom.social
 
 environment:

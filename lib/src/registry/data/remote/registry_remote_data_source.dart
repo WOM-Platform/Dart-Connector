@@ -16,7 +16,7 @@ class RegistryRemoteDataSourcesImpl extends RegistryRemoteDataSources {
   @override
   Future<VoucherStatsDTO> getVouchersStats() async {
     final jsonString =
-        await HttpHelper.genericHttpGet('http://$domain/api/v1/stats/vouchers');
+        await HttpHelper.genericHttpGet('https://$domain/api/v1/stats/vouchers');
     final json = jsonDecode(jsonString) as Map<String, dynamic>;
     return VoucherStatsDTO.fromJson(json);
   }

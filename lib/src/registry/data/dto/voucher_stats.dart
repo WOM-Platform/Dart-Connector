@@ -1,5 +1,5 @@
 import 'package:dart_wom_connector/src/registry/domain/entities/voucher_stats.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'voucher_stats.g.dart';
 
