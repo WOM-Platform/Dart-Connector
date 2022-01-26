@@ -1,3 +1,7 @@
+## 0.2.0
+
+- Added getVoucherStats under RegistryClient
+
 ## 0.1.2
 
 - Exported CreationMode enum
