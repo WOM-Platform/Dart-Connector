@@ -14,6 +14,7 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
   InstrumentRemoteDataSources instrumentRemoteDataSources;
   Encrypter? encrypter;
   final rsaKeyParser = RSAKeyParser();
+
   InstrumentRepositoryImpl(
       this.instrumentRemoteDataSources,
       String privateKeyString,
@@ -37,10 +38,10 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
       //encode map to json string
       final payloadMapEncoded = json.encode(payloadMap);
 
-      final encrypted = Utils.encryptLongInput(
+      final encrypted = CoreUtils.encryptLongInput(
           encrypter,
           utf8.encode(payloadMapEncoded) as Uint8List,
-          Utils.outputBlockSize(
+          CoreUtils.outputBlockSize(
               rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
       final map = <String, dynamic>{
@@ -57,7 +58,7 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
       final encryptedPayload = jsonResponse['payload'] as String;
 
       final base64Decoder = Base64Decoder();
-      final decryptedPayload = Utils.decryptLongInput(
+      final decryptedPayload = CoreUtils.decryptLongInput(
           encrypter, base64Decoder.convert(encryptedPayload), 501);
 
       //decode decrypted paylod into json
@@ -79,10 +80,10 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
     try {
       final payloadMapEncoded = json.encode(payloadMap);
 
-      final payloadEncrypted = Utils.encryptLongInput(
+      final payloadEncrypted = CoreUtils.encryptLongInput(
           encrypter,
           Uint8List.fromList(utf8.encode(payloadMapEncoded)),
-          Utils.outputBlockSize(
+          CoreUtils.outputBlockSize(
               rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
       final map = <String, dynamic>{
@@ -96,15 +97,4 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
       rethrow;
     }
   }
-
-/*  @override
-  Future<InstrumentUser> authenticate(String username, String password) async {
-    try {
-      final user =
-          await instrumentRemoteDataSources.authenticate(username, password);
-      return user as InstrumentUser;
-    } catch (e) {
-      rethrow;
-    }
-  }*/
 }

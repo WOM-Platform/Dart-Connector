@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'aim.dart';
 
@@ -112,7 +113,7 @@ class _$_AimResponse implements _AimResponse {
   const _$_AimResponse({required this.aims});
 
   factory _$_AimResponse.fromJson(Map<String, dynamic> json) =>
-      _$_$_AimResponseFromJson(json);
+      _$$_AimResponseFromJson(json);
 
   @override
   final List<AimDTO> aims;
@@ -141,7 +142,7 @@ class _$_AimResponse implements _AimResponse {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AimResponseToJson(this);
+    return _$$_AimResponseToJson(this);
   }
 }
 
@@ -303,7 +304,7 @@ class _$_AimDTO implements _AimDTO {
       {required this.code, required this.titles, this.iconFile, this.children});
 
   factory _$_AimDTO.fromJson(Map<String, dynamic> json) =>
-      _$_$_AimDTOFromJson(json);
+      _$$_AimDTOFromJson(json);
 
   @override
   final String code;
@@ -350,7 +351,7 @@ class _$_AimDTO implements _AimDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_AimDTOToJson(this);
+    return _$$_AimDTOToJson(this);
   }
 }
 

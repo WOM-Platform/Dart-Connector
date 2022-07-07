@@ -12,10 +12,9 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
   final String domain;
 
   PocketRemoteDataSourcesImpl(this.domain);
+
   @override
   Future<Map<String, dynamic>?> redeemVouchers(Map<String, String> map) async {
-    assert(domain != null);
-    assert(map != null);
     final responseBody = await HttpHelper.genericHttpPost(
         'http://$domain/api/v1/voucher/redeem', map);
     return json.decode(responseBody);

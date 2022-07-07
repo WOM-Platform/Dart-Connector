@@ -38,8 +38,8 @@ class Voucher extends Equatable {
   factory Voucher.fromMap(Map<String, dynamic> map) {
     return Voucher(
       id: map['id'],
-      lat: map['latitude'],
-      long: map['longitude'],
+      lat: map['latitude']?.toDouble(),
+      long: map['longitude']?.toDouble(),
       aim: map['aim'],
       dateTime: DateTime.parse(map['timestamp']),
       secret: map['secret'],
@@ -58,4 +58,17 @@ class Voucher extends Equatable {
         secret,
         creationMode,
       ];
+
+  Voucher copyWith() {
+    return Voucher(
+      id: id,
+      lat: lat,
+      long: long,
+      aim: 'H',
+      count: count,
+      dateTime: dateTime,
+      secret: secret,
+      creationMode: creationMode,
+    );
+  }
 }

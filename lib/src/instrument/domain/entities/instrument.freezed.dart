@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'instrument.dart';
 
@@ -259,7 +260,7 @@ class _$_Instrument implements _Instrument {
       this.defaultLocation});
 
   factory _$_Instrument.fromJson(Map<String, dynamic> json) =>
-      _$_$_InstrumentFromJson(json);
+      _$$_InstrumentFromJson(json);
 
   @override
   final String id;
@@ -335,7 +336,7 @@ class _$_Instrument implements _Instrument {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_InstrumentToJson(this);
+    return _$$_InstrumentToJson(this);
   }
 }
 
@@ -486,7 +487,7 @@ class _$_Location implements _Location {
   const _$_Location({required this.latitude, required this.longitude});
 
   factory _$_Location.fromJson(Map<String, dynamic> json) =>
-      _$_$_LocationFromJson(json);
+      _$$_LocationFromJson(json);
 
   @override
   final double latitude;
@@ -523,7 +524,7 @@ class _$_Location implements _Location {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LocationToJson(this);
+    return _$$_LocationToJson(this);
   }
 }
 

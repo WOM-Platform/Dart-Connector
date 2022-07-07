@@ -1,18 +1,23 @@
 class ServerException implements Exception {
   final String url;
-  final String? error;
+  final String error;
+  final String type;
   final int? statusCode;
-  ServerException({required this.url, this.error, this.statusCode});
+
+  ServerException({
+    required this.url,
+    required this.error,
+    required this.type,
+    this.statusCode,
+  });
 
   @override
   String toString() {
-    return '$url => $error with: $statusCode';
+    return '$url => $type $error with: $statusCode';
   }
 }
 
 class CacheException implements Exception {}
-
-class TimeoutException implements Exception {}
 
 class VerifyPaymentException implements Exception {}
 

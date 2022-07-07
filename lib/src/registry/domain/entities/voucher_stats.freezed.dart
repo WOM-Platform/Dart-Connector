@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'voucher_stats.dart';
 
@@ -16,12 +17,17 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$VoucherStatsTearOff {
   const _$VoucherStatsTearOff();
 
-  _VoucherStats call(int totalVouchersGenerated, int totalVouchersRedeemed,
-      int totalVouchersAvailable, Map<String, AimStats> aims) {
+  _VoucherStats call(
+      int totalVouchersGenerated,
+      int totalVouchersRedeemed,
+      int totalVouchersAvailable,
+      int totalVouchersSpent,
+      Map<String, AimStats> aims) {
     return _VoucherStats(
       totalVouchersGenerated,
       totalVouchersRedeemed,
       totalVouchersAvailable,
+      totalVouchersSpent,
       aims,
     );
   }
@@ -35,6 +41,7 @@ mixin _$VoucherStats {
   int get totalVouchersGenerated => throw _privateConstructorUsedError;
   int get totalVouchersRedeemed => throw _privateConstructorUsedError;
   int get totalVouchersAvailable => throw _privateConstructorUsedError;
+  int get totalVouchersSpent => throw _privateConstructorUsedError;
   Map<String, AimStats> get aims => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -51,6 +58,7 @@ abstract class $VoucherStatsCopyWith<$Res> {
       {int totalVouchersGenerated,
       int totalVouchersRedeemed,
       int totalVouchersAvailable,
+      int totalVouchersSpent,
       Map<String, AimStats> aims});
 }
 
@@ -67,6 +75,7 @@ class _$VoucherStatsCopyWithImpl<$Res> implements $VoucherStatsCopyWith<$Res> {
     Object? totalVouchersGenerated = freezed,
     Object? totalVouchersRedeemed = freezed,
     Object? totalVouchersAvailable = freezed,
+    Object? totalVouchersSpent = freezed,
     Object? aims = freezed,
   }) {
     return _then(_value.copyWith(
@@ -81,6 +90,10 @@ class _$VoucherStatsCopyWithImpl<$Res> implements $VoucherStatsCopyWith<$Res> {
       totalVouchersAvailable: totalVouchersAvailable == freezed
           ? _value.totalVouchersAvailable
           : totalVouchersAvailable // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalVouchersSpent: totalVouchersSpent == freezed
+          ? _value.totalVouchersSpent
+          : totalVouchersSpent // ignore: cast_nullable_to_non_nullable
               as int,
       aims: aims == freezed
           ? _value.aims
@@ -101,6 +114,7 @@ abstract class _$VoucherStatsCopyWith<$Res>
       {int totalVouchersGenerated,
       int totalVouchersRedeemed,
       int totalVouchersAvailable,
+      int totalVouchersSpent,
       Map<String, AimStats> aims});
 }
 
@@ -119,6 +133,7 @@ class __$VoucherStatsCopyWithImpl<$Res> extends _$VoucherStatsCopyWithImpl<$Res>
     Object? totalVouchersGenerated = freezed,
     Object? totalVouchersRedeemed = freezed,
     Object? totalVouchersAvailable = freezed,
+    Object? totalVouchersSpent = freezed,
     Object? aims = freezed,
   }) {
     return _then(_VoucherStats(
@@ -134,6 +149,10 @@ class __$VoucherStatsCopyWithImpl<$Res> extends _$VoucherStatsCopyWithImpl<$Res>
           ? _value.totalVouchersAvailable
           : totalVouchersAvailable // ignore: cast_nullable_to_non_nullable
               as int,
+      totalVouchersSpent == freezed
+          ? _value.totalVouchersSpent
+          : totalVouchersSpent // ignore: cast_nullable_to_non_nullable
+              as int,
       aims == freezed
           ? _value.aims
           : aims // ignore: cast_nullable_to_non_nullable
@@ -146,7 +165,7 @@ class __$VoucherStatsCopyWithImpl<$Res> extends _$VoucherStatsCopyWithImpl<$Res>
 
 class _$_VoucherStats implements _VoucherStats {
   _$_VoucherStats(this.totalVouchersGenerated, this.totalVouchersRedeemed,
-      this.totalVouchersAvailable, this.aims);
+      this.totalVouchersAvailable, this.totalVouchersSpent, this.aims);
 
   @override
   final int totalVouchersGenerated;
@@ -155,11 +174,13 @@ class _$_VoucherStats implements _VoucherStats {
   @override
   final int totalVouchersAvailable;
   @override
+  final int totalVouchersSpent;
+  @override
   final Map<String, AimStats> aims;
 
   @override
   String toString() {
-    return 'VoucherStats(totalVouchersGenerated: $totalVouchersGenerated, totalVouchersRedeemed: $totalVouchersRedeemed, totalVouchersAvailable: $totalVouchersAvailable, aims: $aims)';
+    return 'VoucherStats(totalVouchersGenerated: $totalVouchersGenerated, totalVouchersRedeemed: $totalVouchersRedeemed, totalVouchersAvailable: $totalVouchersAvailable, totalVouchersSpent: $totalVouchersSpent, aims: $aims)';
   }
 
   @override
@@ -175,6 +196,9 @@ class _$_VoucherStats implements _VoucherStats {
             (identical(other.totalVouchersAvailable, totalVouchersAvailable) ||
                 const DeepCollectionEquality().equals(
                     other.totalVouchersAvailable, totalVouchersAvailable)) &&
+            (identical(other.totalVouchersSpent, totalVouchersSpent) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalVouchersSpent, totalVouchersSpent)) &&
             (identical(other.aims, aims) ||
                 const DeepCollectionEquality().equals(other.aims, aims)));
   }
@@ -185,6 +209,7 @@ class _$_VoucherStats implements _VoucherStats {
       const DeepCollectionEquality().hash(totalVouchersGenerated) ^
       const DeepCollectionEquality().hash(totalVouchersRedeemed) ^
       const DeepCollectionEquality().hash(totalVouchersAvailable) ^
+      const DeepCollectionEquality().hash(totalVouchersSpent) ^
       const DeepCollectionEquality().hash(aims);
 
   @JsonKey(ignore: true)
@@ -194,8 +219,12 @@ class _$_VoucherStats implements _VoucherStats {
 }
 
 abstract class _VoucherStats implements VoucherStats {
-  factory _VoucherStats(int totalVouchersGenerated, int totalVouchersRedeemed,
-      int totalVouchersAvailable, Map<String, AimStats> aims) = _$_VoucherStats;
+  factory _VoucherStats(
+      int totalVouchersGenerated,
+      int totalVouchersRedeemed,
+      int totalVouchersAvailable,
+      int totalVouchersSpent,
+      Map<String, AimStats> aims) = _$_VoucherStats;
 
   @override
   int get totalVouchersGenerated => throw _privateConstructorUsedError;
@@ -203,6 +232,8 @@ abstract class _VoucherStats implements VoucherStats {
   int get totalVouchersRedeemed => throw _privateConstructorUsedError;
   @override
   int get totalVouchersAvailable => throw _privateConstructorUsedError;
+  @override
+  int get totalVouchersSpent => throw _privateConstructorUsedError;
   @override
   Map<String, AimStats> get aims => throw _privateConstructorUsedError;
   @override
@@ -215,11 +246,12 @@ abstract class _VoucherStats implements VoucherStats {
 class _$AimStatsTearOff {
   const _$AimStatsTearOff();
 
-  _AimStats call(int generated, int redeemed, int available) {
+  _AimStats call(int generated, int redeemed, int available, int spent) {
     return _AimStats(
       generated,
       redeemed,
       available,
+      spent,
     );
   }
 }
@@ -232,6 +264,7 @@ mixin _$AimStats {
   int get generated => throw _privateConstructorUsedError;
   int get redeemed => throw _privateConstructorUsedError;
   int get available => throw _privateConstructorUsedError;
+  int get spent => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AimStatsCopyWith<AimStats> get copyWith =>
@@ -242,7 +275,7 @@ mixin _$AimStats {
 abstract class $AimStatsCopyWith<$Res> {
   factory $AimStatsCopyWith(AimStats value, $Res Function(AimStats) then) =
       _$AimStatsCopyWithImpl<$Res>;
-  $Res call({int generated, int redeemed, int available});
+  $Res call({int generated, int redeemed, int available, int spent});
 }
 
 /// @nodoc
@@ -258,6 +291,7 @@ class _$AimStatsCopyWithImpl<$Res> implements $AimStatsCopyWith<$Res> {
     Object? generated = freezed,
     Object? redeemed = freezed,
     Object? available = freezed,
+    Object? spent = freezed,
   }) {
     return _then(_value.copyWith(
       generated: generated == freezed
@@ -272,6 +306,10 @@ class _$AimStatsCopyWithImpl<$Res> implements $AimStatsCopyWith<$Res> {
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as int,
+      spent: spent == freezed
+          ? _value.spent
+          : spent // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -281,7 +319,7 @@ abstract class _$AimStatsCopyWith<$Res> implements $AimStatsCopyWith<$Res> {
   factory _$AimStatsCopyWith(_AimStats value, $Res Function(_AimStats) then) =
       __$AimStatsCopyWithImpl<$Res>;
   @override
-  $Res call({int generated, int redeemed, int available});
+  $Res call({int generated, int redeemed, int available, int spent});
 }
 
 /// @nodoc
@@ -298,6 +336,7 @@ class __$AimStatsCopyWithImpl<$Res> extends _$AimStatsCopyWithImpl<$Res>
     Object? generated = freezed,
     Object? redeemed = freezed,
     Object? available = freezed,
+    Object? spent = freezed,
   }) {
     return _then(_AimStats(
       generated == freezed
@@ -312,6 +351,10 @@ class __$AimStatsCopyWithImpl<$Res> extends _$AimStatsCopyWithImpl<$Res>
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as int,
+      spent == freezed
+          ? _value.spent
+          : spent // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -319,7 +362,7 @@ class __$AimStatsCopyWithImpl<$Res> extends _$AimStatsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AimStats implements _AimStats {
-  _$_AimStats(this.generated, this.redeemed, this.available);
+  _$_AimStats(this.generated, this.redeemed, this.available, this.spent);
 
   @override
   final int generated;
@@ -327,10 +370,12 @@ class _$_AimStats implements _AimStats {
   final int redeemed;
   @override
   final int available;
+  @override
+  final int spent;
 
   @override
   String toString() {
-    return 'AimStats(generated: $generated, redeemed: $redeemed, available: $available)';
+    return 'AimStats(generated: $generated, redeemed: $redeemed, available: $available, spent: $spent)';
   }
 
   @override
@@ -345,7 +390,9 @@ class _$_AimStats implements _AimStats {
                     .equals(other.redeemed, redeemed)) &&
             (identical(other.available, available) ||
                 const DeepCollectionEquality()
-                    .equals(other.available, available)));
+                    .equals(other.available, available)) &&
+            (identical(other.spent, spent) ||
+                const DeepCollectionEquality().equals(other.spent, spent)));
   }
 
   @override
@@ -353,7 +400,8 @@ class _$_AimStats implements _AimStats {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(generated) ^
       const DeepCollectionEquality().hash(redeemed) ^
-      const DeepCollectionEquality().hash(available);
+      const DeepCollectionEquality().hash(available) ^
+      const DeepCollectionEquality().hash(spent);
 
   @JsonKey(ignore: true)
   @override
@@ -362,7 +410,8 @@ class _$_AimStats implements _AimStats {
 }
 
 abstract class _AimStats implements AimStats {
-  factory _AimStats(int generated, int redeemed, int available) = _$_AimStats;
+  factory _AimStats(int generated, int redeemed, int available, int spent) =
+      _$_AimStats;
 
   @override
   int get generated => throw _privateConstructorUsedError;
@@ -370,6 +419,8 @@ abstract class _AimStats implements AimStats {
   int get redeemed => throw _privateConstructorUsedError;
   @override
   int get available => throw _privateConstructorUsedError;
+  @override
+  int get spent => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$AimStatsCopyWith<_AimStats> get copyWith =>

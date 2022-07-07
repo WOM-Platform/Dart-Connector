@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'wom_creation_response.dart';
 
@@ -199,7 +200,7 @@ class _$_WomCreationResponseDTO implements _WomCreationResponseDTO {
       required this.count});
 
   factory _$_WomCreationResponseDTO.fromJson(Map<String, dynamic> json) =>
-      _$_$_WomCreationResponseDTOFromJson(json);
+      _$$_WomCreationResponseDTOFromJson(json);
 
   @override
   final String registryUrl;
@@ -257,7 +258,7 @@ class _$_WomCreationResponseDTO implements _WomCreationResponseDTO {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_WomCreationResponseDTOToJson(this);
+    return _$$_WomCreationResponseDTOToJson(this);
   }
 }
 

@@ -16,6 +16,6 @@ class ApiKeyRemoteDataSourcesImpl extends ApiKeyRemoteDataSources {
     if (response.statusCode == 200) {
       return response.body;
     }
-    throw ServerException(url: url, statusCode: response.statusCode);
+    throw ServerException(url: url, statusCode: response.statusCode, type: 'unknown-error', error: 'Unknown error');
   }
 }

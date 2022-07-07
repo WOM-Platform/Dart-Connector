@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:dart_wom_connector/src/core/data/dto/http_error.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/user_type_enum.dart';
 import 'package:dart_wom_connector/src/core/error/exceptions.dart';
 import 'package:http/http.dart' as http;
@@ -9,22 +11,16 @@ class HttpHelper {
 
   static Future<String> genericHttpPost(
       String url, Map<String, dynamic> map) async {
+    final uri = Uri.parse(url);
     final response = await http.post(
-      Uri.parse(url),
+      uri,
       body: json.encode(map),
       headers: {'content-type': 'application/json'},
     ).timeout(Duration(seconds: TIMEOUT_SECONDS), onTimeout: onTimeout);
     if (response.statusCode == 200) {
       return response.body;
     }
-    var error = 'Unknown error';
-    try {
-      final jsonError = json.decode(response.body) as Map<String, dynamic>;
-      error = jsonError['error'];
-    } finally {
-      throw ServerException(
-          url: url, statusCode: response.statusCode, error: error);
-    }
+    throw handleError(url, response);
   }
 
   static Future<String> genericHttpGet(String url) async {
@@ -35,14 +31,8 @@ class HttpHelper {
     if (response.statusCode == 200) {
       return response.body;
     }
-    var error = 'Unknown error';
-    try {
-      final jsonError = json.decode(response.body) as Map<String, dynamic>;
-      error = jsonError['error'];
-    } finally {
-      throw ServerException(
-          url: url, statusCode: response.statusCode, error: error);
-    }
+
+    throw handleError(url, response);
   }
 
   static Future<Map<String, dynamic>> authenticate(
@@ -63,17 +53,25 @@ class HttpHelper {
       final map = json.decode(body);
       return map;
     }
-    var error = 'Unknown error';
+    throw handleError(url, response);
+  }
+
+  static ServerException handleError(
+      final String url, final http.Response response) {
+    HttpErrorDTO? jsonHttpError;
     try {
       final jsonError = json.decode(response.body) as Map<String, dynamic>;
-      error = jsonError['error'];
+      jsonHttpError = HttpErrorDTO.fromJson(jsonError);
     } finally {
-      throw ServerException(
-          url: url, statusCode: response.statusCode, error: error);
+      return ServerException(
+          url: url,
+          type: jsonHttpError?.type ?? 'https://wom.social/api/problems/unknown-error',
+          statusCode: jsonHttpError?.status ?? response.statusCode,
+          error: jsonHttpError?.title ?? 'Unknown error');
     }
   }
 
   static Future<http.Response> onTimeout() {
-    throw TimeoutException();
+    throw TimeoutException(null);
   }
 }

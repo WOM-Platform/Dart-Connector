@@ -7,14 +7,14 @@ class User {
   static String dbSurname = 'surname';
   static String dbEmail = 'email';
 
-  final String? name;
-  final String? surname;
-  final String? email;
+  final String name;
+  final String surname;
+  final String email;
 
   User({
-    this.name,
-    this.surname,
-    this.email,
+    required this.name,
+    required this.surname,
+    required this.email,
   });
 
 //  User.fromMap(Map<String, dynamic> map, String actorKey)
