@@ -10,6 +10,7 @@ _$_Instrument _$$_InstrumentFromJson(Map<String, dynamic> json) =>
     _$_Instrument(
       id: json['id'] as String,
       name: json['name'] as String,
+      apiKey: json['apiKey'] as String?,
       privateKey: json['privateKey'] as String,
       publicKey: json['publicKey'] as String,
       enabledAims: (json['enabledAims'] as List<dynamic>)
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$_InstrumentToJson(_$_Instrument instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'apiKey': instance.apiKey,
       'privateKey': instance.privateKey,
       'publicKey': instance.publicKey,
       'enabledAims': instance.enabledAims.toList(),

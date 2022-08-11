@@ -8,7 +8,8 @@ import 'package:http/http.dart' as http;
 abstract class InstrumentRemoteDataSources extends WomClientRemoteDataSources {
   InstrumentRemoteDataSources(String domain) : super(domain);
 
-  Future<String> requestWomCreation(String url, Map<String, dynamic> map);
+  Future<String> requestWomCreation(
+      String url, Map<String, String> map, Map<String, String> headers);
 
   Future<bool> verifyWomCreation(String url, Map<String, dynamic> map);
 }
@@ -18,11 +19,15 @@ class InstrumentRemoteDataSourcesImpl extends InstrumentRemoteDataSources {
 
   @override
   Future<String> requestWomCreation(
-      String url, Map<String, dynamic> map) async {
+      String url, Map<String, String> map, Map<String, String> headers) async {
+    final h = {HttpHeaders.contentTypeHeader: 'application/json'};
+    if (headers != null) {
+      h.addAll(headers);
+    }
     final response = await http.post(
       Uri.parse(url),
       body: json.encode(map),
-      headers: {HttpHeaders.contentTypeHeader: 'application/json'},
+      headers: h,
     );
     if (response.statusCode == 200) {
       return response.body;

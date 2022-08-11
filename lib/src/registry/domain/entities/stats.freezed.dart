@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'stats.dart';
@@ -11,23 +12,7 @@ part of 'stats.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$InstrumentVoucherStatsTearOff {
-  const _$InstrumentVoucherStatsTearOff();
-
-  _InstrumentVoucherStats call(
-      int totalVouchersGenerated, int totalVouchersRedeemed) {
-    return _InstrumentVoucherStats(
-      totalVouchersGenerated,
-      totalVouchersRedeemed,
-    );
-  }
-}
-
-/// @nodoc
-const $InstrumentVoucherStats = _$InstrumentVoucherStatsTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$InstrumentVoucherStats {
@@ -75,32 +60,33 @@ class _$InstrumentVoucherStatsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InstrumentVoucherStatsCopyWith<$Res>
+abstract class _$$_InstrumentVoucherStatsCopyWith<$Res>
     implements $InstrumentVoucherStatsCopyWith<$Res> {
-  factory _$InstrumentVoucherStatsCopyWith(_InstrumentVoucherStats value,
-          $Res Function(_InstrumentVoucherStats) then) =
-      __$InstrumentVoucherStatsCopyWithImpl<$Res>;
+  factory _$$_InstrumentVoucherStatsCopyWith(_$_InstrumentVoucherStats value,
+          $Res Function(_$_InstrumentVoucherStats) then) =
+      __$$_InstrumentVoucherStatsCopyWithImpl<$Res>;
   @override
   $Res call({int totalVouchersGenerated, int totalVouchersRedeemed});
 }
 
 /// @nodoc
-class __$InstrumentVoucherStatsCopyWithImpl<$Res>
+class __$$_InstrumentVoucherStatsCopyWithImpl<$Res>
     extends _$InstrumentVoucherStatsCopyWithImpl<$Res>
-    implements _$InstrumentVoucherStatsCopyWith<$Res> {
-  __$InstrumentVoucherStatsCopyWithImpl(_InstrumentVoucherStats _value,
-      $Res Function(_InstrumentVoucherStats) _then)
-      : super(_value, (v) => _then(v as _InstrumentVoucherStats));
+    implements _$$_InstrumentVoucherStatsCopyWith<$Res> {
+  __$$_InstrumentVoucherStatsCopyWithImpl(_$_InstrumentVoucherStats _value,
+      $Res Function(_$_InstrumentVoucherStats) _then)
+      : super(_value, (v) => _then(v as _$_InstrumentVoucherStats));
 
   @override
-  _InstrumentVoucherStats get _value => super._value as _InstrumentVoucherStats;
+  _$_InstrumentVoucherStats get _value =>
+      super._value as _$_InstrumentVoucherStats;
 
   @override
   $Res call({
     Object? totalVouchersGenerated = freezed,
     Object? totalVouchersRedeemed = freezed,
   }) {
-    return _then(_InstrumentVoucherStats(
+    return _then(_$_InstrumentVoucherStats(
       totalVouchersGenerated == freezed
           ? _value.totalVouchersGenerated
           : totalVouchersGenerated // ignore: cast_nullable_to_non_nullable
@@ -132,39 +118,38 @@ class _$_InstrumentVoucherStats implements _InstrumentVoucherStats {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _InstrumentVoucherStats &&
-            (identical(other.totalVouchersGenerated, totalVouchersGenerated) ||
-                const DeepCollectionEquality().equals(
-                    other.totalVouchersGenerated, totalVouchersGenerated)) &&
-            (identical(other.totalVouchersRedeemed, totalVouchersRedeemed) ||
-                const DeepCollectionEquality().equals(
-                    other.totalVouchersRedeemed, totalVouchersRedeemed)));
+        (other.runtimeType == runtimeType &&
+            other is _$_InstrumentVoucherStats &&
+            const DeepCollectionEquality()
+                .equals(other.totalVouchersGenerated, totalVouchersGenerated) &&
+            const DeepCollectionEquality()
+                .equals(other.totalVouchersRedeemed, totalVouchersRedeemed));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(totalVouchersGenerated) ^
-      const DeepCollectionEquality().hash(totalVouchersRedeemed);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(totalVouchersGenerated),
+      const DeepCollectionEquality().hash(totalVouchersRedeemed));
 
   @JsonKey(ignore: true)
   @override
-  _$InstrumentVoucherStatsCopyWith<_InstrumentVoucherStats> get copyWith =>
-      __$InstrumentVoucherStatsCopyWithImpl<_InstrumentVoucherStats>(
+  _$$_InstrumentVoucherStatsCopyWith<_$_InstrumentVoucherStats> get copyWith =>
+      __$$_InstrumentVoucherStatsCopyWithImpl<_$_InstrumentVoucherStats>(
           this, _$identity);
 }
 
 abstract class _InstrumentVoucherStats implements InstrumentVoucherStats {
   factory _InstrumentVoucherStats(
-          int totalVouchersGenerated, int totalVouchersRedeemed) =
+          final int totalVouchersGenerated, final int totalVouchersRedeemed) =
       _$_InstrumentVoucherStats;
 
   @override
-  int get totalVouchersGenerated => throw _privateConstructorUsedError;
+  int get totalVouchersGenerated;
   @override
-  int get totalVouchersRedeemed => throw _privateConstructorUsedError;
+  int get totalVouchersRedeemed;
   @override
   @JsonKey(ignore: true)
-  _$InstrumentVoucherStatsCopyWith<_InstrumentVoucherStats> get copyWith =>
+  _$$_InstrumentVoucherStatsCopyWith<_$_InstrumentVoucherStats> get copyWith =>
       throw _privateConstructorUsedError;
 }

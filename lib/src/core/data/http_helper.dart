@@ -10,13 +10,26 @@ class HttpHelper {
   static const int TIMEOUT_SECONDS = 10;
 
   static Future<String> genericHttpPost(
-      String url, Map<String, dynamic> map) async {
+    String url,
+    Map<String, dynamic> map, {
+    String? username,
+    String? password,
+  }) async {
+    final headers = {'content-type': 'application/json'};
+
+    if (username != null && password != null) {
+      final bytes = utf8.encode('$username:$password');
+      final auth = Base64Encoder().convert(bytes);
+      headers['authorization'] = 'Basic $auth';
+    }
     final uri = Uri.parse(url);
-    final response = await http.post(
-      uri,
-      body: json.encode(map),
-      headers: {'content-type': 'application/json'},
-    ).timeout(Duration(seconds: TIMEOUT_SECONDS), onTimeout: onTimeout);
+    final response = await http
+        .post(
+          uri,
+          body: json.encode(map),
+          headers: headers,
+        )
+        .timeout(Duration(seconds: TIMEOUT_SECONDS), onTimeout: onTimeout);
     if (response.statusCode == 200) {
       return response.body;
     }
@@ -65,7 +78,8 @@ class HttpHelper {
     } finally {
       return ServerException(
           url: url,
-          type: jsonHttpError?.type ?? 'https://wom.social/api/problems/unknown-error',
+          type: jsonHttpError?.type ??
+              'https://wom.social/api/problems/unknown-error',
           statusCode: jsonHttpError?.status ?? response.statusCode,
           error: jsonHttpError?.title ?? 'Unknown error');
     }

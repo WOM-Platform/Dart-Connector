@@ -16,12 +16,13 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
   final rsaKeyParser = RSAKeyParser();
 
   InstrumentRepositoryImpl(
-      this.instrumentRemoteDataSources,
-      String privateKeyString,
-      String publicKeyString,
-      String sourceId,
-      String domain)
-      : super(privateKeyString, publicKeyString, sourceId, domain) {
+    this.instrumentRemoteDataSources,
+    String privateKeyString,
+    String publicKeyString,
+    String sourceId,
+    String domain,
+    String? apiKey,
+  ) : super(privateKeyString, publicKeyString, sourceId, domain, apiKey) {
     final publicKey = rsaKeyParser.parse(publicKeyString);
     final privateKey = rsaKeyParser.parse(privateKeyString);
     encrypter = Encrypter(RSA(
@@ -44,14 +45,18 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
           CoreUtils.outputBlockSize(
               rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
-      final map = <String, dynamic>{
+      final map = <String, String>{
         'SourceId': requestWomCreation.sourceId,
         'Nonce': requestWomCreation.nonce,
         'Payload': encrypted,
       };
 
+      final headers = <String, String>{};
+      if (apiKey != null) {
+        headers['X-WOM-ApiKey'] = apiKey!;
+      }
       final responseBody = await instrumentRemoteDataSources.requestWomCreation(
-          'https://$domain/api/v1/voucher/create', map);
+          'https://$domain/api/v1/voucher/create', map, headers);
 
       //decode response body into json
       final jsonResponse = json.decode(responseBody);

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_wom_connector/src/core/data/http_helper.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/instrument_user.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/user.dart';
@@ -22,11 +24,13 @@ class InstrumentClient extends Client {
     String registryKey,
   ) : super(domain: domain, registryKey: registryKey) {
     instrumentRepository = InstrumentRepositoryImpl(
-        InstrumentRemoteDataSourcesImpl(domain),
-        instrument.privateKey,
-        registryKey,
-        instrument.id,
-        domain);
+      InstrumentRemoteDataSourcesImpl(domain),
+      instrument.privateKey,
+      registryKey,
+      instrument.id,
+      domain,
+      instrument.apiKey,
+    );
   }
 
   Future<WomCreationResponse> requestVouchers(List<Voucher> vouchers) async {
@@ -52,5 +56,23 @@ class InstrumentClient extends Client {
         : <Instrument>[];
     return InstrumentUser(
         instruments: instruments, name: name, surname: surname, email: email);
+  }
+
+  static Future<String> createNewApiKey(
+    String username,
+    String password,
+    String domain,
+    String selector,
+    String sourceId,
+  ) async {
+    final responseBody = await HttpHelper.genericHttpPost(
+      'https://$domain/api/v2/auth/source/$sourceId/apiKey?selector=$selector',
+      <String, dynamic>{},
+      username: username,
+      password: password,
+    );
+
+    final map = Map.from(json.decode(responseBody));
+    return map['apiKey'] as String;
   }
 }

@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'point_of_sale.dart';
@@ -11,42 +12,11 @@ part of 'point_of_sale.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 PointOfSaleDTO _$PointOfSaleDTOFromJson(Map<String, dynamic> json) {
   return _PointOfSaleDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$PointOfSaleDTOTearOff {
-  const _$PointOfSaleDTOTearOff();
-
-  _PointOfSaleDTO call(
-      {required String privateKey,
-      required String id,
-      required String name,
-      required bool isActive,
-      double? latitude,
-      double? longitude,
-      String? url}) {
-    return _PointOfSaleDTO(
-      privateKey: privateKey,
-      id: id,
-      name: name,
-      isActive: isActive,
-      latitude: latitude,
-      longitude: longitude,
-      url: url,
-    );
-  }
-
-  PointOfSaleDTO fromJson(Map<String, Object> json) {
-    return PointOfSaleDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PointOfSaleDTO = _$PointOfSaleDTOTearOff();
 
 /// @nodoc
 mixin _$PointOfSaleDTO {
@@ -132,11 +102,11 @@ class _$PointOfSaleDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PointOfSaleDTOCopyWith<$Res>
+abstract class _$$_PointOfSaleDTOCopyWith<$Res>
     implements $PointOfSaleDTOCopyWith<$Res> {
-  factory _$PointOfSaleDTOCopyWith(
-          _PointOfSaleDTO value, $Res Function(_PointOfSaleDTO) then) =
-      __$PointOfSaleDTOCopyWithImpl<$Res>;
+  factory _$$_PointOfSaleDTOCopyWith(
+          _$_PointOfSaleDTO value, $Res Function(_$_PointOfSaleDTO) then) =
+      __$$_PointOfSaleDTOCopyWithImpl<$Res>;
   @override
   $Res call(
       {String privateKey,
@@ -149,15 +119,15 @@ abstract class _$PointOfSaleDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PointOfSaleDTOCopyWithImpl<$Res>
+class __$$_PointOfSaleDTOCopyWithImpl<$Res>
     extends _$PointOfSaleDTOCopyWithImpl<$Res>
-    implements _$PointOfSaleDTOCopyWith<$Res> {
-  __$PointOfSaleDTOCopyWithImpl(
-      _PointOfSaleDTO _value, $Res Function(_PointOfSaleDTO) _then)
-      : super(_value, (v) => _then(v as _PointOfSaleDTO));
+    implements _$$_PointOfSaleDTOCopyWith<$Res> {
+  __$$_PointOfSaleDTOCopyWithImpl(
+      _$_PointOfSaleDTO _value, $Res Function(_$_PointOfSaleDTO) _then)
+      : super(_value, (v) => _then(v as _$_PointOfSaleDTO));
 
   @override
-  _PointOfSaleDTO get _value => super._value as _PointOfSaleDTO;
+  _$_PointOfSaleDTO get _value => super._value as _$_PointOfSaleDTO;
 
   @override
   $Res call({
@@ -169,7 +139,7 @@ class __$PointOfSaleDTOCopyWithImpl<$Res>
     Object? longitude = freezed,
     Object? url = freezed,
   }) {
-    return _then(_PointOfSaleDTO(
+    return _then(_$_PointOfSaleDTO(
       privateKey: privateKey == freezed
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
@@ -240,78 +210,72 @@ class _$_PointOfSaleDTO implements _PointOfSaleDTO {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PointOfSaleDTO &&
-            (identical(other.privateKey, privateKey) ||
-                const DeepCollectionEquality()
-                    .equals(other.privateKey, privateKey)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.latitude, latitude) ||
-                const DeepCollectionEquality()
-                    .equals(other.latitude, latitude)) &&
-            (identical(other.longitude, longitude) ||
-                const DeepCollectionEquality()
-                    .equals(other.longitude, longitude)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+        (other.runtimeType == runtimeType &&
+            other is _$_PointOfSaleDTO &&
+            const DeepCollectionEquality()
+                .equals(other.privateKey, privateKey) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.isActive, isActive) &&
+            const DeepCollectionEquality().equals(other.latitude, latitude) &&
+            const DeepCollectionEquality().equals(other.longitude, longitude) &&
+            const DeepCollectionEquality().equals(other.url, url));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(privateKey) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(latitude) ^
-      const DeepCollectionEquality().hash(longitude) ^
-      const DeepCollectionEquality().hash(url);
 
   @JsonKey(ignore: true)
   @override
-  _$PointOfSaleDTOCopyWith<_PointOfSaleDTO> get copyWith =>
-      __$PointOfSaleDTOCopyWithImpl<_PointOfSaleDTO>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(privateKey),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(isActive),
+      const DeepCollectionEquality().hash(latitude),
+      const DeepCollectionEquality().hash(longitude),
+      const DeepCollectionEquality().hash(url));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PointOfSaleDTOCopyWith<_$_PointOfSaleDTO> get copyWith =>
+      __$$_PointOfSaleDTOCopyWithImpl<_$_PointOfSaleDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PointOfSaleDTOToJson(this);
+    return _$$_PointOfSaleDTOToJson(
+      this,
+    );
   }
 }
 
 abstract class _PointOfSaleDTO implements PointOfSaleDTO {
   const factory _PointOfSaleDTO(
-      {required String privateKey,
-      required String id,
-      required String name,
-      required bool isActive,
-      double? latitude,
-      double? longitude,
-      String? url}) = _$_PointOfSaleDTO;
+      {required final String privateKey,
+      required final String id,
+      required final String name,
+      required final bool isActive,
+      final double? latitude,
+      final double? longitude,
+      final String? url}) = _$_PointOfSaleDTO;
 
   factory _PointOfSaleDTO.fromJson(Map<String, dynamic> json) =
       _$_PointOfSaleDTO.fromJson;
 
   @override
-  String get privateKey => throw _privateConstructorUsedError;
+  String get privateKey;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  bool get isActive => throw _privateConstructorUsedError;
+  bool get isActive;
   @override
-  double? get latitude => throw _privateConstructorUsedError;
+  double? get latitude;
   @override
-  double? get longitude => throw _privateConstructorUsedError;
+  double? get longitude;
   @override
-  String? get url => throw _privateConstructorUsedError;
+  String? get url;
   @override
   @JsonKey(ignore: true)
-  _$PointOfSaleDTOCopyWith<_PointOfSaleDTO> get copyWith =>
+  _$$_PointOfSaleDTOCopyWith<_$_PointOfSaleDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

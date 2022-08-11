@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'pos_map.dart';
@@ -11,29 +12,11 @@ part of 'pos_map.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 POSMapResponseDTO _$POSMapResponseDTOFromJson(Map<String, dynamic> json) {
   return _POSMapResponseDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$POSMapResponseDTOTearOff {
-  const _$POSMapResponseDTOTearOff();
-
-  _POSMapResponseDTO call({required List<POSMapDTO> pos}) {
-    return _POSMapResponseDTO(
-      pos: pos,
-    );
-  }
-
-  POSMapResponseDTO fromJson(Map<String, Object> json) {
-    return POSMapResponseDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $POSMapResponseDTO = _$POSMapResponseDTOTearOff();
 
 /// @nodoc
 mixin _$POSMapResponseDTO {
@@ -76,33 +59,33 @@ class _$POSMapResponseDTOCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$POSMapResponseDTOCopyWith<$Res>
+abstract class _$$_POSMapResponseDTOCopyWith<$Res>
     implements $POSMapResponseDTOCopyWith<$Res> {
-  factory _$POSMapResponseDTOCopyWith(
-          _POSMapResponseDTO value, $Res Function(_POSMapResponseDTO) then) =
-      __$POSMapResponseDTOCopyWithImpl<$Res>;
+  factory _$$_POSMapResponseDTOCopyWith(_$_POSMapResponseDTO value,
+          $Res Function(_$_POSMapResponseDTO) then) =
+      __$$_POSMapResponseDTOCopyWithImpl<$Res>;
   @override
   $Res call({List<POSMapDTO> pos});
 }
 
 /// @nodoc
-class __$POSMapResponseDTOCopyWithImpl<$Res>
+class __$$_POSMapResponseDTOCopyWithImpl<$Res>
     extends _$POSMapResponseDTOCopyWithImpl<$Res>
-    implements _$POSMapResponseDTOCopyWith<$Res> {
-  __$POSMapResponseDTOCopyWithImpl(
-      _POSMapResponseDTO _value, $Res Function(_POSMapResponseDTO) _then)
-      : super(_value, (v) => _then(v as _POSMapResponseDTO));
+    implements _$$_POSMapResponseDTOCopyWith<$Res> {
+  __$$_POSMapResponseDTOCopyWithImpl(
+      _$_POSMapResponseDTO _value, $Res Function(_$_POSMapResponseDTO) _then)
+      : super(_value, (v) => _then(v as _$_POSMapResponseDTO));
 
   @override
-  _POSMapResponseDTO get _value => super._value as _POSMapResponseDTO;
+  _$_POSMapResponseDTO get _value => super._value as _$_POSMapResponseDTO;
 
   @override
   $Res call({
     Object? pos = freezed,
   }) {
-    return _then(_POSMapResponseDTO(
+    return _then(_$_POSMapResponseDTO(
       pos: pos == freezed
-          ? _value.pos
+          ? _value._pos
           : pos // ignore: cast_nullable_to_non_nullable
               as List<POSMapDTO>,
     ));
@@ -112,13 +95,17 @@ class __$POSMapResponseDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_POSMapResponseDTO implements _POSMapResponseDTO {
-  const _$_POSMapResponseDTO({required this.pos});
+  const _$_POSMapResponseDTO({required final List<POSMapDTO> pos}) : _pos = pos;
 
   factory _$_POSMapResponseDTO.fromJson(Map<String, dynamic> json) =>
       _$$_POSMapResponseDTOFromJson(json);
 
+  final List<POSMapDTO> _pos;
   @override
-  final List<POSMapDTO> pos;
+  List<POSMapDTO> get pos {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pos);
+  }
 
   @override
   String toString() {
@@ -128,69 +115,48 @@ class _$_POSMapResponseDTO implements _POSMapResponseDTO {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _POSMapResponseDTO &&
-            (identical(other.pos, pos) ||
-                const DeepCollectionEquality().equals(other.pos, pos)));
+        (other.runtimeType == runtimeType &&
+            other is _$_POSMapResponseDTO &&
+            const DeepCollectionEquality().equals(other._pos, _pos));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(pos);
 
   @JsonKey(ignore: true)
   @override
-  _$POSMapResponseDTOCopyWith<_POSMapResponseDTO> get copyWith =>
-      __$POSMapResponseDTOCopyWithImpl<_POSMapResponseDTO>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_pos));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_POSMapResponseDTOCopyWith<_$_POSMapResponseDTO> get copyWith =>
+      __$$_POSMapResponseDTOCopyWithImpl<_$_POSMapResponseDTO>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_POSMapResponseDTOToJson(this);
+    return _$$_POSMapResponseDTOToJson(
+      this,
+    );
   }
 }
 
 abstract class _POSMapResponseDTO implements POSMapResponseDTO {
-  const factory _POSMapResponseDTO({required List<POSMapDTO> pos}) =
+  const factory _POSMapResponseDTO({required final List<POSMapDTO> pos}) =
       _$_POSMapResponseDTO;
 
   factory _POSMapResponseDTO.fromJson(Map<String, dynamic> json) =
       _$_POSMapResponseDTO.fromJson;
 
   @override
-  List<POSMapDTO> get pos => throw _privateConstructorUsedError;
+  List<POSMapDTO> get pos;
   @override
   @JsonKey(ignore: true)
-  _$POSMapResponseDTOCopyWith<_POSMapResponseDTO> get copyWith =>
+  _$$_POSMapResponseDTOCopyWith<_$_POSMapResponseDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 POSMapDTO _$POSMapDTOFromJson(Map<String, dynamic> json) {
   return _POSMapDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$POSMapDTOTearOff {
-  const _$POSMapDTOTearOff();
-
-  _POSMapDTO call(
-      {required String id,
-      required String name,
-      required PositionDTO position,
-      String? url}) {
-    return _POSMapDTO(
-      id: id,
-      name: name,
-      position: position,
-      url: url,
-    );
-  }
-
-  POSMapDTO fromJson(Map<String, Object> json) {
-    return POSMapDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $POSMapDTO = _$POSMapDTOTearOff();
 
 /// @nodoc
 mixin _$POSMapDTO {
@@ -258,10 +224,10 @@ class _$POSMapDTOCopyWithImpl<$Res> implements $POSMapDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$POSMapDTOCopyWith<$Res> implements $POSMapDTOCopyWith<$Res> {
-  factory _$POSMapDTOCopyWith(
-          _POSMapDTO value, $Res Function(_POSMapDTO) then) =
-      __$POSMapDTOCopyWithImpl<$Res>;
+abstract class _$$_POSMapDTOCopyWith<$Res> implements $POSMapDTOCopyWith<$Res> {
+  factory _$$_POSMapDTOCopyWith(
+          _$_POSMapDTO value, $Res Function(_$_POSMapDTO) then) =
+      __$$_POSMapDTOCopyWithImpl<$Res>;
   @override
   $Res call({String id, String name, PositionDTO position, String? url});
 
@@ -270,13 +236,14 @@ abstract class _$POSMapDTOCopyWith<$Res> implements $POSMapDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$POSMapDTOCopyWithImpl<$Res> extends _$POSMapDTOCopyWithImpl<$Res>
-    implements _$POSMapDTOCopyWith<$Res> {
-  __$POSMapDTOCopyWithImpl(_POSMapDTO _value, $Res Function(_POSMapDTO) _then)
-      : super(_value, (v) => _then(v as _POSMapDTO));
+class __$$_POSMapDTOCopyWithImpl<$Res> extends _$POSMapDTOCopyWithImpl<$Res>
+    implements _$$_POSMapDTOCopyWith<$Res> {
+  __$$_POSMapDTOCopyWithImpl(
+      _$_POSMapDTO _value, $Res Function(_$_POSMapDTO) _then)
+      : super(_value, (v) => _then(v as _$_POSMapDTO));
 
   @override
-  _POSMapDTO get _value => super._value as _POSMapDTO;
+  _$_POSMapDTO get _value => super._value as _$_POSMapDTO;
 
   @override
   $Res call({
@@ -285,7 +252,7 @@ class __$POSMapDTOCopyWithImpl<$Res> extends _$POSMapDTOCopyWithImpl<$Res>
     Object? position = freezed,
     Object? url = freezed,
   }) {
-    return _then(_POSMapDTO(
+    return _then(_$_POSMapDTO(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -332,83 +299,63 @@ class _$_POSMapDTO implements _POSMapDTO {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _POSMapDTO &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.position, position) ||
-                const DeepCollectionEquality()
-                    .equals(other.position, position)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+        (other.runtimeType == runtimeType &&
+            other is _$_POSMapDTO &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.position, position) &&
+            const DeepCollectionEquality().equals(other.url, url));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(position) ^
-      const DeepCollectionEquality().hash(url);
 
   @JsonKey(ignore: true)
   @override
-  _$POSMapDTOCopyWith<_POSMapDTO> get copyWith =>
-      __$POSMapDTOCopyWithImpl<_POSMapDTO>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(position),
+      const DeepCollectionEquality().hash(url));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_POSMapDTOCopyWith<_$_POSMapDTO> get copyWith =>
+      __$$_POSMapDTOCopyWithImpl<_$_POSMapDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_POSMapDTOToJson(this);
+    return _$$_POSMapDTOToJson(
+      this,
+    );
   }
 }
 
 abstract class _POSMapDTO implements POSMapDTO {
   const factory _POSMapDTO(
-      {required String id,
-      required String name,
-      required PositionDTO position,
-      String? url}) = _$_POSMapDTO;
+      {required final String id,
+      required final String name,
+      required final PositionDTO position,
+      final String? url}) = _$_POSMapDTO;
 
   factory _POSMapDTO.fromJson(Map<String, dynamic> json) =
       _$_POSMapDTO.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  PositionDTO get position => throw _privateConstructorUsedError;
+  PositionDTO get position;
   @override
-  String? get url => throw _privateConstructorUsedError;
+  String? get url;
   @override
   @JsonKey(ignore: true)
-  _$POSMapDTOCopyWith<_POSMapDTO> get copyWith =>
+  _$$_POSMapDTOCopyWith<_$_POSMapDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 PositionDTO _$PositionDTOFromJson(Map<String, dynamic> json) {
   return _PositionDTO.fromJson(json);
 }
-
-/// @nodoc
-class _$PositionDTOTearOff {
-  const _$PositionDTOTearOff();
-
-  _PositionDTO call({required double latitude, required double longitude}) {
-    return _PositionDTO(
-      latitude: latitude,
-      longitude: longitude,
-    );
-  }
-
-  PositionDTO fromJson(Map<String, Object> json) {
-    return PositionDTO.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PositionDTO = _$PositionDTOTearOff();
 
 /// @nodoc
 mixin _$PositionDTO {
@@ -456,31 +403,31 @@ class _$PositionDTOCopyWithImpl<$Res> implements $PositionDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PositionDTOCopyWith<$Res>
+abstract class _$$_PositionDTOCopyWith<$Res>
     implements $PositionDTOCopyWith<$Res> {
-  factory _$PositionDTOCopyWith(
-          _PositionDTO value, $Res Function(_PositionDTO) then) =
-      __$PositionDTOCopyWithImpl<$Res>;
+  factory _$$_PositionDTOCopyWith(
+          _$_PositionDTO value, $Res Function(_$_PositionDTO) then) =
+      __$$_PositionDTOCopyWithImpl<$Res>;
   @override
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$PositionDTOCopyWithImpl<$Res> extends _$PositionDTOCopyWithImpl<$Res>
-    implements _$PositionDTOCopyWith<$Res> {
-  __$PositionDTOCopyWithImpl(
-      _PositionDTO _value, $Res Function(_PositionDTO) _then)
-      : super(_value, (v) => _then(v as _PositionDTO));
+class __$$_PositionDTOCopyWithImpl<$Res> extends _$PositionDTOCopyWithImpl<$Res>
+    implements _$$_PositionDTOCopyWith<$Res> {
+  __$$_PositionDTOCopyWithImpl(
+      _$_PositionDTO _value, $Res Function(_$_PositionDTO) _then)
+      : super(_value, (v) => _then(v as _$_PositionDTO));
 
   @override
-  _PositionDTO get _value => super._value as _PositionDTO;
+  _$_PositionDTO get _value => super._value as _$_PositionDTO;
 
   @override
   $Res call({
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
-    return _then(_PositionDTO(
+    return _then(_$_PositionDTO(
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -514,45 +461,46 @@ class _$_PositionDTO implements _PositionDTO {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PositionDTO &&
-            (identical(other.latitude, latitude) ||
-                const DeepCollectionEquality()
-                    .equals(other.latitude, latitude)) &&
-            (identical(other.longitude, longitude) ||
-                const DeepCollectionEquality()
-                    .equals(other.longitude, longitude)));
+        (other.runtimeType == runtimeType &&
+            other is _$_PositionDTO &&
+            const DeepCollectionEquality().equals(other.latitude, latitude) &&
+            const DeepCollectionEquality().equals(other.longitude, longitude));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(latitude) ^
-      const DeepCollectionEquality().hash(longitude);
 
   @JsonKey(ignore: true)
   @override
-  _$PositionDTOCopyWith<_PositionDTO> get copyWith =>
-      __$PositionDTOCopyWithImpl<_PositionDTO>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(latitude),
+      const DeepCollectionEquality().hash(longitude));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PositionDTOCopyWith<_$_PositionDTO> get copyWith =>
+      __$$_PositionDTOCopyWithImpl<_$_PositionDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PositionDTOToJson(this);
+    return _$$_PositionDTOToJson(
+      this,
+    );
   }
 }
 
 abstract class _PositionDTO implements PositionDTO {
   const factory _PositionDTO(
-      {required double latitude, required double longitude}) = _$_PositionDTO;
+      {required final double latitude,
+      required final double longitude}) = _$_PositionDTO;
 
   factory _PositionDTO.fromJson(Map<String, dynamic> json) =
       _$_PositionDTO.fromJson;
 
   @override
-  double get latitude => throw _privateConstructorUsedError;
+  double get latitude;
   @override
-  double get longitude => throw _privateConstructorUsedError;
+  double get longitude;
   @override
   @JsonKey(ignore: true)
-  _$PositionDTOCopyWith<_PositionDTO> get copyWith =>
+  _$$_PositionDTOCopyWith<_$_PositionDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }

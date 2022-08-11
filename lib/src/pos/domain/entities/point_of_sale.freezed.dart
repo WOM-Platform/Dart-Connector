@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'point_of_sale.dart';
@@ -11,34 +12,7 @@ part of 'point_of_sale.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$PointOfSaleTearOff {
-  const _$PointOfSaleTearOff();
-
-  _PointOfSale call(
-      {required String privateKey,
-      required String id,
-      required String name,
-      required bool isActive,
-      double? latitude,
-      double? longitude,
-      String? url}) {
-    return _PointOfSale(
-      privateKey: privateKey,
-      id: id,
-      name: name,
-      isActive: isActive,
-      latitude: latitude,
-      longitude: longitude,
-      url: url,
-    );
-  }
-}
-
-/// @nodoc
-const $PointOfSale = _$PointOfSaleTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PointOfSale {
@@ -122,11 +96,11 @@ class _$PointOfSaleCopyWithImpl<$Res> implements $PointOfSaleCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PointOfSaleCopyWith<$Res>
+abstract class _$$_PointOfSaleCopyWith<$Res>
     implements $PointOfSaleCopyWith<$Res> {
-  factory _$PointOfSaleCopyWith(
-          _PointOfSale value, $Res Function(_PointOfSale) then) =
-      __$PointOfSaleCopyWithImpl<$Res>;
+  factory _$$_PointOfSaleCopyWith(
+          _$_PointOfSale value, $Res Function(_$_PointOfSale) then) =
+      __$$_PointOfSaleCopyWithImpl<$Res>;
   @override
   $Res call(
       {String privateKey,
@@ -139,14 +113,14 @@ abstract class _$PointOfSaleCopyWith<$Res>
 }
 
 /// @nodoc
-class __$PointOfSaleCopyWithImpl<$Res> extends _$PointOfSaleCopyWithImpl<$Res>
-    implements _$PointOfSaleCopyWith<$Res> {
-  __$PointOfSaleCopyWithImpl(
-      _PointOfSale _value, $Res Function(_PointOfSale) _then)
-      : super(_value, (v) => _then(v as _PointOfSale));
+class __$$_PointOfSaleCopyWithImpl<$Res> extends _$PointOfSaleCopyWithImpl<$Res>
+    implements _$$_PointOfSaleCopyWith<$Res> {
+  __$$_PointOfSaleCopyWithImpl(
+      _$_PointOfSale _value, $Res Function(_$_PointOfSale) _then)
+      : super(_value, (v) => _then(v as _$_PointOfSale));
 
   @override
-  _PointOfSale get _value => super._value as _PointOfSale;
+  _$_PointOfSale get _value => super._value as _$_PointOfSale;
 
   @override
   $Res call({
@@ -158,7 +132,7 @@ class __$PointOfSaleCopyWithImpl<$Res> extends _$PointOfSaleCopyWithImpl<$Res>
     Object? longitude = freezed,
     Object? url = freezed,
   }) {
-    return _then(_PointOfSale(
+    return _then(_$_PointOfSale(
       privateKey: privateKey == freezed
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
@@ -226,70 +200,61 @@ class _$_PointOfSale implements _PointOfSale {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PointOfSale &&
-            (identical(other.privateKey, privateKey) ||
-                const DeepCollectionEquality()
-                    .equals(other.privateKey, privateKey)) &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.isActive, isActive) ||
-                const DeepCollectionEquality()
-                    .equals(other.isActive, isActive)) &&
-            (identical(other.latitude, latitude) ||
-                const DeepCollectionEquality()
-                    .equals(other.latitude, latitude)) &&
-            (identical(other.longitude, longitude) ||
-                const DeepCollectionEquality()
-                    .equals(other.longitude, longitude)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)));
+        (other.runtimeType == runtimeType &&
+            other is _$_PointOfSale &&
+            const DeepCollectionEquality()
+                .equals(other.privateKey, privateKey) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.isActive, isActive) &&
+            const DeepCollectionEquality().equals(other.latitude, latitude) &&
+            const DeepCollectionEquality().equals(other.longitude, longitude) &&
+            const DeepCollectionEquality().equals(other.url, url));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(privateKey) ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(isActive) ^
-      const DeepCollectionEquality().hash(latitude) ^
-      const DeepCollectionEquality().hash(longitude) ^
-      const DeepCollectionEquality().hash(url);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(privateKey),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(isActive),
+      const DeepCollectionEquality().hash(latitude),
+      const DeepCollectionEquality().hash(longitude),
+      const DeepCollectionEquality().hash(url));
 
   @JsonKey(ignore: true)
   @override
-  _$PointOfSaleCopyWith<_PointOfSale> get copyWith =>
-      __$PointOfSaleCopyWithImpl<_PointOfSale>(this, _$identity);
+  _$$_PointOfSaleCopyWith<_$_PointOfSale> get copyWith =>
+      __$$_PointOfSaleCopyWithImpl<_$_PointOfSale>(this, _$identity);
 }
 
 abstract class _PointOfSale implements PointOfSale {
   const factory _PointOfSale(
-      {required String privateKey,
-      required String id,
-      required String name,
-      required bool isActive,
-      double? latitude,
-      double? longitude,
-      String? url}) = _$_PointOfSale;
+      {required final String privateKey,
+      required final String id,
+      required final String name,
+      required final bool isActive,
+      final double? latitude,
+      final double? longitude,
+      final String? url}) = _$_PointOfSale;
 
   @override
-  String get privateKey => throw _privateConstructorUsedError;
+  String get privateKey;
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  bool get isActive => throw _privateConstructorUsedError;
+  bool get isActive;
   @override
-  double? get latitude => throw _privateConstructorUsedError;
+  double? get latitude;
   @override
-  double? get longitude => throw _privateConstructorUsedError;
+  double? get longitude;
   @override
-  String? get url => throw _privateConstructorUsedError;
+  String? get url;
   @override
   @JsonKey(ignore: true)
-  _$PointOfSaleCopyWith<_PointOfSale> get copyWith =>
+  _$$_PointOfSaleCopyWith<_$_PointOfSale> get copyWith =>
       throw _privateConstructorUsedError;
 }

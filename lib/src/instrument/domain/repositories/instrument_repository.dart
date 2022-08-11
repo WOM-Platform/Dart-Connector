@@ -4,9 +4,9 @@ import 'package:dart_wom_connector/src/instrument/domain/entities/wom_creation_r
 
 abstract class InstrumentRepository extends ClientRepository {
   final String privateKey, publicKey, sourceId, domain;
-
+  final String? apiKey;
   InstrumentRepository(
-      this.privateKey, this.publicKey, this.sourceId, this.domain);
+      this.privateKey, this.publicKey, this.sourceId, this.domain, this.apiKey, );
 
   Future<WomCreationResponse> requestWomCreation(
       RequestWomCreation requestWomCreation);

@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'voucher_stats.dart';
@@ -11,30 +12,7 @@ part of 'voucher_stats.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$VoucherStatsTearOff {
-  const _$VoucherStatsTearOff();
-
-  _VoucherStats call(
-      int totalVouchersGenerated,
-      int totalVouchersRedeemed,
-      int totalVouchersAvailable,
-      int totalVouchersSpent,
-      Map<String, AimStats> aims) {
-    return _VoucherStats(
-      totalVouchersGenerated,
-      totalVouchersRedeemed,
-      totalVouchersAvailable,
-      totalVouchersSpent,
-      aims,
-    );
-  }
-}
-
-/// @nodoc
-const $VoucherStats = _$VoucherStatsTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$VoucherStats {
@@ -104,11 +82,11 @@ class _$VoucherStatsCopyWithImpl<$Res> implements $VoucherStatsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$VoucherStatsCopyWith<$Res>
+abstract class _$$_VoucherStatsCopyWith<$Res>
     implements $VoucherStatsCopyWith<$Res> {
-  factory _$VoucherStatsCopyWith(
-          _VoucherStats value, $Res Function(_VoucherStats) then) =
-      __$VoucherStatsCopyWithImpl<$Res>;
+  factory _$$_VoucherStatsCopyWith(
+          _$_VoucherStats value, $Res Function(_$_VoucherStats) then) =
+      __$$_VoucherStatsCopyWithImpl<$Res>;
   @override
   $Res call(
       {int totalVouchersGenerated,
@@ -119,14 +97,15 @@ abstract class _$VoucherStatsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$VoucherStatsCopyWithImpl<$Res> extends _$VoucherStatsCopyWithImpl<$Res>
-    implements _$VoucherStatsCopyWith<$Res> {
-  __$VoucherStatsCopyWithImpl(
-      _VoucherStats _value, $Res Function(_VoucherStats) _then)
-      : super(_value, (v) => _then(v as _VoucherStats));
+class __$$_VoucherStatsCopyWithImpl<$Res>
+    extends _$VoucherStatsCopyWithImpl<$Res>
+    implements _$$_VoucherStatsCopyWith<$Res> {
+  __$$_VoucherStatsCopyWithImpl(
+      _$_VoucherStats _value, $Res Function(_$_VoucherStats) _then)
+      : super(_value, (v) => _then(v as _$_VoucherStats));
 
   @override
-  _VoucherStats get _value => super._value as _VoucherStats;
+  _$_VoucherStats get _value => super._value as _$_VoucherStats;
 
   @override
   $Res call({
@@ -136,7 +115,7 @@ class __$VoucherStatsCopyWithImpl<$Res> extends _$VoucherStatsCopyWithImpl<$Res>
     Object? totalVouchersSpent = freezed,
     Object? aims = freezed,
   }) {
-    return _then(_VoucherStats(
+    return _then(_$_VoucherStats(
       totalVouchersGenerated == freezed
           ? _value.totalVouchersGenerated
           : totalVouchersGenerated // ignore: cast_nullable_to_non_nullable
@@ -154,7 +133,7 @@ class __$VoucherStatsCopyWithImpl<$Res> extends _$VoucherStatsCopyWithImpl<$Res>
           : totalVouchersSpent // ignore: cast_nullable_to_non_nullable
               as int,
       aims == freezed
-          ? _value.aims
+          ? _value._aims
           : aims // ignore: cast_nullable_to_non_nullable
               as Map<String, AimStats>,
     ));
@@ -164,8 +143,13 @@ class __$VoucherStatsCopyWithImpl<$Res> extends _$VoucherStatsCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_VoucherStats implements _VoucherStats {
-  _$_VoucherStats(this.totalVouchersGenerated, this.totalVouchersRedeemed,
-      this.totalVouchersAvailable, this.totalVouchersSpent, this.aims);
+  _$_VoucherStats(
+      this.totalVouchersGenerated,
+      this.totalVouchersRedeemed,
+      this.totalVouchersAvailable,
+      this.totalVouchersSpent,
+      final Map<String, AimStats> aims)
+      : _aims = aims;
 
   @override
   final int totalVouchersGenerated;
@@ -175,8 +159,12 @@ class _$_VoucherStats implements _VoucherStats {
   final int totalVouchersAvailable;
   @override
   final int totalVouchersSpent;
+  final Map<String, AimStats> _aims;
   @override
-  final Map<String, AimStats> aims;
+  Map<String, AimStats> get aims {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_aims);
+  }
 
   @override
   String toString() {
@@ -186,78 +174,57 @@ class _$_VoucherStats implements _VoucherStats {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _VoucherStats &&
-            (identical(other.totalVouchersGenerated, totalVouchersGenerated) ||
-                const DeepCollectionEquality().equals(
-                    other.totalVouchersGenerated, totalVouchersGenerated)) &&
-            (identical(other.totalVouchersRedeemed, totalVouchersRedeemed) ||
-                const DeepCollectionEquality().equals(
-                    other.totalVouchersRedeemed, totalVouchersRedeemed)) &&
-            (identical(other.totalVouchersAvailable, totalVouchersAvailable) ||
-                const DeepCollectionEquality().equals(
-                    other.totalVouchersAvailable, totalVouchersAvailable)) &&
-            (identical(other.totalVouchersSpent, totalVouchersSpent) ||
-                const DeepCollectionEquality()
-                    .equals(other.totalVouchersSpent, totalVouchersSpent)) &&
-            (identical(other.aims, aims) ||
-                const DeepCollectionEquality().equals(other.aims, aims)));
+        (other.runtimeType == runtimeType &&
+            other is _$_VoucherStats &&
+            const DeepCollectionEquality()
+                .equals(other.totalVouchersGenerated, totalVouchersGenerated) &&
+            const DeepCollectionEquality()
+                .equals(other.totalVouchersRedeemed, totalVouchersRedeemed) &&
+            const DeepCollectionEquality()
+                .equals(other.totalVouchersAvailable, totalVouchersAvailable) &&
+            const DeepCollectionEquality()
+                .equals(other.totalVouchersSpent, totalVouchersSpent) &&
+            const DeepCollectionEquality().equals(other._aims, _aims));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(totalVouchersGenerated) ^
-      const DeepCollectionEquality().hash(totalVouchersRedeemed) ^
-      const DeepCollectionEquality().hash(totalVouchersAvailable) ^
-      const DeepCollectionEquality().hash(totalVouchersSpent) ^
-      const DeepCollectionEquality().hash(aims);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(totalVouchersGenerated),
+      const DeepCollectionEquality().hash(totalVouchersRedeemed),
+      const DeepCollectionEquality().hash(totalVouchersAvailable),
+      const DeepCollectionEquality().hash(totalVouchersSpent),
+      const DeepCollectionEquality().hash(_aims));
 
   @JsonKey(ignore: true)
   @override
-  _$VoucherStatsCopyWith<_VoucherStats> get copyWith =>
-      __$VoucherStatsCopyWithImpl<_VoucherStats>(this, _$identity);
+  _$$_VoucherStatsCopyWith<_$_VoucherStats> get copyWith =>
+      __$$_VoucherStatsCopyWithImpl<_$_VoucherStats>(this, _$identity);
 }
 
 abstract class _VoucherStats implements VoucherStats {
   factory _VoucherStats(
-      int totalVouchersGenerated,
-      int totalVouchersRedeemed,
-      int totalVouchersAvailable,
-      int totalVouchersSpent,
-      Map<String, AimStats> aims) = _$_VoucherStats;
+      final int totalVouchersGenerated,
+      final int totalVouchersRedeemed,
+      final int totalVouchersAvailable,
+      final int totalVouchersSpent,
+      final Map<String, AimStats> aims) = _$_VoucherStats;
 
   @override
-  int get totalVouchersGenerated => throw _privateConstructorUsedError;
+  int get totalVouchersGenerated;
   @override
-  int get totalVouchersRedeemed => throw _privateConstructorUsedError;
+  int get totalVouchersRedeemed;
   @override
-  int get totalVouchersAvailable => throw _privateConstructorUsedError;
+  int get totalVouchersAvailable;
   @override
-  int get totalVouchersSpent => throw _privateConstructorUsedError;
+  int get totalVouchersSpent;
   @override
-  Map<String, AimStats> get aims => throw _privateConstructorUsedError;
+  Map<String, AimStats> get aims;
   @override
   @JsonKey(ignore: true)
-  _$VoucherStatsCopyWith<_VoucherStats> get copyWith =>
+  _$$_VoucherStatsCopyWith<_$_VoucherStats> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$AimStatsTearOff {
-  const _$AimStatsTearOff();
-
-  _AimStats call(int generated, int redeemed, int available, int spent) {
-    return _AimStats(
-      generated,
-      redeemed,
-      available,
-      spent,
-    );
-  }
-}
-
-/// @nodoc
-const $AimStats = _$AimStatsTearOff();
 
 /// @nodoc
 mixin _$AimStats {
@@ -315,21 +282,23 @@ class _$AimStatsCopyWithImpl<$Res> implements $AimStatsCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AimStatsCopyWith<$Res> implements $AimStatsCopyWith<$Res> {
-  factory _$AimStatsCopyWith(_AimStats value, $Res Function(_AimStats) then) =
-      __$AimStatsCopyWithImpl<$Res>;
+abstract class _$$_AimStatsCopyWith<$Res> implements $AimStatsCopyWith<$Res> {
+  factory _$$_AimStatsCopyWith(
+          _$_AimStats value, $Res Function(_$_AimStats) then) =
+      __$$_AimStatsCopyWithImpl<$Res>;
   @override
   $Res call({int generated, int redeemed, int available, int spent});
 }
 
 /// @nodoc
-class __$AimStatsCopyWithImpl<$Res> extends _$AimStatsCopyWithImpl<$Res>
-    implements _$AimStatsCopyWith<$Res> {
-  __$AimStatsCopyWithImpl(_AimStats _value, $Res Function(_AimStats) _then)
-      : super(_value, (v) => _then(v as _AimStats));
+class __$$_AimStatsCopyWithImpl<$Res> extends _$AimStatsCopyWithImpl<$Res>
+    implements _$$_AimStatsCopyWith<$Res> {
+  __$$_AimStatsCopyWithImpl(
+      _$_AimStats _value, $Res Function(_$_AimStats) _then)
+      : super(_value, (v) => _then(v as _$_AimStats));
 
   @override
-  _AimStats get _value => super._value as _AimStats;
+  _$_AimStats get _value => super._value as _$_AimStats;
 
   @override
   $Res call({
@@ -338,7 +307,7 @@ class __$AimStatsCopyWithImpl<$Res> extends _$AimStatsCopyWithImpl<$Res>
     Object? available = freezed,
     Object? spent = freezed,
   }) {
-    return _then(_AimStats(
+    return _then(_$_AimStats(
       generated == freezed
           ? _value.generated
           : generated // ignore: cast_nullable_to_non_nullable
@@ -381,48 +350,42 @@ class _$_AimStats implements _AimStats {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _AimStats &&
-            (identical(other.generated, generated) ||
-                const DeepCollectionEquality()
-                    .equals(other.generated, generated)) &&
-            (identical(other.redeemed, redeemed) ||
-                const DeepCollectionEquality()
-                    .equals(other.redeemed, redeemed)) &&
-            (identical(other.available, available) ||
-                const DeepCollectionEquality()
-                    .equals(other.available, available)) &&
-            (identical(other.spent, spent) ||
-                const DeepCollectionEquality().equals(other.spent, spent)));
+        (other.runtimeType == runtimeType &&
+            other is _$_AimStats &&
+            const DeepCollectionEquality().equals(other.generated, generated) &&
+            const DeepCollectionEquality().equals(other.redeemed, redeemed) &&
+            const DeepCollectionEquality().equals(other.available, available) &&
+            const DeepCollectionEquality().equals(other.spent, spent));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(generated) ^
-      const DeepCollectionEquality().hash(redeemed) ^
-      const DeepCollectionEquality().hash(available) ^
-      const DeepCollectionEquality().hash(spent);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(generated),
+      const DeepCollectionEquality().hash(redeemed),
+      const DeepCollectionEquality().hash(available),
+      const DeepCollectionEquality().hash(spent));
 
   @JsonKey(ignore: true)
   @override
-  _$AimStatsCopyWith<_AimStats> get copyWith =>
-      __$AimStatsCopyWithImpl<_AimStats>(this, _$identity);
+  _$$_AimStatsCopyWith<_$_AimStats> get copyWith =>
+      __$$_AimStatsCopyWithImpl<_$_AimStats>(this, _$identity);
 }
 
 abstract class _AimStats implements AimStats {
-  factory _AimStats(int generated, int redeemed, int available, int spent) =
-      _$_AimStats;
+  factory _AimStats(final int generated, final int redeemed,
+      final int available, final int spent) = _$_AimStats;
 
   @override
-  int get generated => throw _privateConstructorUsedError;
+  int get generated;
   @override
-  int get redeemed => throw _privateConstructorUsedError;
+  int get redeemed;
   @override
-  int get available => throw _privateConstructorUsedError;
+  int get available;
   @override
-  int get spent => throw _privateConstructorUsedError;
+  int get spent;
   @override
   @JsonKey(ignore: true)
-  _$AimStatsCopyWith<_AimStats> get copyWith =>
+  _$$_AimStatsCopyWith<_$_AimStats> get copyWith =>
       throw _privateConstructorUsedError;
 }
