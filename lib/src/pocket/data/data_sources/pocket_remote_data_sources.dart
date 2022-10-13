@@ -101,7 +101,7 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
       final jsonError = json.decode(response.body) as Map<String, dynamic>;
       error = jsonError['error'];
     } finally {
-      throw ServerException(url: url, error: error);
+      throw ServerException(url: url, error: error ?? 'unknown-error', type: '');
     }
     // final responseBody = await HttpHelper.genericHttpPost(
     //     'http://$domain/api/v1/migration/$guid/retrieve',
