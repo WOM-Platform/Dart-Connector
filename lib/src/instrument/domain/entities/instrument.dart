@@ -8,6 +8,7 @@ class Instrument with _$Instrument {
   const factory Instrument({
     required String id,
     required String name,
+    String? apiKey,
     required String privateKey,
     required String publicKey,
     required Set<String> enabledAims,

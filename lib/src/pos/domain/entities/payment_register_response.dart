@@ -1,9 +1,15 @@
 class PaymentRegisterResponse {
-  final String? registryUrl;
-  final String? nonce;
-  final String? otc;
-  final String? password;
+  final String registryUrl;
+  final String nonce;
+  final String otc;
+  final String password;
+  final String link;
 
-  PaymentRegisterResponse(
-      {this.registryUrl, this.nonce, this.otc, this.password});
+  PaymentRegisterResponse({
+    required this.registryUrl,
+    required this.nonce,
+    required this.otc,
+    required this.password,
+    required this.link,
+  });
 }

@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:encrypt/encrypt.dart';
 import 'package:uuid/uuid.dart';
 
-class Utils {
+class CoreUtils {
   static String generateGUID() {
     var uuid = Uuid();
     final guid =

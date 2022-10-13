@@ -6,6 +6,7 @@ import 'package:dart_wom_connector/src/pos/data/data_sources/pos_remote_data_sou
 import 'package:dart_wom_connector/src/pos/data/models/payment_register_payload.dart';
 import 'package:dart_wom_connector/src/pos/data/models/payment_register_response_model.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/payment_request_response.dart';
+import 'package:dart_wom_connector/src/pos/domain/entities/point_of_sale.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/request_payment_payload.dart';
 import 'package:dart_wom_connector/src/pos/domain/repositories/pos_repository.dart';
 import 'package:encrypt/encrypt.dart';
@@ -14,6 +15,7 @@ import 'package:pointycastle/asymmetric/api.dart';
 class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
   final PointOfSaleRemoteDataSources posRemoteDataSources;
   final rsaKeyParser = RSAKeyParser();
+
   PointOfSaleRepositoryImpl(
     this.posRemoteDataSources,
     String publicKeyString,
@@ -36,8 +38,12 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
 
       final isVerified =
           await _verifyPayment(paymentRegisterResponse.otc, privateKeyString);
+
       return PaymentRequestResponse(
-          paymentRegisterResponse.otc, paymentRegisterResponse.password);
+        paymentRegisterResponse.otc,
+        paymentRegisterResponse.password,
+        paymentRegisterResponse.link,
+      );
     } catch (ex) {
       rethrow;
     }
@@ -50,10 +56,10 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
     final requestPaymentPayloadJSON =
         json.encode(requestPaymentPayload.toMap());
 
-    final requestPaymentPayloadJSONEncrypted = await Utils.encryptLongInput(
+    final requestPaymentPayloadJSONEncrypted = CoreUtils.encryptLongInput(
         encrypter,
         Uint8List.fromList(utf8.encode(requestPaymentPayloadJSON)),
-        Utils.outputBlockSize(
+        CoreUtils.outputBlockSize(
             rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
     final paymentRegisterPayload = PaymentRegisterPayload(
@@ -67,7 +73,7 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
     //decode response body into json
     final jsonResponse = json.decode(responseBody);
     final base64Decoder = Base64Decoder();
-    final decryptedPayload = Utils.decryptLongInput(
+    final decryptedPayload = CoreUtils.decryptLongInput(
         encrypter, base64Decoder.convert(jsonResponse['payload']), 501);
 
     //decode decrypted paylod into json
@@ -83,10 +89,10 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
 
     final payloadMapEncoded = json.encode(payloadMap);
 
-    final payloadEncrypted = await Utils.encryptLongInput(
+    final payloadEncrypted = CoreUtils.encryptLongInput(
         encrypter,
         utf8.encode(payloadMapEncoded) as Uint8List,
-        Utils.outputBlockSize(
+        CoreUtils.outputBlockSize(
             rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
     final verifyMap = {
@@ -95,14 +101,4 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
 
     return posRemoteDataSources.verifyPayment('payment/verify', verifyMap);
   }
-
-  // @override
-  // Future<POSUser> authenticate(String username, String password) async {
-  //   try {
-  //     final user = await posRemoteDataSources.authenticate(username, password);
-  //     return user as POSUser;
-  //   } catch (e) {
-  //     rethrow;
-  //   }
-  // }
 }

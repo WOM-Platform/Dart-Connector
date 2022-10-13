@@ -1,12 +1,16 @@
-import 'package:dart_wom_connector/src/pos/domain/entities/point_of_sale.dart';
 
+import 'package:dart_wom_connector/src/pos/domain/entities/merchant.dart';
+import 'package:dart_wom_connector/src/pos/domain/entities/point_of_sale.dart';
+import 'package:dart_wom_connector/src/pos/data/dto/point_of_sale.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'merchant.freezed.dart';
 
+part 'merchant.g.dart';
+
 @freezed
-class Merchant with _$Merchant {
-  const factory Merchant({
+class MerchantDTO with _$MerchantDTO {
+  const factory MerchantDTO({
     required String id,
     required String name,
     required String address,
@@ -14,11 +18,32 @@ class Merchant with _$Merchant {
     required String city,
     required String country,
     required String fiscalCode,
-    required List<PointOfSale> posList,
+    required List<PointOfSaleDTO> pos,
     String? description,
     String? url,
-  }) = _Merchant;
+  }) = _MerchantDTO;
+
+  factory MerchantDTO.fromJson(Map<String, dynamic> json) =>
+      _$MerchantDTOFromJson(json);
 }
+
+extension MerchantDTOX on MerchantDTO {
+  Merchant toDomain() {
+    return Merchant(
+      id: id,
+      address: address,
+      country: country,
+      url: url,
+      name: name,
+      zipCode: zipCode,
+      description: description,
+      city: city,
+      fiscalCode: fiscalCode,
+      posList: pos.map((e) => e.toDomain()).toList(),
+    );
+  }
+}
+
 /*
 
 class Merchant {

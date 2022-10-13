@@ -4,9 +4,8 @@ import 'package:meta/meta.dart';
 
 class RequestPaymentPayload {
   final int amount;
-  final String pocketAckUrl;
+  final String? pocketAckUrl;
   final String posId;
-  final String? password;
   final SimpleFilter? simpleFilter;
   final String? posAckUrl;
   final bool persistent;
@@ -14,29 +13,23 @@ class RequestPaymentPayload {
 
   RequestPaymentPayload({
     required this.amount,
-    required this.pocketAckUrl,
+    this.pocketAckUrl,
     required this.posId,
-    this.nonce,
-    this.password,
     this.simpleFilter,
     this.posAckUrl,
     this.persistent = false,
   }) {
-    assert(posId != null);
-    assert(amount > 0);
-    assert(pocketAckUrl.isNotEmpty);
-    nonce ??= Utils.generateGUID();
+    nonce ??= CoreUtils.generateGUID();
   }
 
   Map<String, dynamic> toMap() {
     final map = <String, dynamic>{};
     map['posId'] = posId;
     map['nonce'] = nonce;
-    map['password'] = password;
     map['amount'] = amount;
     map['simpleFilter'] = simpleFilter?.toMap();
     map['posAckUrl'] = posAckUrl;
-    map['pocketAckUrl'] = pocketAckUrl;
+    map['pocketAckUrl'] = pocketAckUrl ?? '';
     map['persistent'] = persistent;
     return map;
   }

@@ -1,5 +1,5 @@
 import 'package:dart_wom_connector/src/registry/domain/entities/voucher_stats.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'voucher_stats.g.dart';
 
@@ -8,10 +8,11 @@ class VoucherStatsDTO {
   final int totalVouchersGenerated;
   final int totalVouchersRedeemed;
   final int totalVouchersAvailable;
+  final int totalVouchersSpent;
   final Map<String, AimStatsDTO> aims;
 
   VoucherStatsDTO(this.totalVouchersGenerated, this.totalVouchersRedeemed,
-      this.totalVouchersAvailable, this.aims);
+      this.totalVouchersAvailable, this.totalVouchersSpent, this.aims);
 
   factory VoucherStatsDTO.fromJson(Map<String, dynamic> json) =>
       _$VoucherStatsDTOFromJson(json);
@@ -21,12 +22,14 @@ class VoucherStatsDTO {
 }
 
 extension VoucherStatsDTOX on VoucherStatsDTO {
-  VoucherStats  toDomain() {
+  VoucherStats toDomain() {
     return VoucherStats(
       totalVouchersGenerated,
       totalVouchersRedeemed,
       totalVouchersAvailable,
-      aims.map<String,AimStats>((key, value) => MapEntry(key, value.toDomain())),
+      totalVouchersSpent,
+      aims.map<String, AimStats>(
+          (key, value) => MapEntry(key, value.toDomain())),
     );
   }
 }
@@ -36,8 +39,9 @@ class AimStatsDTO {
   final int generated;
   final int redeemed;
   final int available;
+  final int spent;
 
-  AimStatsDTO(this.generated, this.redeemed, this.available);
+  AimStatsDTO(this.generated, this.redeemed, this.available, this.spent);
 
   factory AimStatsDTO.fromJson(Map<String, dynamic> json) =>
       _$AimStatsDTOFromJson(json);
@@ -47,11 +51,7 @@ class AimStatsDTO {
 }
 
 extension AimStatsDTOX on AimStatsDTO {
-  AimStats  toDomain() {
-    return AimStats(
-      generated,
-      redeemed,
-      available,
-    );
+  AimStats toDomain() {
+    return AimStats(generated, redeemed, available, spent);
   }
 }

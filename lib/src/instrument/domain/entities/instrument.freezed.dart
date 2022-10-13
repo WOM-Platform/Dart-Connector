@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'instrument.dart';
 
@@ -10,51 +12,17 @@ part of 'instrument.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Instrument _$InstrumentFromJson(Map<String, dynamic> json) {
   return _Instrument.fromJson(json);
 }
 
 /// @nodoc
-class _$InstrumentTearOff {
-  const _$InstrumentTearOff();
-
-  _Instrument call(
-      {required String id,
-      required String name,
-      required String privateKey,
-      required String publicKey,
-      required Set<String> enabledAims,
-      required Map<String, int> perAimBudget,
-      required bool locationIsFixed,
-      String? url,
-      Location? defaultLocation}) {
-    return _Instrument(
-      id: id,
-      name: name,
-      privateKey: privateKey,
-      publicKey: publicKey,
-      enabledAims: enabledAims,
-      perAimBudget: perAimBudget,
-      locationIsFixed: locationIsFixed,
-      url: url,
-      defaultLocation: defaultLocation,
-    );
-  }
-
-  Instrument fromJson(Map<String, Object> json) {
-    return Instrument.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Instrument = _$InstrumentTearOff();
-
-/// @nodoc
 mixin _$Instrument {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  String? get apiKey => throw _privateConstructorUsedError;
   String get privateKey => throw _privateConstructorUsedError;
   String get publicKey => throw _privateConstructorUsedError;
   Set<String> get enabledAims => throw _privateConstructorUsedError;
@@ -77,6 +45,7 @@ abstract class $InstrumentCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
+      String? apiKey,
       String privateKey,
       String publicKey,
       Set<String> enabledAims,
@@ -100,6 +69,7 @@ class _$InstrumentCopyWithImpl<$Res> implements $InstrumentCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? apiKey = freezed,
     Object? privateKey = freezed,
     Object? publicKey = freezed,
     Object? enabledAims = freezed,
@@ -117,6 +87,10 @@ class _$InstrumentCopyWithImpl<$Res> implements $InstrumentCopyWith<$Res> {
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      apiKey: apiKey == freezed
+          ? _value.apiKey
+          : apiKey // ignore: cast_nullable_to_non_nullable
+              as String?,
       privateKey: privateKey == freezed
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
@@ -161,14 +135,16 @@ class _$InstrumentCopyWithImpl<$Res> implements $InstrumentCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InstrumentCopyWith<$Res> implements $InstrumentCopyWith<$Res> {
-  factory _$InstrumentCopyWith(
-          _Instrument value, $Res Function(_Instrument) then) =
-      __$InstrumentCopyWithImpl<$Res>;
+abstract class _$$_InstrumentCopyWith<$Res>
+    implements $InstrumentCopyWith<$Res> {
+  factory _$$_InstrumentCopyWith(
+          _$_Instrument value, $Res Function(_$_Instrument) then) =
+      __$$_InstrumentCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
       String name,
+      String? apiKey,
       String privateKey,
       String publicKey,
       Set<String> enabledAims,
@@ -182,19 +158,20 @@ abstract class _$InstrumentCopyWith<$Res> implements $InstrumentCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InstrumentCopyWithImpl<$Res> extends _$InstrumentCopyWithImpl<$Res>
-    implements _$InstrumentCopyWith<$Res> {
-  __$InstrumentCopyWithImpl(
-      _Instrument _value, $Res Function(_Instrument) _then)
-      : super(_value, (v) => _then(v as _Instrument));
+class __$$_InstrumentCopyWithImpl<$Res> extends _$InstrumentCopyWithImpl<$Res>
+    implements _$$_InstrumentCopyWith<$Res> {
+  __$$_InstrumentCopyWithImpl(
+      _$_Instrument _value, $Res Function(_$_Instrument) _then)
+      : super(_value, (v) => _then(v as _$_Instrument));
 
   @override
-  _Instrument get _value => super._value as _Instrument;
+  _$_Instrument get _value => super._value as _$_Instrument;
 
   @override
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? apiKey = freezed,
     Object? privateKey = freezed,
     Object? publicKey = freezed,
     Object? enabledAims = freezed,
@@ -203,7 +180,7 @@ class __$InstrumentCopyWithImpl<$Res> extends _$InstrumentCopyWithImpl<$Res>
     Object? url = freezed,
     Object? defaultLocation = freezed,
   }) {
-    return _then(_Instrument(
+    return _then(_$_Instrument(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -212,6 +189,10 @@ class __$InstrumentCopyWithImpl<$Res> extends _$InstrumentCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
+      apiKey: apiKey == freezed
+          ? _value.apiKey
+          : apiKey // ignore: cast_nullable_to_non_nullable
+              as String?,
       privateKey: privateKey == freezed
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
@@ -221,11 +202,11 @@ class __$InstrumentCopyWithImpl<$Res> extends _$InstrumentCopyWithImpl<$Res>
           : publicKey // ignore: cast_nullable_to_non_nullable
               as String,
       enabledAims: enabledAims == freezed
-          ? _value.enabledAims
+          ? _value._enabledAims
           : enabledAims // ignore: cast_nullable_to_non_nullable
               as Set<String>,
       perAimBudget: perAimBudget == freezed
-          ? _value.perAimBudget
+          ? _value._perAimBudget
           : perAimBudget // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
       locationIsFixed: locationIsFixed == freezed
@@ -250,29 +231,44 @@ class _$_Instrument implements _Instrument {
   const _$_Instrument(
       {required this.id,
       required this.name,
+      this.apiKey,
       required this.privateKey,
       required this.publicKey,
-      required this.enabledAims,
-      required this.perAimBudget,
+      required final Set<String> enabledAims,
+      required final Map<String, int> perAimBudget,
       required this.locationIsFixed,
       this.url,
-      this.defaultLocation});
+      this.defaultLocation})
+      : _enabledAims = enabledAims,
+        _perAimBudget = perAimBudget;
 
   factory _$_Instrument.fromJson(Map<String, dynamic> json) =>
-      _$_$_InstrumentFromJson(json);
+      _$$_InstrumentFromJson(json);
 
   @override
   final String id;
   @override
   final String name;
   @override
+  final String? apiKey;
+  @override
   final String privateKey;
   @override
   final String publicKey;
+  final Set<String> _enabledAims;
   @override
-  final Set<String> enabledAims;
+  Set<String> get enabledAims {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_enabledAims);
+  }
+
+  final Map<String, int> _perAimBudget;
   @override
-  final Map<String, int> perAimBudget;
+  Map<String, int> get perAimBudget {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_perAimBudget);
+  }
+
   @override
   final bool locationIsFixed;
   @override
@@ -282,124 +278,104 @@ class _$_Instrument implements _Instrument {
 
   @override
   String toString() {
-    return 'Instrument(id: $id, name: $name, privateKey: $privateKey, publicKey: $publicKey, enabledAims: $enabledAims, perAimBudget: $perAimBudget, locationIsFixed: $locationIsFixed, url: $url, defaultLocation: $defaultLocation)';
+    return 'Instrument(id: $id, name: $name, apiKey: $apiKey, privateKey: $privateKey, publicKey: $publicKey, enabledAims: $enabledAims, perAimBudget: $perAimBudget, locationIsFixed: $locationIsFixed, url: $url, defaultLocation: $defaultLocation)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Instrument &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.name, name) ||
-                const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.privateKey, privateKey) ||
-                const DeepCollectionEquality()
-                    .equals(other.privateKey, privateKey)) &&
-            (identical(other.publicKey, publicKey) ||
-                const DeepCollectionEquality()
-                    .equals(other.publicKey, publicKey)) &&
-            (identical(other.enabledAims, enabledAims) ||
-                const DeepCollectionEquality()
-                    .equals(other.enabledAims, enabledAims)) &&
-            (identical(other.perAimBudget, perAimBudget) ||
-                const DeepCollectionEquality()
-                    .equals(other.perAimBudget, perAimBudget)) &&
-            (identical(other.locationIsFixed, locationIsFixed) ||
-                const DeepCollectionEquality()
-                    .equals(other.locationIsFixed, locationIsFixed)) &&
-            (identical(other.url, url) ||
-                const DeepCollectionEquality().equals(other.url, url)) &&
-            (identical(other.defaultLocation, defaultLocation) ||
-                const DeepCollectionEquality()
-                    .equals(other.defaultLocation, defaultLocation)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Instrument &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.apiKey, apiKey) &&
+            const DeepCollectionEquality()
+                .equals(other.privateKey, privateKey) &&
+            const DeepCollectionEquality().equals(other.publicKey, publicKey) &&
+            const DeepCollectionEquality()
+                .equals(other._enabledAims, _enabledAims) &&
+            const DeepCollectionEquality()
+                .equals(other._perAimBudget, _perAimBudget) &&
+            const DeepCollectionEquality()
+                .equals(other.locationIsFixed, locationIsFixed) &&
+            const DeepCollectionEquality().equals(other.url, url) &&
+            const DeepCollectionEquality()
+                .equals(other.defaultLocation, defaultLocation));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(privateKey) ^
-      const DeepCollectionEquality().hash(publicKey) ^
-      const DeepCollectionEquality().hash(enabledAims) ^
-      const DeepCollectionEquality().hash(perAimBudget) ^
-      const DeepCollectionEquality().hash(locationIsFixed) ^
-      const DeepCollectionEquality().hash(url) ^
-      const DeepCollectionEquality().hash(defaultLocation);
 
   @JsonKey(ignore: true)
   @override
-  _$InstrumentCopyWith<_Instrument> get copyWith =>
-      __$InstrumentCopyWithImpl<_Instrument>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(apiKey),
+      const DeepCollectionEquality().hash(privateKey),
+      const DeepCollectionEquality().hash(publicKey),
+      const DeepCollectionEquality().hash(_enabledAims),
+      const DeepCollectionEquality().hash(_perAimBudget),
+      const DeepCollectionEquality().hash(locationIsFixed),
+      const DeepCollectionEquality().hash(url),
+      const DeepCollectionEquality().hash(defaultLocation));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_InstrumentCopyWith<_$_Instrument> get copyWith =>
+      __$$_InstrumentCopyWithImpl<_$_Instrument>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_InstrumentToJson(this);
+    return _$$_InstrumentToJson(
+      this,
+    );
   }
 }
 
 abstract class _Instrument implements Instrument {
   const factory _Instrument(
-      {required String id,
-      required String name,
-      required String privateKey,
-      required String publicKey,
-      required Set<String> enabledAims,
-      required Map<String, int> perAimBudget,
-      required bool locationIsFixed,
-      String? url,
-      Location? defaultLocation}) = _$_Instrument;
+      {required final String id,
+      required final String name,
+      final String? apiKey,
+      required final String privateKey,
+      required final String publicKey,
+      required final Set<String> enabledAims,
+      required final Map<String, int> perAimBudget,
+      required final bool locationIsFixed,
+      final String? url,
+      final Location? defaultLocation}) = _$_Instrument;
 
   factory _Instrument.fromJson(Map<String, dynamic> json) =
       _$_Instrument.fromJson;
 
   @override
-  String get id => throw _privateConstructorUsedError;
+  String get id;
   @override
-  String get name => throw _privateConstructorUsedError;
+  String get name;
   @override
-  String get privateKey => throw _privateConstructorUsedError;
+  String? get apiKey;
   @override
-  String get publicKey => throw _privateConstructorUsedError;
+  String get privateKey;
   @override
-  Set<String> get enabledAims => throw _privateConstructorUsedError;
+  String get publicKey;
   @override
-  Map<String, int> get perAimBudget => throw _privateConstructorUsedError;
+  Set<String> get enabledAims;
   @override
-  bool get locationIsFixed => throw _privateConstructorUsedError;
+  Map<String, int> get perAimBudget;
   @override
-  String? get url => throw _privateConstructorUsedError;
+  bool get locationIsFixed;
   @override
-  Location? get defaultLocation => throw _privateConstructorUsedError;
+  String? get url;
+  @override
+  Location? get defaultLocation;
   @override
   @JsonKey(ignore: true)
-  _$InstrumentCopyWith<_Instrument> get copyWith =>
+  _$$_InstrumentCopyWith<_$_Instrument> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 Location _$LocationFromJson(Map<String, dynamic> json) {
   return _Location.fromJson(json);
 }
-
-/// @nodoc
-class _$LocationTearOff {
-  const _$LocationTearOff();
-
-  _Location call({required double latitude, required double longitude}) {
-    return _Location(
-      latitude: latitude,
-      longitude: longitude,
-    );
-  }
-
-  Location fromJson(Map<String, Object> json) {
-    return Location.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Location = _$LocationTearOff();
 
 /// @nodoc
 mixin _$Location {
@@ -446,28 +422,30 @@ class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
-  factory _$LocationCopyWith(_Location value, $Res Function(_Location) then) =
-      __$LocationCopyWithImpl<$Res>;
+abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
+  factory _$$_LocationCopyWith(
+          _$_Location value, $Res Function(_$_Location) then) =
+      __$$_LocationCopyWithImpl<$Res>;
   @override
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
-    implements _$LocationCopyWith<$Res> {
-  __$LocationCopyWithImpl(_Location _value, $Res Function(_Location) _then)
-      : super(_value, (v) => _then(v as _Location));
+class __$$_LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
+    implements _$$_LocationCopyWith<$Res> {
+  __$$_LocationCopyWithImpl(
+      _$_Location _value, $Res Function(_$_Location) _then)
+      : super(_value, (v) => _then(v as _$_Location));
 
   @override
-  _Location get _value => super._value as _Location;
+  _$_Location get _value => super._value as _$_Location;
 
   @override
   $Res call({
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
-    return _then(_Location(
+    return _then(_$_Location(
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -486,7 +464,7 @@ class _$_Location implements _Location {
   const _$_Location({required this.latitude, required this.longitude});
 
   factory _$_Location.fromJson(Map<String, dynamic> json) =>
-      _$_$_LocationFromJson(json);
+      _$$_LocationFromJson(json);
 
   @override
   final double latitude;
@@ -501,44 +479,45 @@ class _$_Location implements _Location {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Location &&
-            (identical(other.latitude, latitude) ||
-                const DeepCollectionEquality()
-                    .equals(other.latitude, latitude)) &&
-            (identical(other.longitude, longitude) ||
-                const DeepCollectionEquality()
-                    .equals(other.longitude, longitude)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Location &&
+            const DeepCollectionEquality().equals(other.latitude, latitude) &&
+            const DeepCollectionEquality().equals(other.longitude, longitude));
   }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(latitude) ^
-      const DeepCollectionEquality().hash(longitude);
 
   @JsonKey(ignore: true)
   @override
-  _$LocationCopyWith<_Location> get copyWith =>
-      __$LocationCopyWithImpl<_Location>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(latitude),
+      const DeepCollectionEquality().hash(longitude));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LocationCopyWith<_$_Location> get copyWith =>
+      __$$_LocationCopyWithImpl<_$_Location>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$_$_LocationToJson(this);
+    return _$$_LocationToJson(
+      this,
+    );
   }
 }
 
 abstract class _Location implements Location {
   const factory _Location(
-      {required double latitude, required double longitude}) = _$_Location;
+      {required final double latitude,
+      required final double longitude}) = _$_Location;
 
   factory _Location.fromJson(Map<String, dynamic> json) = _$_Location.fromJson;
 
   @override
-  double get latitude => throw _privateConstructorUsedError;
+  double get latitude;
   @override
-  double get longitude => throw _privateConstructorUsedError;
+  double get longitude;
   @override
   @JsonKey(ignore: true)
-  _$LocationCopyWith<_Location> get copyWith =>
+  _$$_LocationCopyWith<_$_Location> get copyWith =>
       throw _privateConstructorUsedError;
 }

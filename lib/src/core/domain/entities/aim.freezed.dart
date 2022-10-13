@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'aim.dart';
 
@@ -10,28 +12,7 @@ part of 'aim.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AimTearOff {
-  const _$AimTearOff();
-
-  _Aim call(
-      {required String code,
-      required Map<String, dynamic>? titles,
-      List<Aim>? children,
-      String? iconFile}) {
-    return _Aim(
-      code: code,
-      titles: titles,
-      children: children,
-      iconFile: iconFile,
-    );
-  }
-}
-
-/// @nodoc
-const $Aim = _$AimTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$Aim {
@@ -92,9 +73,9 @@ class _$AimCopyWithImpl<$Res> implements $AimCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$AimCopyWith<$Res> implements $AimCopyWith<$Res> {
-  factory _$AimCopyWith(_Aim value, $Res Function(_Aim) then) =
-      __$AimCopyWithImpl<$Res>;
+abstract class _$$_AimCopyWith<$Res> implements $AimCopyWith<$Res> {
+  factory _$$_AimCopyWith(_$_Aim value, $Res Function(_$_Aim) then) =
+      __$$_AimCopyWithImpl<$Res>;
   @override
   $Res call(
       {String code,
@@ -104,13 +85,13 @@ abstract class _$AimCopyWith<$Res> implements $AimCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res>
-    implements _$AimCopyWith<$Res> {
-  __$AimCopyWithImpl(_Aim _value, $Res Function(_Aim) _then)
-      : super(_value, (v) => _then(v as _Aim));
+class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res>
+    implements _$$_AimCopyWith<$Res> {
+  __$$_AimCopyWithImpl(_$_Aim _value, $Res Function(_$_Aim) _then)
+      : super(_value, (v) => _then(v as _$_Aim));
 
   @override
-  _Aim get _value => super._value as _Aim;
+  _$_Aim get _value => super._value as _$_Aim;
 
   @override
   $Res call({
@@ -119,17 +100,17 @@ class __$AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res>
     Object? children = freezed,
     Object? iconFile = freezed,
   }) {
-    return _then(_Aim(
+    return _then(_$_Aim(
       code: code == freezed
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
       titles: titles == freezed
-          ? _value.titles
+          ? _value._titles
           : titles // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
       children: children == freezed
-          ? _value.children
+          ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
               as List<Aim>?,
       iconFile: iconFile == freezed
@@ -144,14 +125,33 @@ class __$AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res>
 
 class _$_Aim implements _Aim {
   const _$_Aim(
-      {required this.code, required this.titles, this.children, this.iconFile});
+      {required this.code,
+      required final Map<String, dynamic>? titles,
+      final List<Aim>? children,
+      this.iconFile})
+      : _titles = titles,
+        _children = children;
 
   @override
   final String code;
+  final Map<String, dynamic>? _titles;
   @override
-  final Map<String, dynamic>? titles;
+  Map<String, dynamic>? get titles {
+    final value = _titles;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  final List<Aim>? _children;
   @override
-  final List<Aim>? children;
+  List<Aim>? get children {
+    final value = _children;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? iconFile;
 
@@ -163,49 +163,44 @@ class _$_Aim implements _Aim {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _Aim &&
-            (identical(other.code, code) ||
-                const DeepCollectionEquality().equals(other.code, code)) &&
-            (identical(other.titles, titles) ||
-                const DeepCollectionEquality().equals(other.titles, titles)) &&
-            (identical(other.children, children) ||
-                const DeepCollectionEquality()
-                    .equals(other.children, children)) &&
-            (identical(other.iconFile, iconFile) ||
-                const DeepCollectionEquality()
-                    .equals(other.iconFile, iconFile)));
+        (other.runtimeType == runtimeType &&
+            other is _$_Aim &&
+            const DeepCollectionEquality().equals(other.code, code) &&
+            const DeepCollectionEquality().equals(other._titles, _titles) &&
+            const DeepCollectionEquality().equals(other._children, _children) &&
+            const DeepCollectionEquality().equals(other.iconFile, iconFile));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(code) ^
-      const DeepCollectionEquality().hash(titles) ^
-      const DeepCollectionEquality().hash(children) ^
-      const DeepCollectionEquality().hash(iconFile);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(code),
+      const DeepCollectionEquality().hash(_titles),
+      const DeepCollectionEquality().hash(_children),
+      const DeepCollectionEquality().hash(iconFile));
 
   @JsonKey(ignore: true)
   @override
-  _$AimCopyWith<_Aim> get copyWith =>
-      __$AimCopyWithImpl<_Aim>(this, _$identity);
+  _$$_AimCopyWith<_$_Aim> get copyWith =>
+      __$$_AimCopyWithImpl<_$_Aim>(this, _$identity);
 }
 
 abstract class _Aim implements Aim {
   const factory _Aim(
-      {required String code,
-      required Map<String, dynamic>? titles,
-      List<Aim>? children,
-      String? iconFile}) = _$_Aim;
+      {required final String code,
+      required final Map<String, dynamic>? titles,
+      final List<Aim>? children,
+      final String? iconFile}) = _$_Aim;
 
   @override
-  String get code => throw _privateConstructorUsedError;
+  String get code;
   @override
-  Map<String, dynamic>? get titles => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get titles;
   @override
-  List<Aim>? get children => throw _privateConstructorUsedError;
+  List<Aim>? get children;
   @override
-  String? get iconFile => throw _privateConstructorUsedError;
+  String? get iconFile;
   @override
   @JsonKey(ignore: true)
-  _$AimCopyWith<_Aim> get copyWith => throw _privateConstructorUsedError;
+  _$$_AimCopyWith<_$_Aim> get copyWith => throw _privateConstructorUsedError;
 }

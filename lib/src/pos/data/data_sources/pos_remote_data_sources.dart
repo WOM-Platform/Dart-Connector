@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dart_wom_connector/src/core/data/client_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/core/data/http_helper.dart';
 import 'package:dart_wom_connector/src/core/error/exceptions.dart';
@@ -26,29 +28,29 @@ class PointOfSaleRemoteDataSourcesImpl extends PointOfSaleRemoteDataSources {
 
   @override
   Future<bool> verifyPayment(String path, Map<String, String> map) async {
-    if ((await HttpHelper.genericHttpPost(
-            'https://$domain/api/v1/$path', map)) !=
-        null) {
+    try {
+      await HttpHelper.genericHttpPost('https://$domain/api/v1/$path', map);
       return true;
+    } catch (ex) {
+      throw VerifyPaymentException();
     }
-    throw VerifyPaymentException();
   }
 
-  // @override
-  // Future<POSUser> authenticate(String username, String password) async {
-  //   final bytes = utf8.encode('$username:$password');
-  //   final base64String = Base64Encoder().convert(bytes);
-  //   final body = await HttpHelper.authenticate(
-  //       'https://$domain/api/v2/auth/merchant', base64String);
-  //   final map = json.decode(body);
-  //   final name = map[User.dbName];
-  //   final surname = map[User.dbSurname];
-  //   final email = map[User.dbEmail];
-  //   final merchants = map['merchants'] != null
-  //       ? List<Merchant>.from(
-  //           map['merchants'].map<Merchant>((m) => Merchant.fromMap(m)))
-  //       : <Merchant>[];
-  //   return POSUser(
-  //       name: name, surname: surname, email: email, merchants: merchants);
-  // }
+// @override
+// Future<POSUser> authenticate(String username, String password) async {
+//   final bytes = utf8.encode('$username:$password');
+//   final base64String = Base64Encoder().convert(bytes);
+//   final body = await HttpHelper.authenticate(
+//       'https://$domain/api/v2/auth/merchant', base64String);
+//   final map = json.decode(body);
+//   final name = map[User.dbName];
+//   final surname = map[User.dbSurname];
+//   final email = map[User.dbEmail];
+//   final merchants = map['merchants'] != null
+//       ? List<Merchant>.from(
+//           map['merchants'].map<Merchant>((m) => Merchant.fromMap(m)))
+//       : <Merchant>[];
+//   return POSUser(
+//       name: name, surname: surname, email: email, merchants: merchants);
+// }
 }

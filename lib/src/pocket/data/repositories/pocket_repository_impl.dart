@@ -69,7 +69,7 @@ class PocketRepositoryImpl extends PocketRepository {
       TransactionType type, String? otc, String? password,
       {double? lat, double? long}) async {
     //generate temporary key from this transaction
-    final key = Utils.generateAsBase64String(32);
+    final key = CoreUtils.generateAsBase64String(32);
 
     //create json map with parameters
     final map = <String, dynamic>{
@@ -89,10 +89,10 @@ class PocketRepositoryImpl extends PocketRepository {
     final mapEncoded = json.encode(map);
 
     //encrypt otc map with public_key
-    final otcEncrypted = Utils.encryptLongInput(
+    final otcEncrypted = CoreUtils.encryptLongInput(
         encrypter,
         Uint8List.fromList(utf8.encode(mapEncoded)),
-        Utils.outputBlockSize(
+        CoreUtils.outputBlockSize(
             rsaKeyParser.parse(registryKey).modulus!.bitLength, true));
 
     //create payload with endrypted otc json
@@ -109,7 +109,7 @@ class PocketRepositoryImpl extends PocketRepository {
     final encryptedPayload = responseMap!['payload'];
 
     //decrypt payload with AES CBC
-    final decryptedPayload = Utils.decryptAES(encryptedPayload, key);
+    final decryptedPayload = CoreUtils.decryptAES(encryptedPayload, key);
 
     //decode decrypted paylod into json
     final jsonDecrypted = json.decode(decryptedPayload);
@@ -122,7 +122,7 @@ class PocketRepositoryImpl extends PocketRepository {
       List<Voucher> vouchers) async {
     try {
       //generate temporary key from this transaction
-      final key = Utils.generateAsBase64String(32);
+      final key = CoreUtils.generateAsBase64String(32);
 
       //create json map with parameters
       final map = <String, dynamic>{
@@ -138,10 +138,10 @@ class PocketRepositoryImpl extends PocketRepository {
       final mapEncoded = json.encode(map);
 
       //encrypt otc map with public_key
-      final otcEncrypted = await Utils.encryptLongInput(
+      final otcEncrypted = CoreUtils.encryptLongInput(
           encrypter,
           utf8.encode(mapEncoded) as Uint8List,
-          Utils.outputBlockSize(
+          CoreUtils.outputBlockSize(
               rsaKeyParser.parse(registryKey).modulus!.bitLength, true));
 
       //create payload with endrypted otc json
@@ -155,7 +155,7 @@ class PocketRepositoryImpl extends PocketRepository {
       final encryptedPayload = jsonResponse['payload'];
 
       //decrypt payload with AES CBC
-      final decryptedPayload = Utils.decryptAES(encryptedPayload, key);
+      final decryptedPayload = CoreUtils.decryptAES(encryptedPayload, key);
 
       //decode response body into json
       final jsonDecryptedPayload =

@@ -14,13 +14,15 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
   InstrumentRemoteDataSources instrumentRemoteDataSources;
   Encrypter? encrypter;
   final rsaKeyParser = RSAKeyParser();
+
   InstrumentRepositoryImpl(
-      this.instrumentRemoteDataSources,
-      String privateKeyString,
-      String publicKeyString,
-      String sourceId,
-      String domain)
-      : super(privateKeyString, publicKeyString, sourceId, domain) {
+    this.instrumentRemoteDataSources,
+    String privateKeyString,
+    String publicKeyString,
+    String sourceId,
+    String domain,
+    String? apiKey,
+  ) : super(privateKeyString, publicKeyString, sourceId, domain, apiKey) {
     final publicKey = rsaKeyParser.parse(publicKeyString);
     final privateKey = rsaKeyParser.parse(privateKeyString);
     encrypter = Encrypter(RSA(
@@ -37,27 +39,31 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
       //encode map to json string
       final payloadMapEncoded = json.encode(payloadMap);
 
-      final encrypted = Utils.encryptLongInput(
+      final encrypted = CoreUtils.encryptLongInput(
           encrypter,
           utf8.encode(payloadMapEncoded) as Uint8List,
-          Utils.outputBlockSize(
+          CoreUtils.outputBlockSize(
               rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
-      final map = <String, dynamic>{
+      final map = <String, String>{
         'SourceId': requestWomCreation.sourceId,
         'Nonce': requestWomCreation.nonce,
         'Payload': encrypted,
       };
 
+      final headers = <String, String>{};
+      if (apiKey != null) {
+        headers['X-WOM-ApiKey'] = apiKey!;
+      }
       final responseBody = await instrumentRemoteDataSources.requestWomCreation(
-          'https://$domain/api/v1/voucher/create', map);
+          'https://$domain/api/v1/voucher/create', map, headers);
 
       //decode response body into json
       final jsonResponse = json.decode(responseBody);
       final encryptedPayload = jsonResponse['payload'] as String;
 
       final base64Decoder = Base64Decoder();
-      final decryptedPayload = Utils.decryptLongInput(
+      final decryptedPayload = CoreUtils.decryptLongInput(
           encrypter, base64Decoder.convert(encryptedPayload), 501);
 
       //decode decrypted paylod into json
@@ -79,10 +85,10 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
     try {
       final payloadMapEncoded = json.encode(payloadMap);
 
-      final payloadEncrypted = Utils.encryptLongInput(
+      final payloadEncrypted = CoreUtils.encryptLongInput(
           encrypter,
           Uint8List.fromList(utf8.encode(payloadMapEncoded)),
-          Utils.outputBlockSize(
+          CoreUtils.outputBlockSize(
               rsaKeyParser.parse(publicKey).modulus!.bitLength, true));
 
       final map = <String, dynamic>{
@@ -96,15 +102,4 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
       rethrow;
     }
   }
-
-/*  @override
-  Future<InstrumentUser> authenticate(String username, String password) async {
-    try {
-      final user =
-          await instrumentRemoteDataSources.authenticate(username, password);
-      return user as InstrumentUser;
-    } catch (e) {
-      rethrow;
-    }
-  }*/
 }
