@@ -31,7 +31,8 @@ mixin _$VoucherStats {
 abstract class $VoucherStatsCopyWith<$Res> {
   factory $VoucherStatsCopyWith(
           VoucherStats value, $Res Function(VoucherStats) then) =
-      _$VoucherStatsCopyWithImpl<$Res>;
+      _$VoucherStatsCopyWithImpl<$Res, VoucherStats>;
+  @useResult
   $Res call(
       {int totalVouchersGenerated,
       int totalVouchersRedeemed,
@@ -41,43 +42,46 @@ abstract class $VoucherStatsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$VoucherStatsCopyWithImpl<$Res> implements $VoucherStatsCopyWith<$Res> {
+class _$VoucherStatsCopyWithImpl<$Res, $Val extends VoucherStats>
+    implements $VoucherStatsCopyWith<$Res> {
   _$VoucherStatsCopyWithImpl(this._value, this._then);
 
-  final VoucherStats _value;
   // ignore: unused_field
-  final $Res Function(VoucherStats) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? totalVouchersGenerated = freezed,
-    Object? totalVouchersRedeemed = freezed,
-    Object? totalVouchersAvailable = freezed,
-    Object? totalVouchersSpent = freezed,
-    Object? aims = freezed,
+    Object? totalVouchersGenerated = null,
+    Object? totalVouchersRedeemed = null,
+    Object? totalVouchersAvailable = null,
+    Object? totalVouchersSpent = null,
+    Object? aims = null,
   }) {
     return _then(_value.copyWith(
-      totalVouchersGenerated: totalVouchersGenerated == freezed
+      totalVouchersGenerated: null == totalVouchersGenerated
           ? _value.totalVouchersGenerated
           : totalVouchersGenerated // ignore: cast_nullable_to_non_nullable
               as int,
-      totalVouchersRedeemed: totalVouchersRedeemed == freezed
+      totalVouchersRedeemed: null == totalVouchersRedeemed
           ? _value.totalVouchersRedeemed
           : totalVouchersRedeemed // ignore: cast_nullable_to_non_nullable
               as int,
-      totalVouchersAvailable: totalVouchersAvailable == freezed
+      totalVouchersAvailable: null == totalVouchersAvailable
           ? _value.totalVouchersAvailable
           : totalVouchersAvailable // ignore: cast_nullable_to_non_nullable
               as int,
-      totalVouchersSpent: totalVouchersSpent == freezed
+      totalVouchersSpent: null == totalVouchersSpent
           ? _value.totalVouchersSpent
           : totalVouchersSpent // ignore: cast_nullable_to_non_nullable
               as int,
-      aims: aims == freezed
+      aims: null == aims
           ? _value.aims
           : aims // ignore: cast_nullable_to_non_nullable
               as Map<String, AimStats>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -88,6 +92,7 @@ abstract class _$$_VoucherStatsCopyWith<$Res>
           _$_VoucherStats value, $Res Function(_$_VoucherStats) then) =
       __$$_VoucherStatsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int totalVouchersGenerated,
       int totalVouchersRedeemed,
@@ -98,41 +103,39 @@ abstract class _$$_VoucherStatsCopyWith<$Res>
 
 /// @nodoc
 class __$$_VoucherStatsCopyWithImpl<$Res>
-    extends _$VoucherStatsCopyWithImpl<$Res>
+    extends _$VoucherStatsCopyWithImpl<$Res, _$_VoucherStats>
     implements _$$_VoucherStatsCopyWith<$Res> {
   __$$_VoucherStatsCopyWithImpl(
       _$_VoucherStats _value, $Res Function(_$_VoucherStats) _then)
-      : super(_value, (v) => _then(v as _$_VoucherStats));
+      : super(_value, _then);
 
-  @override
-  _$_VoucherStats get _value => super._value as _$_VoucherStats;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? totalVouchersGenerated = freezed,
-    Object? totalVouchersRedeemed = freezed,
-    Object? totalVouchersAvailable = freezed,
-    Object? totalVouchersSpent = freezed,
-    Object? aims = freezed,
+    Object? totalVouchersGenerated = null,
+    Object? totalVouchersRedeemed = null,
+    Object? totalVouchersAvailable = null,
+    Object? totalVouchersSpent = null,
+    Object? aims = null,
   }) {
     return _then(_$_VoucherStats(
-      totalVouchersGenerated == freezed
+      null == totalVouchersGenerated
           ? _value.totalVouchersGenerated
           : totalVouchersGenerated // ignore: cast_nullable_to_non_nullable
               as int,
-      totalVouchersRedeemed == freezed
+      null == totalVouchersRedeemed
           ? _value.totalVouchersRedeemed
           : totalVouchersRedeemed // ignore: cast_nullable_to_non_nullable
               as int,
-      totalVouchersAvailable == freezed
+      null == totalVouchersAvailable
           ? _value.totalVouchersAvailable
           : totalVouchersAvailable // ignore: cast_nullable_to_non_nullable
               as int,
-      totalVouchersSpent == freezed
+      null == totalVouchersSpent
           ? _value.totalVouchersSpent
           : totalVouchersSpent // ignore: cast_nullable_to_non_nullable
               as int,
-      aims == freezed
+      null == aims
           ? _value._aims
           : aims // ignore: cast_nullable_to_non_nullable
               as Map<String, AimStats>,
@@ -176,28 +179,29 @@ class _$_VoucherStats implements _VoucherStats {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_VoucherStats &&
-            const DeepCollectionEquality()
-                .equals(other.totalVouchersGenerated, totalVouchersGenerated) &&
-            const DeepCollectionEquality()
-                .equals(other.totalVouchersRedeemed, totalVouchersRedeemed) &&
-            const DeepCollectionEquality()
-                .equals(other.totalVouchersAvailable, totalVouchersAvailable) &&
-            const DeepCollectionEquality()
-                .equals(other.totalVouchersSpent, totalVouchersSpent) &&
+            (identical(other.totalVouchersGenerated, totalVouchersGenerated) ||
+                other.totalVouchersGenerated == totalVouchersGenerated) &&
+            (identical(other.totalVouchersRedeemed, totalVouchersRedeemed) ||
+                other.totalVouchersRedeemed == totalVouchersRedeemed) &&
+            (identical(other.totalVouchersAvailable, totalVouchersAvailable) ||
+                other.totalVouchersAvailable == totalVouchersAvailable) &&
+            (identical(other.totalVouchersSpent, totalVouchersSpent) ||
+                other.totalVouchersSpent == totalVouchersSpent) &&
             const DeepCollectionEquality().equals(other._aims, _aims));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(totalVouchersGenerated),
-      const DeepCollectionEquality().hash(totalVouchersRedeemed),
-      const DeepCollectionEquality().hash(totalVouchersAvailable),
-      const DeepCollectionEquality().hash(totalVouchersSpent),
+      totalVouchersGenerated,
+      totalVouchersRedeemed,
+      totalVouchersAvailable,
+      totalVouchersSpent,
       const DeepCollectionEquality().hash(_aims));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_VoucherStatsCopyWith<_$_VoucherStats> get copyWith =>
       __$$_VoucherStatsCopyWithImpl<_$_VoucherStats>(this, _$identity);
 }
@@ -241,43 +245,47 @@ mixin _$AimStats {
 /// @nodoc
 abstract class $AimStatsCopyWith<$Res> {
   factory $AimStatsCopyWith(AimStats value, $Res Function(AimStats) then) =
-      _$AimStatsCopyWithImpl<$Res>;
+      _$AimStatsCopyWithImpl<$Res, AimStats>;
+  @useResult
   $Res call({int generated, int redeemed, int available, int spent});
 }
 
 /// @nodoc
-class _$AimStatsCopyWithImpl<$Res> implements $AimStatsCopyWith<$Res> {
+class _$AimStatsCopyWithImpl<$Res, $Val extends AimStats>
+    implements $AimStatsCopyWith<$Res> {
   _$AimStatsCopyWithImpl(this._value, this._then);
 
-  final AimStats _value;
   // ignore: unused_field
-  final $Res Function(AimStats) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? generated = freezed,
-    Object? redeemed = freezed,
-    Object? available = freezed,
-    Object? spent = freezed,
+    Object? generated = null,
+    Object? redeemed = null,
+    Object? available = null,
+    Object? spent = null,
   }) {
     return _then(_value.copyWith(
-      generated: generated == freezed
+      generated: null == generated
           ? _value.generated
           : generated // ignore: cast_nullable_to_non_nullable
               as int,
-      redeemed: redeemed == freezed
+      redeemed: null == redeemed
           ? _value.redeemed
           : redeemed // ignore: cast_nullable_to_non_nullable
               as int,
-      available: available == freezed
+      available: null == available
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as int,
-      spent: spent == freezed
+      spent: null == spent
           ? _value.spent
           : spent // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -287,40 +295,40 @@ abstract class _$$_AimStatsCopyWith<$Res> implements $AimStatsCopyWith<$Res> {
           _$_AimStats value, $Res Function(_$_AimStats) then) =
       __$$_AimStatsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int generated, int redeemed, int available, int spent});
 }
 
 /// @nodoc
-class __$$_AimStatsCopyWithImpl<$Res> extends _$AimStatsCopyWithImpl<$Res>
+class __$$_AimStatsCopyWithImpl<$Res>
+    extends _$AimStatsCopyWithImpl<$Res, _$_AimStats>
     implements _$$_AimStatsCopyWith<$Res> {
   __$$_AimStatsCopyWithImpl(
       _$_AimStats _value, $Res Function(_$_AimStats) _then)
-      : super(_value, (v) => _then(v as _$_AimStats));
+      : super(_value, _then);
 
-  @override
-  _$_AimStats get _value => super._value as _$_AimStats;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? generated = freezed,
-    Object? redeemed = freezed,
-    Object? available = freezed,
-    Object? spent = freezed,
+    Object? generated = null,
+    Object? redeemed = null,
+    Object? available = null,
+    Object? spent = null,
   }) {
     return _then(_$_AimStats(
-      generated == freezed
+      null == generated
           ? _value.generated
           : generated // ignore: cast_nullable_to_non_nullable
               as int,
-      redeemed == freezed
+      null == redeemed
           ? _value.redeemed
           : redeemed // ignore: cast_nullable_to_non_nullable
               as int,
-      available == freezed
+      null == available
           ? _value.available
           : available // ignore: cast_nullable_to_non_nullable
               as int,
-      spent == freezed
+      null == spent
           ? _value.spent
           : spent // ignore: cast_nullable_to_non_nullable
               as int,
@@ -352,22 +360,22 @@ class _$_AimStats implements _AimStats {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AimStats &&
-            const DeepCollectionEquality().equals(other.generated, generated) &&
-            const DeepCollectionEquality().equals(other.redeemed, redeemed) &&
-            const DeepCollectionEquality().equals(other.available, available) &&
-            const DeepCollectionEquality().equals(other.spent, spent));
+            (identical(other.generated, generated) ||
+                other.generated == generated) &&
+            (identical(other.redeemed, redeemed) ||
+                other.redeemed == redeemed) &&
+            (identical(other.available, available) ||
+                other.available == available) &&
+            (identical(other.spent, spent) || other.spent == spent));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(generated),
-      const DeepCollectionEquality().hash(redeemed),
-      const DeepCollectionEquality().hash(available),
-      const DeepCollectionEquality().hash(spent));
+  int get hashCode =>
+      Object.hash(runtimeType, generated, redeemed, available, spent);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AimStatsCopyWith<_$_AimStats> get copyWith =>
       __$$_AimStatsCopyWithImpl<_$_AimStats>(this, _$identity);
 }

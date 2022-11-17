@@ -183,7 +183,7 @@ class PocketRepositoryImpl extends PocketRepository {
       //TODO
       // throw Exception('Woms table is Empty');
     }
-    final jsonString = jsonEncode(vouchers.map((e) => e.toMap()).toList());
+    final jsonString = jsonEncode(vouchers.map((e) => e.toJson()).toList());
     final key = _getRandomString(28);
     final bytes = _encryptWithAes(jsonString, '$key$password');
 

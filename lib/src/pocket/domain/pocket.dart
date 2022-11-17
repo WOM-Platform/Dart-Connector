@@ -53,19 +53,19 @@ class Pocket extends Client {
     if (infoPay.simpleFilter != null) {
       satisfyingVouchers = _vouchers.where((v) {
         if (infoPay.simpleFilter!.aimCode != null &&
-            !v.aim!.startsWith(infoPay.simpleFilter!.aimCode!)) {
+            !v.aim.startsWith(infoPay.simpleFilter!.aimCode!)) {
           // Voucher does not match aim filter
           return false;
         }
 
         if (infoPay.simpleFilter!.bounds != null &&
-            !infoPay.simpleFilter!.bounds!.contains(v.lat!, v.long!)) {
+            !infoPay.simpleFilter!.bounds!.contains(v.latitude, v.longitude)) {
           // Voucher not contained in geographical bounds
           return false;
         }
 
         if (infoPay.simpleFilter!.maxAge != null &&
-            DateTime.now().toUtc().difference(v.dateTime!) >
+            DateTime.now().toUtc().difference(v.timestamp) >
                 Duration(days: infoPay.simpleFilter!.maxAge!)) {
           // Voucher too old
           return false;

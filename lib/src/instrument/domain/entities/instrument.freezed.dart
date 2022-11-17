@@ -41,7 +41,8 @@ mixin _$Instrument {
 abstract class $InstrumentCopyWith<$Res> {
   factory $InstrumentCopyWith(
           Instrument value, $Res Function(Instrument) then) =
-      _$InstrumentCopyWithImpl<$Res>;
+      _$InstrumentCopyWithImpl<$Res, Instrument>;
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -58,78 +59,82 @@ abstract class $InstrumentCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InstrumentCopyWithImpl<$Res> implements $InstrumentCopyWith<$Res> {
+class _$InstrumentCopyWithImpl<$Res, $Val extends Instrument>
+    implements $InstrumentCopyWith<$Res> {
   _$InstrumentCopyWithImpl(this._value, this._then);
 
-  final Instrument _value;
   // ignore: unused_field
-  final $Res Function(Instrument) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? id = null,
+    Object? name = null,
     Object? apiKey = freezed,
-    Object? privateKey = freezed,
-    Object? publicKey = freezed,
-    Object? enabledAims = freezed,
-    Object? perAimBudget = freezed,
-    Object? locationIsFixed = freezed,
+    Object? privateKey = null,
+    Object? publicKey = null,
+    Object? enabledAims = null,
+    Object? perAimBudget = null,
+    Object? locationIsFixed = null,
     Object? url = freezed,
     Object? defaultLocation = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      apiKey: apiKey == freezed
+      apiKey: freezed == apiKey
           ? _value.apiKey
           : apiKey // ignore: cast_nullable_to_non_nullable
               as String?,
-      privateKey: privateKey == freezed
+      privateKey: null == privateKey
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
               as String,
-      publicKey: publicKey == freezed
+      publicKey: null == publicKey
           ? _value.publicKey
           : publicKey // ignore: cast_nullable_to_non_nullable
               as String,
-      enabledAims: enabledAims == freezed
+      enabledAims: null == enabledAims
           ? _value.enabledAims
           : enabledAims // ignore: cast_nullable_to_non_nullable
               as Set<String>,
-      perAimBudget: perAimBudget == freezed
+      perAimBudget: null == perAimBudget
           ? _value.perAimBudget
           : perAimBudget // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
-      locationIsFixed: locationIsFixed == freezed
+      locationIsFixed: null == locationIsFixed
           ? _value.locationIsFixed
           : locationIsFixed // ignore: cast_nullable_to_non_nullable
               as bool,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      defaultLocation: defaultLocation == freezed
+      defaultLocation: freezed == defaultLocation
           ? _value.defaultLocation
           : defaultLocation // ignore: cast_nullable_to_non_nullable
               as Location?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LocationCopyWith<$Res>? get defaultLocation {
     if (_value.defaultLocation == null) {
       return null;
     }
 
     return $LocationCopyWith<$Res>(_value.defaultLocation!, (value) {
-      return _then(_value.copyWith(defaultLocation: value));
+      return _then(_value.copyWith(defaultLocation: value) as $Val);
     });
   }
 }
@@ -141,6 +146,7 @@ abstract class _$$_InstrumentCopyWith<$Res>
           _$_Instrument value, $Res Function(_$_Instrument) then) =
       __$$_InstrumentCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -158,66 +164,65 @@ abstract class _$$_InstrumentCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_InstrumentCopyWithImpl<$Res> extends _$InstrumentCopyWithImpl<$Res>
+class __$$_InstrumentCopyWithImpl<$Res>
+    extends _$InstrumentCopyWithImpl<$Res, _$_Instrument>
     implements _$$_InstrumentCopyWith<$Res> {
   __$$_InstrumentCopyWithImpl(
       _$_Instrument _value, $Res Function(_$_Instrument) _then)
-      : super(_value, (v) => _then(v as _$_Instrument));
+      : super(_value, _then);
 
-  @override
-  _$_Instrument get _value => super._value as _$_Instrument;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
+    Object? id = null,
+    Object? name = null,
     Object? apiKey = freezed,
-    Object? privateKey = freezed,
-    Object? publicKey = freezed,
-    Object? enabledAims = freezed,
-    Object? perAimBudget = freezed,
-    Object? locationIsFixed = freezed,
+    Object? privateKey = null,
+    Object? publicKey = null,
+    Object? enabledAims = null,
+    Object? perAimBudget = null,
+    Object? locationIsFixed = null,
     Object? url = freezed,
     Object? defaultLocation = freezed,
   }) {
     return _then(_$_Instrument(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      apiKey: apiKey == freezed
+      apiKey: freezed == apiKey
           ? _value.apiKey
           : apiKey // ignore: cast_nullable_to_non_nullable
               as String?,
-      privateKey: privateKey == freezed
+      privateKey: null == privateKey
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
               as String,
-      publicKey: publicKey == freezed
+      publicKey: null == publicKey
           ? _value.publicKey
           : publicKey // ignore: cast_nullable_to_non_nullable
               as String,
-      enabledAims: enabledAims == freezed
+      enabledAims: null == enabledAims
           ? _value._enabledAims
           : enabledAims // ignore: cast_nullable_to_non_nullable
               as Set<String>,
-      perAimBudget: perAimBudget == freezed
+      perAimBudget: null == perAimBudget
           ? _value._perAimBudget
           : perAimBudget // ignore: cast_nullable_to_non_nullable
               as Map<String, int>,
-      locationIsFixed: locationIsFixed == freezed
+      locationIsFixed: null == locationIsFixed
           ? _value.locationIsFixed
           : locationIsFixed // ignore: cast_nullable_to_non_nullable
               as bool,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      defaultLocation: defaultLocation == freezed
+      defaultLocation: freezed == defaultLocation
           ? _value.defaultLocation
           : defaultLocation // ignore: cast_nullable_to_non_nullable
               as Location?,
@@ -286,40 +291,42 @@ class _$_Instrument implements _Instrument {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Instrument &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.apiKey, apiKey) &&
-            const DeepCollectionEquality()
-                .equals(other.privateKey, privateKey) &&
-            const DeepCollectionEquality().equals(other.publicKey, publicKey) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.apiKey, apiKey) || other.apiKey == apiKey) &&
+            (identical(other.privateKey, privateKey) ||
+                other.privateKey == privateKey) &&
+            (identical(other.publicKey, publicKey) ||
+                other.publicKey == publicKey) &&
             const DeepCollectionEquality()
                 .equals(other._enabledAims, _enabledAims) &&
             const DeepCollectionEquality()
                 .equals(other._perAimBudget, _perAimBudget) &&
-            const DeepCollectionEquality()
-                .equals(other.locationIsFixed, locationIsFixed) &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality()
-                .equals(other.defaultLocation, defaultLocation));
+            (identical(other.locationIsFixed, locationIsFixed) ||
+                other.locationIsFixed == locationIsFixed) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.defaultLocation, defaultLocation) ||
+                other.defaultLocation == defaultLocation));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(apiKey),
-      const DeepCollectionEquality().hash(privateKey),
-      const DeepCollectionEquality().hash(publicKey),
+      id,
+      name,
+      apiKey,
+      privateKey,
+      publicKey,
       const DeepCollectionEquality().hash(_enabledAims),
       const DeepCollectionEquality().hash(_perAimBudget),
-      const DeepCollectionEquality().hash(locationIsFixed),
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(defaultLocation));
+      locationIsFixed,
+      url,
+      defaultLocation);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InstrumentCopyWith<_$_Instrument> get copyWith =>
       __$$_InstrumentCopyWithImpl<_$_Instrument>(this, _$identity);
 
@@ -391,33 +398,37 @@ mixin _$Location {
 /// @nodoc
 abstract class $LocationCopyWith<$Res> {
   factory $LocationCopyWith(Location value, $Res Function(Location) then) =
-      _$LocationCopyWithImpl<$Res>;
+      _$LocationCopyWithImpl<$Res, Location>;
+  @useResult
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class _$LocationCopyWithImpl<$Res> implements $LocationCopyWith<$Res> {
+class _$LocationCopyWithImpl<$Res, $Val extends Location>
+    implements $LocationCopyWith<$Res> {
   _$LocationCopyWithImpl(this._value, this._then);
 
-  final Location _value;
   // ignore: unused_field
-  final $Res Function(Location) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
+    Object? latitude = null,
+    Object? longitude = null,
   }) {
     return _then(_value.copyWith(
-      latitude: latitude == freezed
+      latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
-      longitude: longitude == freezed
+      longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -427,30 +438,30 @@ abstract class _$$_LocationCopyWith<$Res> implements $LocationCopyWith<$Res> {
           _$_Location value, $Res Function(_$_Location) then) =
       __$$_LocationCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$$_LocationCopyWithImpl<$Res> extends _$LocationCopyWithImpl<$Res>
+class __$$_LocationCopyWithImpl<$Res>
+    extends _$LocationCopyWithImpl<$Res, _$_Location>
     implements _$$_LocationCopyWith<$Res> {
   __$$_LocationCopyWithImpl(
       _$_Location _value, $Res Function(_$_Location) _then)
-      : super(_value, (v) => _then(v as _$_Location));
+      : super(_value, _then);
 
-  @override
-  _$_Location get _value => super._value as _$_Location;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
+    Object? latitude = null,
+    Object? longitude = null,
   }) {
     return _then(_$_Location(
-      latitude: latitude == freezed
+      latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
-      longitude: longitude == freezed
+      longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
@@ -481,19 +492,19 @@ class _$_Location implements _Location {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Location &&
-            const DeepCollectionEquality().equals(other.latitude, latitude) &&
-            const DeepCollectionEquality().equals(other.longitude, longitude));
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(latitude),
-      const DeepCollectionEquality().hash(longitude));
+  int get hashCode => Object.hash(runtimeType, latitude, longitude);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LocationCopyWith<_$_Location> get copyWith =>
       __$$_LocationCopyWithImpl<_$_Location>(this, _$identity);
 

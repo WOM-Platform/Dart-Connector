@@ -38,7 +38,8 @@ mixin _$PointOfSaleDTO {
 abstract class $PointOfSaleDTOCopyWith<$Res> {
   factory $PointOfSaleDTOCopyWith(
           PointOfSaleDTO value, $Res Function(PointOfSaleDTO) then) =
-      _$PointOfSaleDTOCopyWithImpl<$Res>;
+      _$PointOfSaleDTOCopyWithImpl<$Res, PointOfSaleDTO>;
+  @useResult
   $Res call(
       {String privateKey,
       String id,
@@ -50,54 +51,56 @@ abstract class $PointOfSaleDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PointOfSaleDTOCopyWithImpl<$Res>
+class _$PointOfSaleDTOCopyWithImpl<$Res, $Val extends PointOfSaleDTO>
     implements $PointOfSaleDTOCopyWith<$Res> {
   _$PointOfSaleDTOCopyWithImpl(this._value, this._then);
 
-  final PointOfSaleDTO _value;
   // ignore: unused_field
-  final $Res Function(PointOfSaleDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? privateKey = freezed,
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? isActive = freezed,
+    Object? privateKey = null,
+    Object? id = null,
+    Object? name = null,
+    Object? isActive = null,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? url = freezed,
   }) {
     return _then(_value.copyWith(
-      privateKey: privateKey == freezed
+      privateKey: null == privateKey
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isActive: isActive == freezed
+      isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
-      latitude: latitude == freezed
+      latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double?,
-      longitude: longitude == freezed
+      longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double?,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -108,6 +111,7 @@ abstract class _$$_PointOfSaleDTOCopyWith<$Res>
           _$_PointOfSaleDTO value, $Res Function(_$_PointOfSaleDTO) then) =
       __$$_PointOfSaleDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String privateKey,
       String id,
@@ -120,51 +124,49 @@ abstract class _$$_PointOfSaleDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_PointOfSaleDTOCopyWithImpl<$Res>
-    extends _$PointOfSaleDTOCopyWithImpl<$Res>
+    extends _$PointOfSaleDTOCopyWithImpl<$Res, _$_PointOfSaleDTO>
     implements _$$_PointOfSaleDTOCopyWith<$Res> {
   __$$_PointOfSaleDTOCopyWithImpl(
       _$_PointOfSaleDTO _value, $Res Function(_$_PointOfSaleDTO) _then)
-      : super(_value, (v) => _then(v as _$_PointOfSaleDTO));
+      : super(_value, _then);
 
-  @override
-  _$_PointOfSaleDTO get _value => super._value as _$_PointOfSaleDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? privateKey = freezed,
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? isActive = freezed,
+    Object? privateKey = null,
+    Object? id = null,
+    Object? name = null,
+    Object? isActive = null,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? url = freezed,
   }) {
     return _then(_$_PointOfSaleDTO(
-      privateKey: privateKey == freezed
+      privateKey: null == privateKey
           ? _value.privateKey
           : privateKey // ignore: cast_nullable_to_non_nullable
               as String,
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      isActive: isActive == freezed
+      isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
-      latitude: latitude == freezed
+      latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double?,
-      longitude: longitude == freezed
+      longitude: freezed == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double?,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -212,30 +214,27 @@ class _$_PointOfSaleDTO implements _PointOfSaleDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PointOfSaleDTO &&
-            const DeepCollectionEquality()
-                .equals(other.privateKey, privateKey) &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.isActive, isActive) &&
-            const DeepCollectionEquality().equals(other.latitude, latitude) &&
-            const DeepCollectionEquality().equals(other.longitude, longitude) &&
-            const DeepCollectionEquality().equals(other.url, url));
+            (identical(other.privateKey, privateKey) ||
+                other.privateKey == privateKey) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(privateKey),
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(isActive),
-      const DeepCollectionEquality().hash(latitude),
-      const DeepCollectionEquality().hash(longitude),
-      const DeepCollectionEquality().hash(url));
+      runtimeType, privateKey, id, name, isActive, latitude, longitude, url);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PointOfSaleDTOCopyWith<_$_PointOfSaleDTO> get copyWith =>
       __$$_PointOfSaleDTOCopyWithImpl<_$_PointOfSaleDTO>(this, _$identity);
 

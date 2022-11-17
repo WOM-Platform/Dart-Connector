@@ -28,7 +28,8 @@ mixin _$Aim {
 /// @nodoc
 abstract class $AimCopyWith<$Res> {
   factory $AimCopyWith(Aim value, $Res Function(Aim) then) =
-      _$AimCopyWithImpl<$Res>;
+      _$AimCopyWithImpl<$Res, Aim>;
+  @useResult
   $Res call(
       {String code,
       Map<String, dynamic>? titles,
@@ -37,38 +38,40 @@ abstract class $AimCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AimCopyWithImpl<$Res> implements $AimCopyWith<$Res> {
+class _$AimCopyWithImpl<$Res, $Val extends Aim> implements $AimCopyWith<$Res> {
   _$AimCopyWithImpl(this._value, this._then);
 
-  final Aim _value;
   // ignore: unused_field
-  final $Res Function(Aim) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = freezed,
+    Object? code = null,
     Object? titles = freezed,
     Object? children = freezed,
     Object? iconFile = freezed,
   }) {
     return _then(_value.copyWith(
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      titles: titles == freezed
+      titles: freezed == titles
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-      children: children == freezed
+      children: freezed == children
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
               as List<Aim>?,
-      iconFile: iconFile == freezed
+      iconFile: freezed == iconFile
           ? _value.iconFile
           : iconFile // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -77,6 +80,7 @@ abstract class _$$_AimCopyWith<$Res> implements $AimCopyWith<$Res> {
   factory _$$_AimCopyWith(_$_Aim value, $Res Function(_$_Aim) then) =
       __$$_AimCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String code,
       Map<String, dynamic>? titles,
@@ -85,35 +89,33 @@ abstract class _$$_AimCopyWith<$Res> implements $AimCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res>
+class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res, _$_Aim>
     implements _$$_AimCopyWith<$Res> {
   __$$_AimCopyWithImpl(_$_Aim _value, $Res Function(_$_Aim) _then)
-      : super(_value, (v) => _then(v as _$_Aim));
+      : super(_value, _then);
 
-  @override
-  _$_Aim get _value => super._value as _$_Aim;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = freezed,
+    Object? code = null,
     Object? titles = freezed,
     Object? children = freezed,
     Object? iconFile = freezed,
   }) {
     return _then(_$_Aim(
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      titles: titles == freezed
+      titles: freezed == titles
           ? _value._titles
           : titles // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-      children: children == freezed
+      children: freezed == children
           ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
               as List<Aim>?,
-      iconFile: iconFile == freezed
+      iconFile: freezed == iconFile
           ? _value.iconFile
           : iconFile // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -165,22 +167,24 @@ class _$_Aim implements _Aim {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Aim &&
-            const DeepCollectionEquality().equals(other.code, code) &&
+            (identical(other.code, code) || other.code == code) &&
             const DeepCollectionEquality().equals(other._titles, _titles) &&
             const DeepCollectionEquality().equals(other._children, _children) &&
-            const DeepCollectionEquality().equals(other.iconFile, iconFile));
+            (identical(other.iconFile, iconFile) ||
+                other.iconFile == iconFile));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(code),
+      code,
       const DeepCollectionEquality().hash(_titles),
       const DeepCollectionEquality().hash(_children),
-      const DeepCollectionEquality().hash(iconFile));
+      iconFile);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AimCopyWith<_$_Aim> get copyWith =>
       __$$_AimCopyWithImpl<_$_Aim>(this, _$identity);
 }

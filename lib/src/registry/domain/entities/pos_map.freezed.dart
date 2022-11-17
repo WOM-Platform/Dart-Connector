@@ -28,51 +28,56 @@ mixin _$POSMap {
 /// @nodoc
 abstract class $POSMapCopyWith<$Res> {
   factory $POSMapCopyWith(POSMap value, $Res Function(POSMap) then) =
-      _$POSMapCopyWithImpl<$Res>;
+      _$POSMapCopyWithImpl<$Res, POSMap>;
+  @useResult
   $Res call({String id, String name, Position position, String? url});
 
   $PositionCopyWith<$Res> get position;
 }
 
 /// @nodoc
-class _$POSMapCopyWithImpl<$Res> implements $POSMapCopyWith<$Res> {
+class _$POSMapCopyWithImpl<$Res, $Val extends POSMap>
+    implements $POSMapCopyWith<$Res> {
   _$POSMapCopyWithImpl(this._value, this._then);
 
-  final POSMap _value;
   // ignore: unused_field
-  final $Res Function(POSMap) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? position = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? position = null,
     Object? url = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Position,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PositionCopyWith<$Res> get position {
     return $PositionCopyWith<$Res>(_value.position, (value) {
-      return _then(_value.copyWith(position: value));
+      return _then(_value.copyWith(position: value) as $Val);
     });
   }
 }
@@ -82,6 +87,7 @@ abstract class _$$_POSMapCopyWith<$Res> implements $POSMapCopyWith<$Res> {
   factory _$$_POSMapCopyWith(_$_POSMap value, $Res Function(_$_POSMap) then) =
       __$$_POSMapCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String id, String name, Position position, String? url});
 
   @override
@@ -89,35 +95,34 @@ abstract class _$$_POSMapCopyWith<$Res> implements $POSMapCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_POSMapCopyWithImpl<$Res> extends _$POSMapCopyWithImpl<$Res>
+class __$$_POSMapCopyWithImpl<$Res>
+    extends _$POSMapCopyWithImpl<$Res, _$_POSMap>
     implements _$$_POSMapCopyWith<$Res> {
   __$$_POSMapCopyWithImpl(_$_POSMap _value, $Res Function(_$_POSMap) _then)
-      : super(_value, (v) => _then(v as _$_POSMap));
+      : super(_value, _then);
 
-  @override
-  _$_POSMap get _value => super._value as _$_POSMap;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? position = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? position = null,
     Object? url = freezed,
   }) {
     return _then(_$_POSMap(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as Position,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -150,22 +155,19 @@ class _$_POSMap implements _POSMap {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_POSMap &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.position, position) &&
-            const DeepCollectionEquality().equals(other.url, url));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(position),
-      const DeepCollectionEquality().hash(url));
+  int get hashCode => Object.hash(runtimeType, id, name, position, url);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_POSMapCopyWith<_$_POSMap> get copyWith =>
       __$$_POSMapCopyWithImpl<_$_POSMap>(this, _$identity);
 }
@@ -204,33 +206,37 @@ mixin _$Position {
 /// @nodoc
 abstract class $PositionCopyWith<$Res> {
   factory $PositionCopyWith(Position value, $Res Function(Position) then) =
-      _$PositionCopyWithImpl<$Res>;
+      _$PositionCopyWithImpl<$Res, Position>;
+  @useResult
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class _$PositionCopyWithImpl<$Res> implements $PositionCopyWith<$Res> {
+class _$PositionCopyWithImpl<$Res, $Val extends Position>
+    implements $PositionCopyWith<$Res> {
   _$PositionCopyWithImpl(this._value, this._then);
 
-  final Position _value;
   // ignore: unused_field
-  final $Res Function(Position) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
+    Object? latitude = null,
+    Object? longitude = null,
   }) {
     return _then(_value.copyWith(
-      latitude: latitude == freezed
+      latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
-      longitude: longitude == freezed
+      longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -240,30 +246,30 @@ abstract class _$$_PositionCopyWith<$Res> implements $PositionCopyWith<$Res> {
           _$_Position value, $Res Function(_$_Position) then) =
       __$$_PositionCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$$_PositionCopyWithImpl<$Res> extends _$PositionCopyWithImpl<$Res>
+class __$$_PositionCopyWithImpl<$Res>
+    extends _$PositionCopyWithImpl<$Res, _$_Position>
     implements _$$_PositionCopyWith<$Res> {
   __$$_PositionCopyWithImpl(
       _$_Position _value, $Res Function(_$_Position) _then)
-      : super(_value, (v) => _then(v as _$_Position));
+      : super(_value, _then);
 
-  @override
-  _$_Position get _value => super._value as _$_Position;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
+    Object? latitude = null,
+    Object? longitude = null,
   }) {
     return _then(_$_Position(
-      latitude: latitude == freezed
+      latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
-      longitude: longitude == freezed
+      longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
@@ -291,18 +297,18 @@ class _$_Position implements _Position {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Position &&
-            const DeepCollectionEquality().equals(other.latitude, latitude) &&
-            const DeepCollectionEquality().equals(other.longitude, longitude));
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(latitude),
-      const DeepCollectionEquality().hash(longitude));
+  int get hashCode => Object.hash(runtimeType, latitude, longitude);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PositionCopyWith<_$_Position> get copyWith =>
       __$$_PositionCopyWithImpl<_$_Position>(this, _$identity);
 }

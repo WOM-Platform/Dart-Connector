@@ -32,7 +32,8 @@ mixin _$WomCreationResponse {
 abstract class $WomCreationResponseCopyWith<$Res> {
   factory $WomCreationResponseCopyWith(
           WomCreationResponse value, $Res Function(WomCreationResponse) then) =
-      _$WomCreationResponseCopyWithImpl<$Res>;
+      _$WomCreationResponseCopyWithImpl<$Res, WomCreationResponse>;
+  @useResult
   $Res call(
       {String registryUrl,
       String nonce,
@@ -43,49 +44,51 @@ abstract class $WomCreationResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WomCreationResponseCopyWithImpl<$Res>
+class _$WomCreationResponseCopyWithImpl<$Res, $Val extends WomCreationResponse>
     implements $WomCreationResponseCopyWith<$Res> {
   _$WomCreationResponseCopyWithImpl(this._value, this._then);
 
-  final WomCreationResponse _value;
   // ignore: unused_field
-  final $Res Function(WomCreationResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? registryUrl = freezed,
-    Object? nonce = freezed,
-    Object? otc = freezed,
-    Object? password = freezed,
-    Object? link = freezed,
-    Object? count = freezed,
+    Object? registryUrl = null,
+    Object? nonce = null,
+    Object? otc = null,
+    Object? password = null,
+    Object? link = null,
+    Object? count = null,
   }) {
     return _then(_value.copyWith(
-      registryUrl: registryUrl == freezed
+      registryUrl: null == registryUrl
           ? _value.registryUrl
           : registryUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      nonce: nonce == freezed
+      nonce: null == nonce
           ? _value.nonce
           : nonce // ignore: cast_nullable_to_non_nullable
               as String,
-      otc: otc == freezed
+      otc: null == otc
           ? _value.otc
           : otc // ignore: cast_nullable_to_non_nullable
               as String,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      link: link == freezed
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -96,6 +99,7 @@ abstract class _$$_WomCreationResponseCopyWith<$Res>
           $Res Function(_$_WomCreationResponse) then) =
       __$$_WomCreationResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String registryUrl,
       String nonce,
@@ -107,46 +111,44 @@ abstract class _$$_WomCreationResponseCopyWith<$Res>
 
 /// @nodoc
 class __$$_WomCreationResponseCopyWithImpl<$Res>
-    extends _$WomCreationResponseCopyWithImpl<$Res>
+    extends _$WomCreationResponseCopyWithImpl<$Res, _$_WomCreationResponse>
     implements _$$_WomCreationResponseCopyWith<$Res> {
   __$$_WomCreationResponseCopyWithImpl(_$_WomCreationResponse _value,
       $Res Function(_$_WomCreationResponse) _then)
-      : super(_value, (v) => _then(v as _$_WomCreationResponse));
+      : super(_value, _then);
 
-  @override
-  _$_WomCreationResponse get _value => super._value as _$_WomCreationResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? registryUrl = freezed,
-    Object? nonce = freezed,
-    Object? otc = freezed,
-    Object? password = freezed,
-    Object? link = freezed,
-    Object? count = freezed,
+    Object? registryUrl = null,
+    Object? nonce = null,
+    Object? otc = null,
+    Object? password = null,
+    Object? link = null,
+    Object? count = null,
   }) {
     return _then(_$_WomCreationResponse(
-      registryUrl: registryUrl == freezed
+      registryUrl: null == registryUrl
           ? _value.registryUrl
           : registryUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      nonce: nonce == freezed
+      nonce: null == nonce
           ? _value.nonce
           : nonce // ignore: cast_nullable_to_non_nullable
               as String,
-      otc: otc == freezed
+      otc: null == otc
           ? _value.otc
           : otc // ignore: cast_nullable_to_non_nullable
               as String,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      link: link == freezed
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
@@ -188,27 +190,23 @@ class _$_WomCreationResponse implements _WomCreationResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WomCreationResponse &&
-            const DeepCollectionEquality()
-                .equals(other.registryUrl, registryUrl) &&
-            const DeepCollectionEquality().equals(other.nonce, nonce) &&
-            const DeepCollectionEquality().equals(other.otc, otc) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.link, link) &&
-            const DeepCollectionEquality().equals(other.count, count));
+            (identical(other.registryUrl, registryUrl) ||
+                other.registryUrl == registryUrl) &&
+            (identical(other.nonce, nonce) || other.nonce == nonce) &&
+            (identical(other.otc, otc) || other.otc == otc) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.link, link) || other.link == link) &&
+            (identical(other.count, count) || other.count == count));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(registryUrl),
-      const DeepCollectionEquality().hash(nonce),
-      const DeepCollectionEquality().hash(otc),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(link),
-      const DeepCollectionEquality().hash(count));
+  int get hashCode =>
+      Object.hash(runtimeType, registryUrl, nonce, otc, password, link, count);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_WomCreationResponseCopyWith<_$_WomCreationResponse> get copyWith =>
       __$$_WomCreationResponseCopyWithImpl<_$_WomCreationResponse>(
           this, _$identity);

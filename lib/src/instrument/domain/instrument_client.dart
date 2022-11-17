@@ -9,6 +9,7 @@ import 'package:dart_wom_connector/src/instrument/domain/entities/wom_creation_r
 import 'package:dart_wom_connector/src/instrument/domain/repositories/instrument_repository.dart';
 
 import '../../core/controller/client.dart';
+import '../../core/domain/entities/voucher_request.dart';
 import '../data/data_sources/instrument_remote_data_sources.dart';
 import '../data/repositories/instrument_repository_impl.dart';
 import 'entities/instrument.dart';
@@ -33,7 +34,7 @@ class InstrumentClient extends Client {
     );
   }
 
-  Future<WomCreationResponse> requestVouchers(List<Voucher> vouchers) async {
+  Future<WomCreationResponse> requestVouchers(List<VoucherRequest> vouchers) async {
     final request = RequestWomCreation(instrument.id, vouchers);
     return instrumentRepository.requestWomCreation(request);
   }

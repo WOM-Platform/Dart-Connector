@@ -1,74 +1,47 @@
-import 'package:dart_wom_connector/src/instrument/domain/entities/creation_mode.dart';
-import 'package:equatable/equatable.dart';
+import 'package:dart_wom_connector/dart_wom_connector.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Voucher extends Equatable {
-  final String? id;
-  final double? lat;
-  final double? long;
-  final String? aim;
-  final int? count;
-  final DateTime? dateTime;
-  final String? secret;
-  final CreationMode creationMode;
+part 'voucher.freezed.dart';
 
-  Voucher({
-    this.id,
-    this.lat,
-    this.long,
-    this.aim,
-    this.count,
-    this.dateTime,
-    this.secret,
-    this.creationMode = CreationMode.standard,
-  });
+part 'voucher.g.dart';
 
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'latitude': lat,
-      'longitude': long,
-      'aim': aim,
-      'count': count,
-      'timestamp': dateTime!.toIso8601String(),
-      'secret': secret,
-      'creationMode': creationMode.toValue,
-    };
-  }
+@freezed
+class Voucher with _$Voucher {
+  const factory Voucher({
+    required String id,
+    required double latitude,
+    required double longitude,
+    required String aim,
+    @VoucherTimestampConverter() required DateTime timestamp,
+    required String secret,
+    @CreationModeConverter() CreationMode? creationMode,
+  }) = _Voucher;
 
-  factory Voucher.fromMap(Map<String, dynamic> map) {
-    return Voucher(
-      id: map['id'],
-      lat: map['latitude']?.toDouble(),
-      long: map['longitude']?.toDouble(),
-      aim: map['aim'],
-      dateTime: DateTime.parse(map['timestamp']),
-      secret: map['secret'],
-      creationMode: creationModeFromString(map['creationMode']),
-    );
+  factory Voucher.fromJson(Map<String, dynamic> json) =>
+      _$VoucherFromJson(json);
+}
+
+class CreationModeConverter implements JsonConverter<CreationMode, String> {
+  const CreationModeConverter();
+
+  @override
+  CreationMode fromJson(String value) {
+    return creationModeFromString(value);
   }
 
   @override
-  List<Object?> get props => [
-        id,
-        lat,
-        long,
-        aim,
-        count,
-        dateTime,
-        secret,
-        creationMode,
-      ];
-
-  Voucher copyWith() {
-    return Voucher(
-      id: id,
-      lat: lat,
-      long: long,
-      aim: 'H',
-      count: count,
-      dateTime: dateTime,
-      secret: secret,
-      creationMode: creationMode,
-    );
-  }
+  String toJson(CreationMode data) => data.toValue;
 }
+
+class VoucherTimestampConverter implements JsonConverter<DateTime, String> {
+  const VoucherTimestampConverter();
+
+  @override
+  DateTime fromJson(String value) {
+    return DateTime.parse(value);
+  }
+
+  @override
+  String toJson(DateTime data) => data.toIso8601String();
+}
+

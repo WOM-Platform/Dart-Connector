@@ -1,9 +1,7 @@
 enum CreationMode {
   standard,
-  setLocationOnRedeem,
-}
+  setLocationOnRedeem;
 
-extension CreationModeX on CreationMode {
   String get toValue {
     switch (this) {
       case CreationMode.setLocationOnRedeem:

@@ -32,28 +32,32 @@ mixin _$AimResponse {
 abstract class $AimResponseCopyWith<$Res> {
   factory $AimResponseCopyWith(
           AimResponse value, $Res Function(AimResponse) then) =
-      _$AimResponseCopyWithImpl<$Res>;
+      _$AimResponseCopyWithImpl<$Res, AimResponse>;
+  @useResult
   $Res call({List<AimDTO> aims});
 }
 
 /// @nodoc
-class _$AimResponseCopyWithImpl<$Res> implements $AimResponseCopyWith<$Res> {
+class _$AimResponseCopyWithImpl<$Res, $Val extends AimResponse>
+    implements $AimResponseCopyWith<$Res> {
   _$AimResponseCopyWithImpl(this._value, this._then);
 
-  final AimResponse _value;
   // ignore: unused_field
-  final $Res Function(AimResponse) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? aims = freezed,
+    Object? aims = null,
   }) {
     return _then(_value.copyWith(
-      aims: aims == freezed
+      aims: null == aims
           ? _value.aims
           : aims // ignore: cast_nullable_to_non_nullable
               as List<AimDTO>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -64,25 +68,25 @@ abstract class _$$_AimResponseCopyWith<$Res>
           _$_AimResponse value, $Res Function(_$_AimResponse) then) =
       __$$_AimResponseCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<AimDTO> aims});
 }
 
 /// @nodoc
-class __$$_AimResponseCopyWithImpl<$Res> extends _$AimResponseCopyWithImpl<$Res>
+class __$$_AimResponseCopyWithImpl<$Res>
+    extends _$AimResponseCopyWithImpl<$Res, _$_AimResponse>
     implements _$$_AimResponseCopyWith<$Res> {
   __$$_AimResponseCopyWithImpl(
       _$_AimResponse _value, $Res Function(_$_AimResponse) _then)
-      : super(_value, (v) => _then(v as _$_AimResponse));
+      : super(_value, _then);
 
-  @override
-  _$_AimResponse get _value => super._value as _$_AimResponse;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? aims = freezed,
+    Object? aims = null,
   }) {
     return _then(_$_AimResponse(
-      aims: aims == freezed
+      aims: null == aims
           ? _value._aims
           : aims // ignore: cast_nullable_to_non_nullable
               as List<AimDTO>,
@@ -125,6 +129,7 @@ class _$_AimResponse implements _AimResponse {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AimResponseCopyWith<_$_AimResponse> get copyWith =>
       __$$_AimResponseCopyWithImpl<_$_AimResponse>(this, _$identity);
 
@@ -170,7 +175,8 @@ mixin _$AimDTO {
 /// @nodoc
 abstract class $AimDTOCopyWith<$Res> {
   factory $AimDTOCopyWith(AimDTO value, $Res Function(AimDTO) then) =
-      _$AimDTOCopyWithImpl<$Res>;
+      _$AimDTOCopyWithImpl<$Res, AimDTO>;
+  @useResult
   $Res call(
       {String code,
       Map<String, dynamic>? titles,
@@ -179,38 +185,41 @@ abstract class $AimDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AimDTOCopyWithImpl<$Res> implements $AimDTOCopyWith<$Res> {
+class _$AimDTOCopyWithImpl<$Res, $Val extends AimDTO>
+    implements $AimDTOCopyWith<$Res> {
   _$AimDTOCopyWithImpl(this._value, this._then);
 
-  final AimDTO _value;
   // ignore: unused_field
-  final $Res Function(AimDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = freezed,
+    Object? code = null,
     Object? titles = freezed,
     Object? iconFile = freezed,
     Object? children = freezed,
   }) {
     return _then(_value.copyWith(
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      titles: titles == freezed
+      titles: freezed == titles
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-      iconFile: iconFile == freezed
+      iconFile: freezed == iconFile
           ? _value.iconFile
           : iconFile // ignore: cast_nullable_to_non_nullable
               as String?,
-      children: children == freezed
+      children: freezed == children
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
               as List<AimDTO>?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -219,6 +228,7 @@ abstract class _$$_AimDTOCopyWith<$Res> implements $AimDTOCopyWith<$Res> {
   factory _$$_AimDTOCopyWith(_$_AimDTO value, $Res Function(_$_AimDTO) then) =
       __$$_AimDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String code,
       Map<String, dynamic>? titles,
@@ -227,35 +237,34 @@ abstract class _$$_AimDTOCopyWith<$Res> implements $AimDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AimDTOCopyWithImpl<$Res> extends _$AimDTOCopyWithImpl<$Res>
+class __$$_AimDTOCopyWithImpl<$Res>
+    extends _$AimDTOCopyWithImpl<$Res, _$_AimDTO>
     implements _$$_AimDTOCopyWith<$Res> {
   __$$_AimDTOCopyWithImpl(_$_AimDTO _value, $Res Function(_$_AimDTO) _then)
-      : super(_value, (v) => _then(v as _$_AimDTO));
+      : super(_value, _then);
 
-  @override
-  _$_AimDTO get _value => super._value as _$_AimDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? code = freezed,
+    Object? code = null,
     Object? titles = freezed,
     Object? iconFile = freezed,
     Object? children = freezed,
   }) {
     return _then(_$_AimDTO(
-      code: code == freezed
+      code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      titles: titles == freezed
+      titles: freezed == titles
           ? _value._titles
           : titles // ignore: cast_nullable_to_non_nullable
               as Map<String, dynamic>?,
-      iconFile: iconFile == freezed
+      iconFile: freezed == iconFile
           ? _value.iconFile
           : iconFile // ignore: cast_nullable_to_non_nullable
               as String?,
-      children: children == freezed
+      children: freezed == children
           ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
               as List<AimDTO>?,
@@ -309,9 +318,10 @@ class _$_AimDTO implements _AimDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AimDTO &&
-            const DeepCollectionEquality().equals(other.code, code) &&
+            (identical(other.code, code) || other.code == code) &&
             const DeepCollectionEquality().equals(other._titles, _titles) &&
-            const DeepCollectionEquality().equals(other.iconFile, iconFile) &&
+            (identical(other.iconFile, iconFile) ||
+                other.iconFile == iconFile) &&
             const DeepCollectionEquality().equals(other._children, _children));
   }
 
@@ -319,13 +329,14 @@ class _$_AimDTO implements _AimDTO {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(code),
+      code,
       const DeepCollectionEquality().hash(_titles),
-      const DeepCollectionEquality().hash(iconFile),
+      iconFile,
       const DeepCollectionEquality().hash(_children));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AimDTOCopyWith<_$_AimDTO> get copyWith =>
       __$$_AimDTOCopyWithImpl<_$_AimDTO>(this, _$identity);
 

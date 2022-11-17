@@ -41,7 +41,8 @@ mixin _$MerchantDTO {
 abstract class $MerchantDTOCopyWith<$Res> {
   factory $MerchantDTOCopyWith(
           MerchantDTO value, $Res Function(MerchantDTO) then) =
-      _$MerchantDTOCopyWithImpl<$Res>;
+      _$MerchantDTOCopyWithImpl<$Res, MerchantDTO>;
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -56,68 +57,71 @@ abstract class $MerchantDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MerchantDTOCopyWithImpl<$Res> implements $MerchantDTOCopyWith<$Res> {
+class _$MerchantDTOCopyWithImpl<$Res, $Val extends MerchantDTO>
+    implements $MerchantDTOCopyWith<$Res> {
   _$MerchantDTOCopyWithImpl(this._value, this._then);
 
-  final MerchantDTO _value;
   // ignore: unused_field
-  final $Res Function(MerchantDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? address = freezed,
-    Object? zipCode = freezed,
-    Object? city = freezed,
-    Object? country = freezed,
-    Object? fiscalCode = freezed,
-    Object? pos = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? address = null,
+    Object? zipCode = null,
+    Object? city = null,
+    Object? country = null,
+    Object? fiscalCode = null,
+    Object? pos = null,
     Object? description = freezed,
     Object? url = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      zipCode: zipCode == freezed
+      zipCode: null == zipCode
           ? _value.zipCode
           : zipCode // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
+      city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
-      country: country == freezed
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
-      fiscalCode: fiscalCode == freezed
+      fiscalCode: null == fiscalCode
           ? _value.fiscalCode
           : fiscalCode // ignore: cast_nullable_to_non_nullable
               as String,
-      pos: pos == freezed
+      pos: null == pos
           ? _value.pos
           : pos // ignore: cast_nullable_to_non_nullable
               as List<PointOfSaleDTO>,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -128,6 +132,7 @@ abstract class _$$_MerchantDTOCopyWith<$Res>
           _$_MerchantDTO value, $Res Function(_$_MerchantDTO) then) =
       __$$_MerchantDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String name,
@@ -142,66 +147,65 @@ abstract class _$$_MerchantDTOCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_MerchantDTOCopyWithImpl<$Res> extends _$MerchantDTOCopyWithImpl<$Res>
+class __$$_MerchantDTOCopyWithImpl<$Res>
+    extends _$MerchantDTOCopyWithImpl<$Res, _$_MerchantDTO>
     implements _$$_MerchantDTOCopyWith<$Res> {
   __$$_MerchantDTOCopyWithImpl(
       _$_MerchantDTO _value, $Res Function(_$_MerchantDTO) _then)
-      : super(_value, (v) => _then(v as _$_MerchantDTO));
+      : super(_value, _then);
 
-  @override
-  _$_MerchantDTO get _value => super._value as _$_MerchantDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? address = freezed,
-    Object? zipCode = freezed,
-    Object? city = freezed,
-    Object? country = freezed,
-    Object? fiscalCode = freezed,
-    Object? pos = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? address = null,
+    Object? zipCode = null,
+    Object? city = null,
+    Object? country = null,
+    Object? fiscalCode = null,
+    Object? pos = null,
     Object? description = freezed,
     Object? url = freezed,
   }) {
     return _then(_$_MerchantDTO(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      address: address == freezed
+      address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as String,
-      zipCode: zipCode == freezed
+      zipCode: null == zipCode
           ? _value.zipCode
           : zipCode // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
+      city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
-      country: country == freezed
+      country: null == country
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
               as String,
-      fiscalCode: fiscalCode == freezed
+      fiscalCode: null == fiscalCode
           ? _value.fiscalCode
           : fiscalCode // ignore: cast_nullable_to_non_nullable
               as String,
-      pos: pos == freezed
+      pos: null == pos
           ? _value._pos
           : pos // ignore: cast_nullable_to_non_nullable
               as List<PointOfSaleDTO>,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -264,37 +268,38 @@ class _$_MerchantDTO implements _MerchantDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MerchantDTO &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.address, address) &&
-            const DeepCollectionEquality().equals(other.zipCode, zipCode) &&
-            const DeepCollectionEquality().equals(other.city, city) &&
-            const DeepCollectionEquality().equals(other.country, country) &&
-            const DeepCollectionEquality()
-                .equals(other.fiscalCode, fiscalCode) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.zipCode, zipCode) || other.zipCode == zipCode) &&
+            (identical(other.city, city) || other.city == city) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.fiscalCode, fiscalCode) ||
+                other.fiscalCode == fiscalCode) &&
             const DeepCollectionEquality().equals(other._pos, _pos) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.url, url));
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(address),
-      const DeepCollectionEquality().hash(zipCode),
-      const DeepCollectionEquality().hash(city),
-      const DeepCollectionEquality().hash(country),
-      const DeepCollectionEquality().hash(fiscalCode),
+      id,
+      name,
+      address,
+      zipCode,
+      city,
+      country,
+      fiscalCode,
       const DeepCollectionEquality().hash(_pos),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(url));
+      description,
+      url);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_MerchantDTOCopyWith<_$_MerchantDTO> get copyWith =>
       __$$_MerchantDTOCopyWithImpl<_$_MerchantDTO>(this, _$identity);
 

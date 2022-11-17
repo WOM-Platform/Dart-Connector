@@ -28,34 +28,38 @@ mixin _$InstrumentVoucherStats {
 abstract class $InstrumentVoucherStatsCopyWith<$Res> {
   factory $InstrumentVoucherStatsCopyWith(InstrumentVoucherStats value,
           $Res Function(InstrumentVoucherStats) then) =
-      _$InstrumentVoucherStatsCopyWithImpl<$Res>;
+      _$InstrumentVoucherStatsCopyWithImpl<$Res, InstrumentVoucherStats>;
+  @useResult
   $Res call({int totalVouchersGenerated, int totalVouchersRedeemed});
 }
 
 /// @nodoc
-class _$InstrumentVoucherStatsCopyWithImpl<$Res>
+class _$InstrumentVoucherStatsCopyWithImpl<$Res,
+        $Val extends InstrumentVoucherStats>
     implements $InstrumentVoucherStatsCopyWith<$Res> {
   _$InstrumentVoucherStatsCopyWithImpl(this._value, this._then);
 
-  final InstrumentVoucherStats _value;
   // ignore: unused_field
-  final $Res Function(InstrumentVoucherStats) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? totalVouchersGenerated = freezed,
-    Object? totalVouchersRedeemed = freezed,
+    Object? totalVouchersGenerated = null,
+    Object? totalVouchersRedeemed = null,
   }) {
     return _then(_value.copyWith(
-      totalVouchersGenerated: totalVouchersGenerated == freezed
+      totalVouchersGenerated: null == totalVouchersGenerated
           ? _value.totalVouchersGenerated
           : totalVouchersGenerated // ignore: cast_nullable_to_non_nullable
               as int,
-      totalVouchersRedeemed: totalVouchersRedeemed == freezed
+      totalVouchersRedeemed: null == totalVouchersRedeemed
           ? _value.totalVouchersRedeemed
           : totalVouchersRedeemed // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -66,32 +70,31 @@ abstract class _$$_InstrumentVoucherStatsCopyWith<$Res>
           $Res Function(_$_InstrumentVoucherStats) then) =
       __$$_InstrumentVoucherStatsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({int totalVouchersGenerated, int totalVouchersRedeemed});
 }
 
 /// @nodoc
 class __$$_InstrumentVoucherStatsCopyWithImpl<$Res>
-    extends _$InstrumentVoucherStatsCopyWithImpl<$Res>
+    extends _$InstrumentVoucherStatsCopyWithImpl<$Res,
+        _$_InstrumentVoucherStats>
     implements _$$_InstrumentVoucherStatsCopyWith<$Res> {
   __$$_InstrumentVoucherStatsCopyWithImpl(_$_InstrumentVoucherStats _value,
       $Res Function(_$_InstrumentVoucherStats) _then)
-      : super(_value, (v) => _then(v as _$_InstrumentVoucherStats));
+      : super(_value, _then);
 
-  @override
-  _$_InstrumentVoucherStats get _value =>
-      super._value as _$_InstrumentVoucherStats;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? totalVouchersGenerated = freezed,
-    Object? totalVouchersRedeemed = freezed,
+    Object? totalVouchersGenerated = null,
+    Object? totalVouchersRedeemed = null,
   }) {
     return _then(_$_InstrumentVoucherStats(
-      totalVouchersGenerated == freezed
+      null == totalVouchersGenerated
           ? _value.totalVouchersGenerated
           : totalVouchersGenerated // ignore: cast_nullable_to_non_nullable
               as int,
-      totalVouchersRedeemed == freezed
+      null == totalVouchersRedeemed
           ? _value.totalVouchersRedeemed
           : totalVouchersRedeemed // ignore: cast_nullable_to_non_nullable
               as int,
@@ -120,20 +123,19 @@ class _$_InstrumentVoucherStats implements _InstrumentVoucherStats {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_InstrumentVoucherStats &&
-            const DeepCollectionEquality()
-                .equals(other.totalVouchersGenerated, totalVouchersGenerated) &&
-            const DeepCollectionEquality()
-                .equals(other.totalVouchersRedeemed, totalVouchersRedeemed));
+            (identical(other.totalVouchersGenerated, totalVouchersGenerated) ||
+                other.totalVouchersGenerated == totalVouchersGenerated) &&
+            (identical(other.totalVouchersRedeemed, totalVouchersRedeemed) ||
+                other.totalVouchersRedeemed == totalVouchersRedeemed));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(totalVouchersGenerated),
-      const DeepCollectionEquality().hash(totalVouchersRedeemed));
+  int get hashCode =>
+      Object.hash(runtimeType, totalVouchersGenerated, totalVouchersRedeemed);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_InstrumentVoucherStatsCopyWith<_$_InstrumentVoucherStats> get copyWith =>
       __$$_InstrumentVoucherStatsCopyWithImpl<_$_InstrumentVoucherStats>(
           this, _$identity);

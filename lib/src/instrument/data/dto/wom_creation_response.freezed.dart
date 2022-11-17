@@ -38,7 +38,8 @@ mixin _$WomCreationResponseDTO {
 abstract class $WomCreationResponseDTOCopyWith<$Res> {
   factory $WomCreationResponseDTOCopyWith(WomCreationResponseDTO value,
           $Res Function(WomCreationResponseDTO) then) =
-      _$WomCreationResponseDTOCopyWithImpl<$Res>;
+      _$WomCreationResponseDTOCopyWithImpl<$Res, WomCreationResponseDTO>;
+  @useResult
   $Res call(
       {String registryUrl,
       String nonce,
@@ -49,49 +50,52 @@ abstract class $WomCreationResponseDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$WomCreationResponseDTOCopyWithImpl<$Res>
+class _$WomCreationResponseDTOCopyWithImpl<$Res,
+        $Val extends WomCreationResponseDTO>
     implements $WomCreationResponseDTOCopyWith<$Res> {
   _$WomCreationResponseDTOCopyWithImpl(this._value, this._then);
 
-  final WomCreationResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(WomCreationResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? registryUrl = freezed,
-    Object? nonce = freezed,
-    Object? otc = freezed,
-    Object? password = freezed,
-    Object? link = freezed,
-    Object? count = freezed,
+    Object? registryUrl = null,
+    Object? nonce = null,
+    Object? otc = null,
+    Object? password = null,
+    Object? link = null,
+    Object? count = null,
   }) {
     return _then(_value.copyWith(
-      registryUrl: registryUrl == freezed
+      registryUrl: null == registryUrl
           ? _value.registryUrl
           : registryUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      nonce: nonce == freezed
+      nonce: null == nonce
           ? _value.nonce
           : nonce // ignore: cast_nullable_to_non_nullable
               as String,
-      otc: otc == freezed
+      otc: null == otc
           ? _value.otc
           : otc // ignore: cast_nullable_to_non_nullable
               as String,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      link: link == freezed
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -102,6 +106,7 @@ abstract class _$$_WomCreationResponseDTOCopyWith<$Res>
           $Res Function(_$_WomCreationResponseDTO) then) =
       __$$_WomCreationResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String registryUrl,
       String nonce,
@@ -113,47 +118,45 @@ abstract class _$$_WomCreationResponseDTOCopyWith<$Res>
 
 /// @nodoc
 class __$$_WomCreationResponseDTOCopyWithImpl<$Res>
-    extends _$WomCreationResponseDTOCopyWithImpl<$Res>
+    extends _$WomCreationResponseDTOCopyWithImpl<$Res,
+        _$_WomCreationResponseDTO>
     implements _$$_WomCreationResponseDTOCopyWith<$Res> {
   __$$_WomCreationResponseDTOCopyWithImpl(_$_WomCreationResponseDTO _value,
       $Res Function(_$_WomCreationResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_WomCreationResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_WomCreationResponseDTO get _value =>
-      super._value as _$_WomCreationResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? registryUrl = freezed,
-    Object? nonce = freezed,
-    Object? otc = freezed,
-    Object? password = freezed,
-    Object? link = freezed,
-    Object? count = freezed,
+    Object? registryUrl = null,
+    Object? nonce = null,
+    Object? otc = null,
+    Object? password = null,
+    Object? link = null,
+    Object? count = null,
   }) {
     return _then(_$_WomCreationResponseDTO(
-      registryUrl: registryUrl == freezed
+      registryUrl: null == registryUrl
           ? _value.registryUrl
           : registryUrl // ignore: cast_nullable_to_non_nullable
               as String,
-      nonce: nonce == freezed
+      nonce: null == nonce
           ? _value.nonce
           : nonce // ignore: cast_nullable_to_non_nullable
               as String,
-      otc: otc == freezed
+      otc: null == otc
           ? _value.otc
           : otc // ignore: cast_nullable_to_non_nullable
               as String,
-      password: password == freezed
+      password: null == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      link: link == freezed
+      link: null == link
           ? _value.link
           : link // ignore: cast_nullable_to_non_nullable
               as String,
-      count: count == freezed
+      count: null == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int,
@@ -198,28 +201,24 @@ class _$_WomCreationResponseDTO implements _WomCreationResponseDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_WomCreationResponseDTO &&
-            const DeepCollectionEquality()
-                .equals(other.registryUrl, registryUrl) &&
-            const DeepCollectionEquality().equals(other.nonce, nonce) &&
-            const DeepCollectionEquality().equals(other.otc, otc) &&
-            const DeepCollectionEquality().equals(other.password, password) &&
-            const DeepCollectionEquality().equals(other.link, link) &&
-            const DeepCollectionEquality().equals(other.count, count));
+            (identical(other.registryUrl, registryUrl) ||
+                other.registryUrl == registryUrl) &&
+            (identical(other.nonce, nonce) || other.nonce == nonce) &&
+            (identical(other.otc, otc) || other.otc == otc) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.link, link) || other.link == link) &&
+            (identical(other.count, count) || other.count == count));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(registryUrl),
-      const DeepCollectionEquality().hash(nonce),
-      const DeepCollectionEquality().hash(otc),
-      const DeepCollectionEquality().hash(password),
-      const DeepCollectionEquality().hash(link),
-      const DeepCollectionEquality().hash(count));
+  int get hashCode =>
+      Object.hash(runtimeType, registryUrl, nonce, otc, password, link, count);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_WomCreationResponseDTOCopyWith<_$_WomCreationResponseDTO> get copyWith =>
       __$$_WomCreationResponseDTOCopyWithImpl<_$_WomCreationResponseDTO>(
           this, _$identity);

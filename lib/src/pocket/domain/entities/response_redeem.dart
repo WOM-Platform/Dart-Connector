@@ -15,7 +15,7 @@ class ResponseRedeem {
     if (json[VOUCHERS] != null) {
       vouchers = <Voucher>[];
       json[VOUCHERS].forEach((v) {
-        vouchers!.add(Voucher.fromMap(v));
+        vouchers!.add(Voucher.fromJson(v));
       });
       sourceName = json[SOURCE_NAME] ?? '';
       sourceId = json[SOURCE_ID].toString();

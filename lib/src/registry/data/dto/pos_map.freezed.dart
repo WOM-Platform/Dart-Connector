@@ -32,29 +32,32 @@ mixin _$POSMapResponseDTO {
 abstract class $POSMapResponseDTOCopyWith<$Res> {
   factory $POSMapResponseDTOCopyWith(
           POSMapResponseDTO value, $Res Function(POSMapResponseDTO) then) =
-      _$POSMapResponseDTOCopyWithImpl<$Res>;
+      _$POSMapResponseDTOCopyWithImpl<$Res, POSMapResponseDTO>;
+  @useResult
   $Res call({List<POSMapDTO> pos});
 }
 
 /// @nodoc
-class _$POSMapResponseDTOCopyWithImpl<$Res>
+class _$POSMapResponseDTOCopyWithImpl<$Res, $Val extends POSMapResponseDTO>
     implements $POSMapResponseDTOCopyWith<$Res> {
   _$POSMapResponseDTOCopyWithImpl(this._value, this._then);
 
-  final POSMapResponseDTO _value;
   // ignore: unused_field
-  final $Res Function(POSMapResponseDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pos = freezed,
+    Object? pos = null,
   }) {
     return _then(_value.copyWith(
-      pos: pos == freezed
+      pos: null == pos
           ? _value.pos
           : pos // ignore: cast_nullable_to_non_nullable
               as List<POSMapDTO>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,26 +68,25 @@ abstract class _$$_POSMapResponseDTOCopyWith<$Res>
           $Res Function(_$_POSMapResponseDTO) then) =
       __$$_POSMapResponseDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({List<POSMapDTO> pos});
 }
 
 /// @nodoc
 class __$$_POSMapResponseDTOCopyWithImpl<$Res>
-    extends _$POSMapResponseDTOCopyWithImpl<$Res>
+    extends _$POSMapResponseDTOCopyWithImpl<$Res, _$_POSMapResponseDTO>
     implements _$$_POSMapResponseDTOCopyWith<$Res> {
   __$$_POSMapResponseDTOCopyWithImpl(
       _$_POSMapResponseDTO _value, $Res Function(_$_POSMapResponseDTO) _then)
-      : super(_value, (v) => _then(v as _$_POSMapResponseDTO));
+      : super(_value, _then);
 
-  @override
-  _$_POSMapResponseDTO get _value => super._value as _$_POSMapResponseDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? pos = freezed,
+    Object? pos = null,
   }) {
     return _then(_$_POSMapResponseDTO(
-      pos: pos == freezed
+      pos: null == pos
           ? _value._pos
           : pos // ignore: cast_nullable_to_non_nullable
               as List<POSMapDTO>,
@@ -127,6 +129,7 @@ class _$_POSMapResponseDTO implements _POSMapResponseDTO {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_POSMapResponseDTOCopyWith<_$_POSMapResponseDTO> get copyWith =>
       __$$_POSMapResponseDTOCopyWithImpl<_$_POSMapResponseDTO>(
           this, _$identity);
@@ -174,51 +177,56 @@ mixin _$POSMapDTO {
 /// @nodoc
 abstract class $POSMapDTOCopyWith<$Res> {
   factory $POSMapDTOCopyWith(POSMapDTO value, $Res Function(POSMapDTO) then) =
-      _$POSMapDTOCopyWithImpl<$Res>;
+      _$POSMapDTOCopyWithImpl<$Res, POSMapDTO>;
+  @useResult
   $Res call({String id, String name, PositionDTO position, String? url});
 
   $PositionDTOCopyWith<$Res> get position;
 }
 
 /// @nodoc
-class _$POSMapDTOCopyWithImpl<$Res> implements $POSMapDTOCopyWith<$Res> {
+class _$POSMapDTOCopyWithImpl<$Res, $Val extends POSMapDTO>
+    implements $POSMapDTOCopyWith<$Res> {
   _$POSMapDTOCopyWithImpl(this._value, this._then);
 
-  final POSMapDTO _value;
   // ignore: unused_field
-  final $Res Function(POSMapDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? position = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? position = null,
     Object? url = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as PositionDTO,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $PositionDTOCopyWith<$Res> get position {
     return $PositionDTOCopyWith<$Res>(_value.position, (value) {
-      return _then(_value.copyWith(position: value));
+      return _then(_value.copyWith(position: value) as $Val);
     });
   }
 }
@@ -229,6 +237,7 @@ abstract class _$$_POSMapDTOCopyWith<$Res> implements $POSMapDTOCopyWith<$Res> {
           _$_POSMapDTO value, $Res Function(_$_POSMapDTO) then) =
       __$$_POSMapDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String id, String name, PositionDTO position, String? url});
 
   @override
@@ -236,36 +245,35 @@ abstract class _$$_POSMapDTOCopyWith<$Res> implements $POSMapDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_POSMapDTOCopyWithImpl<$Res> extends _$POSMapDTOCopyWithImpl<$Res>
+class __$$_POSMapDTOCopyWithImpl<$Res>
+    extends _$POSMapDTOCopyWithImpl<$Res, _$_POSMapDTO>
     implements _$$_POSMapDTOCopyWith<$Res> {
   __$$_POSMapDTOCopyWithImpl(
       _$_POSMapDTO _value, $Res Function(_$_POSMapDTO) _then)
-      : super(_value, (v) => _then(v as _$_POSMapDTO));
+      : super(_value, _then);
 
-  @override
-  _$_POSMapDTO get _value => super._value as _$_POSMapDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? name = freezed,
-    Object? position = freezed,
+    Object? id = null,
+    Object? name = null,
+    Object? position = null,
     Object? url = freezed,
   }) {
     return _then(_$_POSMapDTO(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
+      name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      position: position == freezed
+      position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as PositionDTO,
-      url: url == freezed
+      url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -301,23 +309,20 @@ class _$_POSMapDTO implements _POSMapDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_POSMapDTO &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.position, position) &&
-            const DeepCollectionEquality().equals(other.url, url));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(position),
-      const DeepCollectionEquality().hash(url));
+  int get hashCode => Object.hash(runtimeType, id, name, position, url);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_POSMapDTOCopyWith<_$_POSMapDTO> get copyWith =>
       __$$_POSMapDTOCopyWithImpl<_$_POSMapDTO>(this, _$identity);
 
@@ -372,33 +377,37 @@ mixin _$PositionDTO {
 abstract class $PositionDTOCopyWith<$Res> {
   factory $PositionDTOCopyWith(
           PositionDTO value, $Res Function(PositionDTO) then) =
-      _$PositionDTOCopyWithImpl<$Res>;
+      _$PositionDTOCopyWithImpl<$Res, PositionDTO>;
+  @useResult
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class _$PositionDTOCopyWithImpl<$Res> implements $PositionDTOCopyWith<$Res> {
+class _$PositionDTOCopyWithImpl<$Res, $Val extends PositionDTO>
+    implements $PositionDTOCopyWith<$Res> {
   _$PositionDTOCopyWithImpl(this._value, this._then);
 
-  final PositionDTO _value;
   // ignore: unused_field
-  final $Res Function(PositionDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
+    Object? latitude = null,
+    Object? longitude = null,
   }) {
     return _then(_value.copyWith(
-      latitude: latitude == freezed
+      latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
-      longitude: longitude == freezed
+      longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -409,30 +418,30 @@ abstract class _$$_PositionDTOCopyWith<$Res>
           _$_PositionDTO value, $Res Function(_$_PositionDTO) then) =
       __$$_PositionDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$$_PositionDTOCopyWithImpl<$Res> extends _$PositionDTOCopyWithImpl<$Res>
+class __$$_PositionDTOCopyWithImpl<$Res>
+    extends _$PositionDTOCopyWithImpl<$Res, _$_PositionDTO>
     implements _$$_PositionDTOCopyWith<$Res> {
   __$$_PositionDTOCopyWithImpl(
       _$_PositionDTO _value, $Res Function(_$_PositionDTO) _then)
-      : super(_value, (v) => _then(v as _$_PositionDTO));
+      : super(_value, _then);
 
-  @override
-  _$_PositionDTO get _value => super._value as _$_PositionDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? latitude = freezed,
-    Object? longitude = freezed,
+    Object? latitude = null,
+    Object? longitude = null,
   }) {
     return _then(_$_PositionDTO(
-      latitude: latitude == freezed
+      latitude: null == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
               as double,
-      longitude: longitude == freezed
+      longitude: null == longitude
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as double,
@@ -463,19 +472,19 @@ class _$_PositionDTO implements _PositionDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PositionDTO &&
-            const DeepCollectionEquality().equals(other.latitude, latitude) &&
-            const DeepCollectionEquality().equals(other.longitude, longitude));
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(latitude),
-      const DeepCollectionEquality().hash(longitude));
+  int get hashCode => Object.hash(runtimeType, latitude, longitude);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PositionDTOCopyWith<_$_PositionDTO> get copyWith =>
       __$$_PositionDTOCopyWithImpl<_$_PositionDTO>(this, _$identity);
 

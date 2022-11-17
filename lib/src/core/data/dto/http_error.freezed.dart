@@ -34,38 +34,42 @@ mixin _$HttpErrorDTO {
 abstract class $HttpErrorDTOCopyWith<$Res> {
   factory $HttpErrorDTOCopyWith(
           HttpErrorDTO value, $Res Function(HttpErrorDTO) then) =
-      _$HttpErrorDTOCopyWithImpl<$Res>;
+      _$HttpErrorDTOCopyWithImpl<$Res, HttpErrorDTO>;
+  @useResult
   $Res call({String type, String title, int status});
 }
 
 /// @nodoc
-class _$HttpErrorDTOCopyWithImpl<$Res> implements $HttpErrorDTOCopyWith<$Res> {
+class _$HttpErrorDTOCopyWithImpl<$Res, $Val extends HttpErrorDTO>
+    implements $HttpErrorDTOCopyWith<$Res> {
   _$HttpErrorDTOCopyWithImpl(this._value, this._then);
 
-  final HttpErrorDTO _value;
   // ignore: unused_field
-  final $Res Function(HttpErrorDTO) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? title = freezed,
-    Object? status = freezed,
+    Object? type = null,
+    Object? title = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
-    ));
+    ) as $Val);
   }
 }
 
@@ -76,36 +80,35 @@ abstract class _$$_HttpErrorDTOCopyWith<$Res>
           _$_HttpErrorDTO value, $Res Function(_$_HttpErrorDTO) then) =
       __$$_HttpErrorDTOCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String type, String title, int status});
 }
 
 /// @nodoc
 class __$$_HttpErrorDTOCopyWithImpl<$Res>
-    extends _$HttpErrorDTOCopyWithImpl<$Res>
+    extends _$HttpErrorDTOCopyWithImpl<$Res, _$_HttpErrorDTO>
     implements _$$_HttpErrorDTOCopyWith<$Res> {
   __$$_HttpErrorDTOCopyWithImpl(
       _$_HttpErrorDTO _value, $Res Function(_$_HttpErrorDTO) _then)
-      : super(_value, (v) => _then(v as _$_HttpErrorDTO));
+      : super(_value, _then);
 
-  @override
-  _$_HttpErrorDTO get _value => super._value as _$_HttpErrorDTO;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = freezed,
-    Object? title = freezed,
-    Object? status = freezed,
+    Object? type = null,
+    Object? title = null,
+    Object? status = null,
   }) {
     return _then(_$_HttpErrorDTO(
-      type: type == freezed
+      type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      title: title == freezed
+      title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      status: status == freezed
+      status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
@@ -139,21 +142,18 @@ class _$_HttpErrorDTO implements _HttpErrorDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HttpErrorDTO &&
-            const DeepCollectionEquality().equals(other.type, type) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(type),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(status));
+  int get hashCode => Object.hash(runtimeType, type, title, status);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_HttpErrorDTOCopyWith<_$_HttpErrorDTO> get copyWith =>
       __$$_HttpErrorDTOCopyWithImpl<_$_HttpErrorDTO>(this, _$identity);
 
