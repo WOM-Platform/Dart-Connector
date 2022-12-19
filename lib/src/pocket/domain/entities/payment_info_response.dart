@@ -1,6 +1,24 @@
 import 'package:dart_wom_connector/src/pos/domain/entities/simple_filter.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class InfoPayResponse {
+part 'payment_info_response.freezed.dart';
+part 'payment_info_response.g.dart';
+
+@freezed
+class PaymentInfoResponse with _$PaymentInfoResponse {
+  const factory PaymentInfoResponse({
+    required String posId,
+    required String posName,
+    required int amount,
+    required SimpleFilter? simpleFilter,
+    required bool? persistent,
+  }) = _PaymentInfoResponse;
+
+  factory PaymentInfoResponse.fromJson(Map<String, dynamic> json) =>
+      _$PaymentInfoResponseFromJson(json);
+}
+
+/*class InfoPayResponse {
   static const String POS_ID = 'posId';
   static const String POS_NAME = 'posName';
   static const String AMOUNT = 'amount';
@@ -32,4 +50,4 @@ class InfoPayResponse {
   String toString() {
     return 'posId: $posId,amount: $amount,simplefilter: $simpleFilter';
   }
-}
+}*/

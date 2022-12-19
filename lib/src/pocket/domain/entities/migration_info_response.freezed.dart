@@ -23,6 +23,7 @@ MigrationInfoResponse _$MigrationInfoResponseFromJson(
 mixin _$MigrationInfoResponse {
   int get accessCount => throw _privateConstructorUsedError;
   DateTime get deadline => throw _privateConstructorUsedError;
+  bool get completed => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +37,7 @@ abstract class $MigrationInfoResponseCopyWith<$Res> {
           $Res Function(MigrationInfoResponse) then) =
       _$MigrationInfoResponseCopyWithImpl<$Res, MigrationInfoResponse>;
   @useResult
-  $Res call({int accessCount, DateTime deadline});
+  $Res call({int accessCount, DateTime deadline, bool completed});
 }
 
 /// @nodoc
@@ -55,6 +56,7 @@ class _$MigrationInfoResponseCopyWithImpl<$Res,
   $Res call({
     Object? accessCount = null,
     Object? deadline = null,
+    Object? completed = null,
   }) {
     return _then(_value.copyWith(
       accessCount: null == accessCount
@@ -65,6 +67,10 @@ class _$MigrationInfoResponseCopyWithImpl<$Res,
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      completed: null == completed
+          ? _value.completed
+          : completed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -77,7 +83,7 @@ abstract class _$$_MigrationInfoResponseCopyWith<$Res>
       __$$_MigrationInfoResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int accessCount, DateTime deadline});
+  $Res call({int accessCount, DateTime deadline, bool completed});
 }
 
 /// @nodoc
@@ -93,6 +99,7 @@ class __$$_MigrationInfoResponseCopyWithImpl<$Res>
   $Res call({
     Object? accessCount = null,
     Object? deadline = null,
+    Object? completed = null,
   }) {
     return _then(_$_MigrationInfoResponse(
       accessCount: null == accessCount
@@ -103,6 +110,10 @@ class __$$_MigrationInfoResponseCopyWithImpl<$Res>
           ? _value.deadline
           : deadline // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      completed: null == completed
+          ? _value.completed
+          : completed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -111,7 +122,9 @@ class __$$_MigrationInfoResponseCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MigrationInfoResponse implements _MigrationInfoResponse {
   const _$_MigrationInfoResponse(
-      {required this.accessCount, required this.deadline});
+      {required this.accessCount,
+      required this.deadline,
+      required this.completed});
 
   factory _$_MigrationInfoResponse.fromJson(Map<String, dynamic> json) =>
       _$$_MigrationInfoResponseFromJson(json);
@@ -120,10 +133,12 @@ class _$_MigrationInfoResponse implements _MigrationInfoResponse {
   final int accessCount;
   @override
   final DateTime deadline;
+  @override
+  final bool completed;
 
   @override
   String toString() {
-    return 'MigrationInfoResponse(accessCount: $accessCount, deadline: $deadline)';
+    return 'MigrationInfoResponse(accessCount: $accessCount, deadline: $deadline, completed: $completed)';
   }
 
   @override
@@ -134,12 +149,15 @@ class _$_MigrationInfoResponse implements _MigrationInfoResponse {
             (identical(other.accessCount, accessCount) ||
                 other.accessCount == accessCount) &&
             (identical(other.deadline, deadline) ||
-                other.deadline == deadline));
+                other.deadline == deadline) &&
+            (identical(other.completed, completed) ||
+                other.completed == completed));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, accessCount, deadline);
+  int get hashCode =>
+      Object.hash(runtimeType, accessCount, deadline, completed);
 
   @JsonKey(ignore: true)
   @override
@@ -159,7 +177,8 @@ class _$_MigrationInfoResponse implements _MigrationInfoResponse {
 abstract class _MigrationInfoResponse implements MigrationInfoResponse {
   const factory _MigrationInfoResponse(
       {required final int accessCount,
-      required final DateTime deadline}) = _$_MigrationInfoResponse;
+      required final DateTime deadline,
+      required final bool completed}) = _$_MigrationInfoResponse;
 
   factory _MigrationInfoResponse.fromJson(Map<String, dynamic> json) =
       _$_MigrationInfoResponse.fromJson;
@@ -168,6 +187,8 @@ abstract class _MigrationInfoResponse implements MigrationInfoResponse {
   int get accessCount;
   @override
   DateTime get deadline;
+  @override
+  bool get completed;
   @override
   @JsonKey(ignore: true)
   _$$_MigrationInfoResponseCopyWith<_$_MigrationInfoResponse> get copyWith =>

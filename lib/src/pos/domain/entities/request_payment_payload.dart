@@ -1,8 +1,29 @@
 import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/simple_filter.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
-class RequestPaymentPayload {
+part 'request_payment_payload.freezed.dart';
+
+part 'request_payment_payload.g.dart';
+
+@freezed
+class RequestPaymentPayload with _$RequestPaymentPayload {
+  const factory RequestPaymentPayload({
+    required int amount,
+    required String nonce,
+    required String posId,
+    @Default(false) bool persistent,
+    String? pocketAckUrl,
+    SimpleFilter? simpleFilter,
+    String? posAckUrl,
+  }) = _RequestPaymentPayload;
+
+  factory RequestPaymentPayload.fromJson(Map<String, dynamic> json) =>
+      _$RequestPaymentPayloadFromJson(json);
+}
+
+/*class RequestPaymentPayload {
   final int amount;
   final String? pocketAckUrl;
   final String posId;
@@ -33,4 +54,4 @@ class RequestPaymentPayload {
     map['persistent'] = persistent;
     return map;
   }
-}
+}*/

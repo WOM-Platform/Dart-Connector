@@ -1,5 +1,6 @@
 enum TransactionType {
   VOUCHERS,
   PAYMENT,
-  MIGRATION
+  MIGRATION_IMPORT,
+  MIGRATION_EXPORT,
 }

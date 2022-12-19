@@ -1,6 +1,30 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geodesy/geodesy.dart';
 
-class Bounds {
+part 'bounds.freezed.dart';
+part 'bounds.g.dart';
+
+@freezed
+class Bounds with _$Bounds {
+  const factory Bounds({
+    required List<double> leftTop,
+    required List<double> rightBottom,
+  }) = _Bounds;
+
+  factory Bounds.fromJson(Map<String, dynamic> json) =>
+      _$BoundsFromJson(json);
+}
+
+extension BoundsX on Bounds{
+
+  bool contains(double lat, double long) {
+    final geo = Geodesy();
+    return geo.isGeoPointInBoudingBox(LatLng(lat, long),
+        LatLng(leftTop[0], leftTop[1]), LatLng(rightBottom[0], rightBottom[1]));
+  }
+}
+
+/*class Bounds {
   static String LEFT_TOP = 'leftTop';
   static String LEFT_TOP_LAT = 'leftTopLat';
   static String LEFT_TOP_LONG = 'leftTopLong';
@@ -36,4 +60,4 @@ class Bounds {
     return geo.isGeoPointInBoudingBox(LatLng(lat, long),
         LatLng(leftTop![0], leftTop![1]), LatLng(rightBottom![0], rightBottom![1]));
   }
-}
+}*/

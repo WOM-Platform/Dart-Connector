@@ -1,4 +1,23 @@
-import 'package:dart_wom_connector/src/pos/domain/entities/payment_register_response.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'payment_register_response_model.freezed.dart';
+part 'payment_register_response_model.g.dart';
+
+@freezed
+class PaymentRegisterResponse with _$PaymentRegisterResponse {
+  const factory PaymentRegisterResponse({
+    required String registryUrl,
+    required String nonce,
+    required String otc,
+    required String password,
+    required String link,
+  }) = _PaymentRegisterResponse;
+
+  factory PaymentRegisterResponse.fromJson(Map<String, dynamic> json) =>
+      _$PaymentRegisterResponseFromJson(json);
+}
+
+/*
 
 class PaymentRegisterResponseModel extends PaymentRegisterResponse {
   static String REGISTRY_URL = 'registryUrl';
@@ -27,3 +46,4 @@ class PaymentRegisterResponseModel extends PaymentRegisterResponse {
     );
   }
 }
+*/

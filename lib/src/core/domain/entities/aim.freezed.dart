@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Aim {
   String get code => throw _privateConstructorUsedError;
-  Map<String, dynamic>? get titles => throw _privateConstructorUsedError;
+  Map<String, dynamic> get titles => throw _privateConstructorUsedError;
   List<Aim>? get children => throw _privateConstructorUsedError;
   String? get iconFile => throw _privateConstructorUsedError;
 
@@ -32,7 +32,7 @@ abstract class $AimCopyWith<$Res> {
   @useResult
   $Res call(
       {String code,
-      Map<String, dynamic>? titles,
+      Map<String, dynamic> titles,
       List<Aim>? children,
       String? iconFile});
 }
@@ -50,7 +50,7 @@ class _$AimCopyWithImpl<$Res, $Val extends Aim> implements $AimCopyWith<$Res> {
   @override
   $Res call({
     Object? code = null,
-    Object? titles = freezed,
+    Object? titles = null,
     Object? children = freezed,
     Object? iconFile = freezed,
   }) {
@@ -59,10 +59,10 @@ class _$AimCopyWithImpl<$Res, $Val extends Aim> implements $AimCopyWith<$Res> {
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      titles: freezed == titles
+      titles: null == titles
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as Map<String, dynamic>,
       children: freezed == children
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
@@ -83,7 +83,7 @@ abstract class _$$_AimCopyWith<$Res> implements $AimCopyWith<$Res> {
   @useResult
   $Res call(
       {String code,
-      Map<String, dynamic>? titles,
+      Map<String, dynamic> titles,
       List<Aim>? children,
       String? iconFile});
 }
@@ -98,7 +98,7 @@ class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res, _$_Aim>
   @override
   $Res call({
     Object? code = null,
-    Object? titles = freezed,
+    Object? titles = null,
     Object? children = freezed,
     Object? iconFile = freezed,
   }) {
@@ -107,10 +107,10 @@ class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res, _$_Aim>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      titles: freezed == titles
+      titles: null == titles
           ? _value._titles
           : titles // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as Map<String, dynamic>,
       children: freezed == children
           ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res, _$_Aim>
 class _$_Aim implements _Aim {
   const _$_Aim(
       {required this.code,
-      required final Map<String, dynamic>? titles,
+      required final Map<String, dynamic> titles,
       final List<Aim>? children,
       this.iconFile})
       : _titles = titles,
@@ -136,13 +136,11 @@ class _$_Aim implements _Aim {
 
   @override
   final String code;
-  final Map<String, dynamic>? _titles;
+  final Map<String, dynamic> _titles;
   @override
-  Map<String, dynamic>? get titles {
-    final value = _titles;
-    if (value == null) return null;
+  Map<String, dynamic> get titles {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
+    return EqualUnmodifiableMapView(_titles);
   }
 
   final List<Aim>? _children;
@@ -192,14 +190,14 @@ class _$_Aim implements _Aim {
 abstract class _Aim implements Aim {
   const factory _Aim(
       {required final String code,
-      required final Map<String, dynamic>? titles,
+      required final Map<String, dynamic> titles,
       final List<Aim>? children,
       final String? iconFile}) = _$_Aim;
 
   @override
   String get code;
   @override
-  Map<String, dynamic>? get titles;
+  Map<String, dynamic> get titles;
   @override
   List<Aim>? get children;
   @override

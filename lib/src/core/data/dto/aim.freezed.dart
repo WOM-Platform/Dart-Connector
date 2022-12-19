@@ -163,7 +163,7 @@ AimDTO _$AimDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AimDTO {
   String get code => throw _privateConstructorUsedError;
-  Map<String, dynamic>? get titles => throw _privateConstructorUsedError;
+  Map<String, String> get titles => throw _privateConstructorUsedError;
   String? get iconFile => throw _privateConstructorUsedError;
   List<AimDTO>? get children => throw _privateConstructorUsedError;
 
@@ -179,7 +179,7 @@ abstract class $AimDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {String code,
-      Map<String, dynamic>? titles,
+      Map<String, String> titles,
       String? iconFile,
       List<AimDTO>? children});
 }
@@ -198,7 +198,7 @@ class _$AimDTOCopyWithImpl<$Res, $Val extends AimDTO>
   @override
   $Res call({
     Object? code = null,
-    Object? titles = freezed,
+    Object? titles = null,
     Object? iconFile = freezed,
     Object? children = freezed,
   }) {
@@ -207,10 +207,10 @@ class _$AimDTOCopyWithImpl<$Res, $Val extends AimDTO>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      titles: freezed == titles
+      titles: null == titles
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as Map<String, String>,
       iconFile: freezed == iconFile
           ? _value.iconFile
           : iconFile // ignore: cast_nullable_to_non_nullable
@@ -231,7 +231,7 @@ abstract class _$$_AimDTOCopyWith<$Res> implements $AimDTOCopyWith<$Res> {
   @useResult
   $Res call(
       {String code,
-      Map<String, dynamic>? titles,
+      Map<String, String> titles,
       String? iconFile,
       List<AimDTO>? children});
 }
@@ -247,7 +247,7 @@ class __$$_AimDTOCopyWithImpl<$Res>
   @override
   $Res call({
     Object? code = null,
-    Object? titles = freezed,
+    Object? titles = null,
     Object? iconFile = freezed,
     Object? children = freezed,
   }) {
@@ -256,10 +256,10 @@ class __$$_AimDTOCopyWithImpl<$Res>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
-      titles: freezed == titles
+      titles: null == titles
           ? _value._titles
           : titles // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>?,
+              as Map<String, String>,
       iconFile: freezed == iconFile
           ? _value.iconFile
           : iconFile // ignore: cast_nullable_to_non_nullable
@@ -277,7 +277,7 @@ class __$$_AimDTOCopyWithImpl<$Res>
 class _$_AimDTO implements _AimDTO {
   const _$_AimDTO(
       {required this.code,
-      required final Map<String, dynamic>? titles,
+      required final Map<String, String> titles,
       this.iconFile,
       final List<AimDTO>? children})
       : _titles = titles,
@@ -288,13 +288,11 @@ class _$_AimDTO implements _AimDTO {
 
   @override
   final String code;
-  final Map<String, dynamic>? _titles;
+  final Map<String, String> _titles;
   @override
-  Map<String, dynamic>? get titles {
-    final value = _titles;
-    if (value == null) return null;
+  Map<String, String> get titles {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
+    return EqualUnmodifiableMapView(_titles);
   }
 
   @override
@@ -351,7 +349,7 @@ class _$_AimDTO implements _AimDTO {
 abstract class _AimDTO implements AimDTO {
   const factory _AimDTO(
       {required final String code,
-      required final Map<String, dynamic>? titles,
+      required final Map<String, String> titles,
       final String? iconFile,
       final List<AimDTO>? children}) = _$_AimDTO;
 
@@ -360,7 +358,7 @@ abstract class _AimDTO implements AimDTO {
   @override
   String get code;
   @override
-  Map<String, dynamic>? get titles;
+  Map<String, String> get titles;
   @override
   String? get iconFile;
   @override

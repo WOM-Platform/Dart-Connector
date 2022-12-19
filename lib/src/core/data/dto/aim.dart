@@ -45,7 +45,7 @@ class AimResponse with _$AimResponse {
 class AimDTO with _$AimDTO {
   const factory AimDTO({
     required String code,
-    required Map<String, dynamic>? titles,
+    required Map<String, String> titles,
     String? iconFile,
     List<AimDTO>? children,
   }) = _AimDTO;

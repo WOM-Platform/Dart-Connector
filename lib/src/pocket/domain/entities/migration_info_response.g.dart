@@ -11,6 +11,7 @@ _$_MigrationInfoResponse _$$_MigrationInfoResponseFromJson(
     _$_MigrationInfoResponse(
       accessCount: json['accessCount'] as int,
       deadline: DateTime.parse(json['deadline'] as String),
+      completed: json['completed'] as bool,
     );
 
 Map<String, dynamic> _$$_MigrationInfoResponseToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$_MigrationInfoResponseToJson(
     <String, dynamic>{
       'accessCount': instance.accessCount,
       'deadline': instance.deadline.toIso8601String(),
+      'completed': instance.completed,
     };

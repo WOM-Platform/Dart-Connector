@@ -1,6 +1,27 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'bounds.dart';
 
-class SimpleFilter {
+part 'simple_filter.freezed.dart';
+
+part 'simple_filter.g.dart';
+
+@freezed
+class SimpleFilter with _$SimpleFilter {
+  const factory SimpleFilter({
+    String? aim,
+    Bounds? bounds,
+    int? maxAge,
+  }) = _SimpleFilter;
+
+  factory SimpleFilter.fromJson(Map<String, dynamic> json) =>
+      _$SimpleFilterFromJson(json);
+}
+
+extension SimpleFilterX on SimpleFilter {
+  int? get maxAgeToMilliseconds => maxAge != null ? maxAge! * 86400000 : null;
+}
+/*class SimpleFilter {
   static String AIM = 'aim';
   static String BOUNDS = 'bounds';
   static String MAX_AGE = 'maxAge';
@@ -33,4 +54,4 @@ class SimpleFilter {
   String toString() {
     return 'Data required, aim: $aimCode, bounds: ${bounds.toString()}, maxAge: $maxAge';
   }
-}
+}*/

@@ -34,7 +34,7 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
   Future<WomCreationResponse> requestWomCreation(
       RequestWomCreation requestWomCreation) async {
     try {
-      final payloadMap = requestWomCreation.toMap();
+      final payloadMap = requestWomCreation.toJson();
 
       //encode map to json string
       final payloadMapEncoded = json.encode(payloadMap);

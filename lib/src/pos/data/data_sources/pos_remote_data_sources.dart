@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dart_wom_connector/src/core/data/client_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/core/data/http_helper.dart';
 import 'package:dart_wom_connector/src/core/error/exceptions.dart';
-import 'package:dart_wom_connector/src/pos/data/models/payment_register_payload.dart';
+import 'package:dart_wom_connector/src/pos/data/dto/payment_register_payload.dart';
 
 import '../../../../dart_wom_connector.dart';
 
@@ -23,7 +23,7 @@ class PointOfSaleRemoteDataSourcesImpl extends PointOfSaleRemoteDataSources {
   Future<String> registerPayment(
       String path, PaymentRegisterPayload paymentRegisterPayload) async {
     return await HttpHelper.genericHttpPost(
-        'https://$domain/api/v1/$path', paymentRegisterPayload.toMap());
+        'https://$domain/api/v1/$path', paymentRegisterPayload.toJson());
   }
 
   @override

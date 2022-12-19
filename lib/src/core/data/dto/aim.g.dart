@@ -20,7 +20,7 @@ Map<String, dynamic> _$$_AimResponseToJson(_$_AimResponse instance) =>
 
 _$_AimDTO _$$_AimDTOFromJson(Map<String, dynamic> json) => _$_AimDTO(
       code: json['code'] as String,
-      titles: json['titles'] as Map<String, dynamic>?,
+      titles: Map<String, String>.from(json['titles'] as Map),
       iconFile: json['iconFile'] as String?,
       children: (json['children'] as List<dynamic>?)
           ?.map((e) => AimDTO.fromJson(e as Map<String, dynamic>))

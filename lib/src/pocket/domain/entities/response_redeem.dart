@@ -1,5 +1,21 @@
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'response_redeem.freezed.dart';
+part 'response_redeem.g.dart';
+
+@freezed
+class ResponseRedeem with _$ResponseRedeem {
+  const factory ResponseRedeem({
+    required List<Voucher> vouchers,
+    required String sourceName,
+    required String sourceId,
+  }) = _ResponseRedeem;
+
+  factory ResponseRedeem.fromJson(Map<String, dynamic> json) =>
+      _$ResponseRedeemFromJson(json);
+}
+/*
 class ResponseRedeem {
   static const String VOUCHERS = 'vouchers';
   static const String SOURCE_NAME = 'sourceName';
@@ -31,4 +47,4 @@ class ResponseRedeem {
 //    }
 //    return data;
 //  }
-}
+}*/

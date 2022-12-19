@@ -21,6 +21,8 @@ abstract class PocketRemoteDataSources {
       String guid, String password);
 
   Future<Uint8List> retrieveMigrationPayload(String guid, String password);
+
+  Future<void> completeMigration(String guid, String password);
 }
 
 class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
@@ -101,12 +103,35 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
       final jsonError = json.decode(response.body) as Map<String, dynamic>;
       error = jsonError['error'];
     } finally {
-      throw ServerException(url: url, error: error ?? 'unknown-error', type: '');
+      throw ServerException(
+          url: url, error: error ?? 'unknown-error', type: '');
     }
     // final responseBody = await HttpHelper.genericHttpPost(
     //     'http://$domain/api/v1/migration/$guid/retrieve',
     //     {'password': password});
     // print(responseBody);
     // return responseBody as List<int>;
+  }
+
+  @override
+  Future<void> completeMigration(String guid, String password) async {
+    final url = 'http://$domain/api/v1/migration/$guid/complete';
+    final response = await http.post(
+      Uri.parse(url),
+      body: json.encode({'password': password}),
+      headers: {'content-type': 'application/json'},
+    );
+    print('$url => status code: ${response.statusCode}');
+    if (response.statusCode == 200) {
+      return;
+    }
+    String? error;
+    try {
+      final jsonError = json.decode(response.body) as Map<String, dynamic>;
+      error = jsonError['error'];
+    } finally {
+      throw ServerException(
+          url: url, error: error ?? 'unknown-error', type: '');
+    }
   }
 }

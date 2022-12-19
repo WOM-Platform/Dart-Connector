@@ -8,6 +8,7 @@ class MigrationInfoResponse with _$MigrationInfoResponse {
   const factory MigrationInfoResponse({
     required int accessCount,
     required DateTime deadline,
+    required bool completed,
   }) = _MigrationInfoResponse;
 
   factory MigrationInfoResponse.fromJson(Map<String, dynamic> json) =>

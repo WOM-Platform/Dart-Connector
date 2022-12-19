@@ -3,8 +3,8 @@ import 'dart:typed_data';
 
 import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/pos/data/data_sources/pos_remote_data_sources.dart';
-import 'package:dart_wom_connector/src/pos/data/models/payment_register_payload.dart';
-import 'package:dart_wom_connector/src/pos/data/models/payment_register_response_model.dart';
+import 'package:dart_wom_connector/src/pos/data/dto/payment_register_payload.dart';
+import 'package:dart_wom_connector/src/pos/data/dto/payment_register_response_model.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/payment_request_response.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/point_of_sale.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/request_payment_payload.dart';
@@ -49,12 +49,12 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
     }
   }
 
-  Future<PaymentRegisterResponseModel> _registerPayment(
+  Future<PaymentRegisterResponse> _registerPayment(
       RequestPaymentPayload requestPaymentPayload, String privateKey) async {
     final encrypter = _getEncrypter(publicKey, privateKey);
 
     final requestPaymentPayloadJSON =
-        json.encode(requestPaymentPayload.toMap());
+        json.encode(requestPaymentPayload.toJson());
 
     final requestPaymentPayloadJSONEncrypted = CoreUtils.encryptLongInput(
         encrypter,
@@ -78,7 +78,7 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
 
     //decode decrypted paylod into json
     final Map<String, dynamic> jsonDecrypted = json.decode(decryptedPayload);
-    return PaymentRegisterResponseModel.fromMap(jsonDecrypted);
+    return PaymentRegisterResponse.fromJson(jsonDecrypted);
   }
 
   Future<bool> _verifyPayment(String? otc, String privateKey) async {
