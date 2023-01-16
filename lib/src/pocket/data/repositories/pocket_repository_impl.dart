@@ -8,6 +8,7 @@ import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/pocket/data/data_sources/pocket_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/create_migration_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/migration_info_response.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/offer.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/payment_info_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/response_redeem.dart';
 import 'package:encrypt/encrypt.dart';
@@ -22,18 +23,29 @@ abstract class PocketRepository {
   Future<String?> pay(String? otc, String? password,
       PaymentInfoResponse infoPay, List<Voucher> vouchers);
 
-  Future<CreateMigrationResponse> createNewMigration(
-      List<int> bytes, String password);
+  Future<CreateMigrationResponse> createNewMigration(List<int> bytes,
+      String password);
 
-  Future<CreateMigrationResponse> createNewMigrationV2(
-      List<Voucher> vouchers, String password);
+  Future<CreateMigrationResponse> createNewMigrationV2(List<Voucher> vouchers,
+      String password);
 
-  Future<MigrationInfoResponse> getInfoAboutMigration(
-      String guid, String password);
+  Future<MigrationInfoResponse> getInfoAboutMigration(String guid,
+      String password);
 
   Future<Uint8List> retrieveMigrationPayload(String guid, String password);
 
   Future<void> completeMigration(String guid, String password);
+
+  Future<List<OfferPOS>> getOffers({required double latitude,
+    required double longitude,});
+
+  Future<List<OfferPOS>> getOffersByBox({
+    required double lly,
+    required double llx,
+    required double ury,
+    required double urx,
+  });
+
 }
 
 class PocketRepositoryImpl extends PocketRepository {
@@ -63,8 +75,8 @@ class PocketRepositoryImpl extends PocketRepository {
   }
 
   @override
-  Future<PaymentInfoResponse> requestInfoPay(
-      String? otc, String? password) async {
+  Future<PaymentInfoResponse> requestInfoPay(String? otc,
+      String? password) async {
     try {
       final jsonDecrypted = await performRequestAndDecrypt(
           TransactionType.PAYMENT, otc, password);
@@ -75,8 +87,8 @@ class PocketRepositoryImpl extends PocketRepository {
     }
   }
 
-  Future<Map<String, dynamic>> performRequestAndDecrypt(
-      TransactionType type, String? otc, String? password,
+  Future<Map<String, dynamic>> performRequestAndDecrypt(TransactionType type,
+      String? otc, String? password,
       {double? lat, double? long}) async {
     //generate temporary key from this transaction
     final key = CoreUtils.generateAsBase64String(32);
@@ -103,7 +115,10 @@ class PocketRepositoryImpl extends PocketRepository {
         encrypter,
         Uint8List.fromList(utf8.encode(mapEncoded)),
         CoreUtils.outputBlockSize(
-            rsaKeyParser.parse(registryKey).modulus!.bitLength, true));
+            rsaKeyParser
+                .parse(registryKey)
+                .modulus!
+                .bitLength, true));
 
     //create payload with endrypted otc json
     final payload = <String, String>{'payload': otcEncrypted};
@@ -152,14 +167,17 @@ class PocketRepositoryImpl extends PocketRepository {
           encrypter,
           utf8.encode(mapEncoded) as Uint8List,
           CoreUtils.outputBlockSize(
-              rsaKeyParser.parse(registryKey).modulus!.bitLength, true));
+              rsaKeyParser
+                  .parse(registryKey)
+                  .modulus!
+                  .bitLength, true));
 
       //create payload with endrypted otc json
       final payload = <String, String>{'payload': otcEncrypted};
 
       //get response body from HTTP POST method
       final jsonResponse =
-          await (pocketRemoteDataSourcesImpl.confirmPayments(payload));
+      await (pocketRemoteDataSourcesImpl.confirmPayments(payload));
 
       //get encrypted payload from json
       final encryptedPayload = jsonResponse['payload'];
@@ -169,7 +187,7 @@ class PocketRepositoryImpl extends PocketRepository {
 
       //decode response body into json
       final jsonDecryptedPayload =
-          json.decode(decryptedPayload) as Map<String, dynamic>;
+      json.decode(decryptedPayload) as Map<String, dynamic>;
 
       return jsonDecryptedPayload['ackUrl'] as String?;
     } catch (ex) {
@@ -178,16 +196,16 @@ class PocketRepositoryImpl extends PocketRepository {
   }
 
   @override
-  Future<CreateMigrationResponse> createNewMigration(
-      List<int> bytes, String password) async {
+  Future<CreateMigrationResponse> createNewMigration(List<int> bytes,
+      String password) async {
     final data =
-        await pocketRemoteDataSourcesImpl.createNewMigration(bytes, password);
+    await pocketRemoteDataSourcesImpl.createNewMigration(bytes, password);
     return CreateMigrationResponse.fromJson(data);
   }
 
   @override
-  Future<CreateMigrationResponse> createNewMigrationV2(
-      List<Voucher> vouchers, String password) async {
+  Future<CreateMigrationResponse> createNewMigrationV2(List<Voucher> vouchers,
+      String password) async {
     if (vouchers.isEmpty) {
       print('woms empty');
       //TODO
@@ -198,21 +216,21 @@ class PocketRepositoryImpl extends PocketRepository {
     final bytes = _encryptWithAes(jsonString, '$key$password');
 
     final data =
-        await pocketRemoteDataSourcesImpl.createNewMigration(bytes, password);
+    await pocketRemoteDataSourcesImpl.createNewMigration(bytes, password);
     return CreateMigrationResponse.fromJson(data);
   }
 
   @override
-  Future<MigrationInfoResponse> getInfoAboutMigration(
-      String guid, String password) async {
+  Future<MigrationInfoResponse> getInfoAboutMigration(String guid,
+      String password) async {
     final data =
-        await pocketRemoteDataSourcesImpl.getInfoAboutMigration(guid, password);
+    await pocketRemoteDataSourcesImpl.getInfoAboutMigration(guid, password);
     return MigrationInfoResponse.fromJson(data);
   }
 
   @override
-  Future<Uint8List> retrieveMigrationPayload(
-      String guid, String password) async {
+  Future<Uint8List> retrieveMigrationPayload(String guid,
+      String password) async {
     final data = await pocketRemoteDataSourcesImpl.retrieveMigrationPayload(
         guid, password);
     return data;
@@ -241,6 +259,32 @@ class PocketRepositoryImpl extends PocketRepository {
   @override
   Future<void> completeMigration(String guid, String password) async {
     await pocketRemoteDataSourcesImpl.completeMigration(guid, password);
+  }
+
+  @override
+  Future<List<OfferPOS>> getOffers({
+    required double latitude,
+    required double longitude,
+  }) {
+    return pocketRemoteDataSourcesImpl.getOffers(
+      latitude: latitude,
+      longitude: longitude,
+    );
+  }
+
+  @override
+  Future<List<OfferPOS>> getOffersByBox({
+    required double lly,
+    required double llx,
+    required double ury,
+    required double urx,
+  }) async {
+    return pocketRemoteDataSourcesImpl.getOffersByBox(
+      lly: lly,
+      llx: llx,
+      ury: ury,
+      urx: urx,
+    );
   }
 }
 

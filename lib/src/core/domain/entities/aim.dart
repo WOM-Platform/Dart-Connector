@@ -40,5 +40,5 @@ class Aim with _$Aim {
 }
 
 extension AimX on Aim {
-  String? get title => titles['en'];
+  String? title({String? languageCode = 'en'}) => titles[languageCode];
 }

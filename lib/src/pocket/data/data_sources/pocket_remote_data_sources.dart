@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dart_wom_connector/src/core/data/http_helper.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/offer.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
@@ -23,6 +24,18 @@ abstract class PocketRemoteDataSources {
   Future<Uint8List> retrieveMigrationPayload(String guid, String password);
 
   Future<void> completeMigration(String guid, String password);
+
+  Future<List<OfferPOS>> getOffers({
+    required double latitude,
+    required double longitude,
+  });
+
+  Future<List<OfferPOS>> getOffersByBox({
+    required double lly,
+    required double llx,
+    required double ury,
+    required double urx,
+  });
 }
 
 class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
@@ -124,6 +137,62 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
     print('$url => status code: ${response.statusCode}');
     if (response.statusCode == 200) {
       return;
+    }
+    String? error;
+    try {
+      final jsonError = json.decode(response.body) as Map<String, dynamic>;
+      error = jsonError['error'];
+    } finally {
+      throw ServerException(
+          url: url, error: error ?? 'unknown-error', type: '');
+    }
+  }
+
+  @override
+  Future<List<OfferPOS>> getOffers(
+      {required double latitude, required double longitude}) async {
+    final url =
+        'http://$domain/api/v1/offer/search/distance?latitude=$latitude&longitude=$longitude&range=30';
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {'content-type': 'application/json'},
+    );
+    print('$url => status code: ${response.statusCode}');
+    if (response.statusCode == 200) {
+      print(response.body);
+      final data = jsonDecode(response.body);
+      final list = List.from(data);
+      return list.map((e) => OfferPOS.fromJson(e)).toList();
+    }
+    String? error;
+    try {
+      final jsonError = json.decode(response.body) as Map<String, dynamic>;
+      error = jsonError['error'];
+    } finally {
+      throw ServerException(
+          url: url, error: error ?? 'unknown-error', type: '');
+    }
+  }
+
+  @override
+  Future<List<OfferPOS>> getOffersByBox({
+    required double lly,
+    required double llx,
+    required double ury,
+    required double urx,
+  }) async {
+    final url =
+        'http://$domain/api/v1/offer/search/box?lly=$lly&llx=$llx&ury=$ury&urx=$urx';
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {'content-type': 'application/json'},
+    );
+    print('$url => status code: ${response.statusCode}');
+    if (response.statusCode == 200) {
+      print(response.body);
+      final data = jsonDecode(response.body);
+      final list = List.from(data);
+      return list.map((e) => OfferPOS.fromJson(e)).toList();
     }
     String? error;
     try {

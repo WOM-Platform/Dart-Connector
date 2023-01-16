@@ -5,6 +5,7 @@ import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
 import 'package:dart_wom_connector/src/core/error/exceptions.dart';
 import 'package:dart_wom_connector/src/pocket/data/data_sources/pocket_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/pocket/data/repositories/pocket_repository_impl.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/offer.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/payment_info_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/response_redeem.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/bounds.dart';
@@ -92,8 +93,8 @@ class Pocket extends Client {
     return paymentResponse;
   }
 
-  Future<String?> pay(PaymentInfoResponse infoPay, String? otc, String? password,
-      List<Voucher> vouchers) async {
+  Future<String?> pay(PaymentInfoResponse infoPay, String? otc,
+      String? password, List<Voucher> vouchers) async {
     if (infoPay.amount > vouchers.length) {
       throw InsufficientVouchers();
     }
@@ -122,8 +123,33 @@ class Pocket extends Client {
     return await _pocketRepository.retrieveMigrationPayload(guid, password);
   }
 
-  Future<void> completeMigration(
-      String guid, String password) async {
+  Future<void> completeMigration(String guid, String password) async {
     return _pocketRepository.completeMigration(guid, password);
+  }
+
+  Future<List<OfferPOS>> getOffers({
+    required double latitude,
+    required double longitude,
+    int? page,
+    int? pageSize,
+  }) {
+    return _pocketRepository.getOffers(
+      latitude: latitude,
+      longitude: longitude,
+    );
+  }
+
+  Future<List<OfferPOS>> getOffersByBox({
+    required double lly,
+    required double llx,
+    required double ury,
+    required double urx,
+  }) {
+    return _pocketRepository.getOffersByBox(
+      lly: lly,
+      llx: llx,
+      ury: ury,
+      urx: urx,
+    );
   }
 }
