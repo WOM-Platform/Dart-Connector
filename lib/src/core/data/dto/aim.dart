@@ -29,6 +29,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 // }
 
 part 'aim.freezed.dart';
+
 part 'aim.g.dart';
 
 @freezed
@@ -47,6 +48,7 @@ class AimDTO with _$AimDTO {
     required String code,
     required Map<String, String> titles,
     String? iconFile,
+    @Default(false) bool hidden,
     List<AimDTO>? children,
   }) = _AimDTO;
 
@@ -58,6 +60,7 @@ extension AimDTOX on AimDTO {
     return Aim(
       code: code,
       titles: titles,
+      hidden: hidden,
       children: children?.map((e) => e.toDomain()).toList(),
       iconFile: iconFile,
     );

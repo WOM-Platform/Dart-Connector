@@ -1,3 +1,4 @@
+import 'package:dart_wom_connector/src/pocket/domain/entities/offer.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/point_of_sale.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,6 +13,8 @@ class PointOfSaleDTO with _$PointOfSaleDTO {
     required String id,
     required String name,
     required bool isActive,
+    String? description,
+    CoverPicture? cover,
     double? latitude,
     double? longitude,
     String? url,
@@ -31,6 +34,8 @@ extension PointOfSaleDTOX on PointOfSaleDTO {
       longitude: longitude,
       privateKey: privateKey,
       isActive: isActive,
+      description: description,
+      cover: cover,
     );
   }
 }

@@ -2,11 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:dart_wom_connector/src/registry/data/dto/pos_map.dart';
 import 'package:dart_wom_connector/src/registry/data/dto/stats.dart';
-import 'package:dart_wom_connector/src/registry/domain/entities/stats.dart';
 import 'package:http/http.dart' as http;
 import 'package:dart_wom_connector/src/core/data/client_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/core/data/http_helper.dart';
-import 'package:dart_wom_connector/src/core/error/exceptions.dart';
 import 'package:dart_wom_connector/src/registry/data/dto/voucher_stats.dart';
 
 abstract class RegistryRemoteDataSources extends WomClientRemoteDataSources {

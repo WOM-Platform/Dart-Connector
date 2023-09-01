@@ -14,7 +14,7 @@ import 'package:meta/meta.dart';
 import 'entities/create_migration_response.dart';
 import 'entities/migration_info_response.dart';
 
-class Pocket extends Client {
+class Pocket extends WomClient {
   late PocketRepository _pocketRepository;
 
   @visibleForTesting
@@ -152,4 +152,9 @@ class Pocket extends Client {
       urx: urx,
     );
   }
+
+  Future<OfferPagination> getVirtualPos(int page, {int pageSize = 10}) {
+    return _pocketRepository.getVirtualPos(page, pageSize: pageSize);
+  }
+
 }

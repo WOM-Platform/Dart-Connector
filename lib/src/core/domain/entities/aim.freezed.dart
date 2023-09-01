@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'aim.dart';
 
@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Aim {
   String get code => throw _privateConstructorUsedError;
+  bool get hidden => throw _privateConstructorUsedError;
   Map<String, dynamic> get titles => throw _privateConstructorUsedError;
   List<Aim>? get children => throw _privateConstructorUsedError;
   String? get iconFile => throw _privateConstructorUsedError;
@@ -32,6 +33,7 @@ abstract class $AimCopyWith<$Res> {
   @useResult
   $Res call(
       {String code,
+      bool hidden,
       Map<String, dynamic> titles,
       List<Aim>? children,
       String? iconFile});
@@ -50,6 +52,7 @@ class _$AimCopyWithImpl<$Res, $Val extends Aim> implements $AimCopyWith<$Res> {
   @override
   $Res call({
     Object? code = null,
+    Object? hidden = null,
     Object? titles = null,
     Object? children = freezed,
     Object? iconFile = freezed,
@@ -59,6 +62,10 @@ class _$AimCopyWithImpl<$Res, $Val extends Aim> implements $AimCopyWith<$Res> {
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
+      hidden: null == hidden
+          ? _value.hidden
+          : hidden // ignore: cast_nullable_to_non_nullable
+              as bool,
       titles: null == titles
           ? _value.titles
           : titles // ignore: cast_nullable_to_non_nullable
@@ -83,6 +90,7 @@ abstract class _$$_AimCopyWith<$Res> implements $AimCopyWith<$Res> {
   @useResult
   $Res call(
       {String code,
+      bool hidden,
       Map<String, dynamic> titles,
       List<Aim>? children,
       String? iconFile});
@@ -98,6 +106,7 @@ class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res, _$_Aim>
   @override
   $Res call({
     Object? code = null,
+    Object? hidden = null,
     Object? titles = null,
     Object? children = freezed,
     Object? iconFile = freezed,
@@ -107,6 +116,10 @@ class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res, _$_Aim>
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
               as String,
+      hidden: null == hidden
+          ? _value.hidden
+          : hidden // ignore: cast_nullable_to_non_nullable
+              as bool,
       titles: null == titles
           ? _value._titles
           : titles // ignore: cast_nullable_to_non_nullable
@@ -128,6 +141,7 @@ class __$$_AimCopyWithImpl<$Res> extends _$AimCopyWithImpl<$Res, _$_Aim>
 class _$_Aim implements _Aim {
   const _$_Aim(
       {required this.code,
+      this.hidden = false,
       required final Map<String, dynamic> titles,
       final List<Aim>? children,
       this.iconFile})
@@ -136,9 +150,13 @@ class _$_Aim implements _Aim {
 
   @override
   final String code;
+  @override
+  @JsonKey()
+  final bool hidden;
   final Map<String, dynamic> _titles;
   @override
   Map<String, dynamic> get titles {
+    if (_titles is EqualUnmodifiableMapView) return _titles;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_titles);
   }
@@ -148,6 +166,7 @@ class _$_Aim implements _Aim {
   List<Aim>? get children {
     final value = _children;
     if (value == null) return null;
+    if (_children is EqualUnmodifiableListView) return _children;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -157,7 +176,7 @@ class _$_Aim implements _Aim {
 
   @override
   String toString() {
-    return 'Aim(code: $code, titles: $titles, children: $children, iconFile: $iconFile)';
+    return 'Aim(code: $code, hidden: $hidden, titles: $titles, children: $children, iconFile: $iconFile)';
   }
 
   @override
@@ -166,6 +185,7 @@ class _$_Aim implements _Aim {
         (other.runtimeType == runtimeType &&
             other is _$_Aim &&
             (identical(other.code, code) || other.code == code) &&
+            (identical(other.hidden, hidden) || other.hidden == hidden) &&
             const DeepCollectionEquality().equals(other._titles, _titles) &&
             const DeepCollectionEquality().equals(other._children, _children) &&
             (identical(other.iconFile, iconFile) ||
@@ -176,6 +196,7 @@ class _$_Aim implements _Aim {
   int get hashCode => Object.hash(
       runtimeType,
       code,
+      hidden,
       const DeepCollectionEquality().hash(_titles),
       const DeepCollectionEquality().hash(_children),
       iconFile);
@@ -190,12 +211,15 @@ class _$_Aim implements _Aim {
 abstract class _Aim implements Aim {
   const factory _Aim(
       {required final String code,
+      final bool hidden,
       required final Map<String, dynamic> titles,
       final List<Aim>? children,
       final String? iconFile}) = _$_Aim;
 
   @override
   String get code;
+  @override
+  bool get hidden;
   @override
   Map<String, dynamic> get titles;
   @override

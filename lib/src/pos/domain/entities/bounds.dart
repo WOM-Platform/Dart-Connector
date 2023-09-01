@@ -1,7 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geodesy/geodesy.dart';
+import 'dart:math' as math;
 
 part 'bounds.freezed.dart';
+
 part 'bounds.g.dart';
 
 @freezed
@@ -11,16 +13,43 @@ class Bounds with _$Bounds {
     required List<double> rightBottom,
   }) = _Bounds;
 
-  factory Bounds.fromJson(Map<String, dynamic> json) =>
-      _$BoundsFromJson(json);
+  factory Bounds.fromJson(Map<String, dynamic> json) => _$BoundsFromJson(json);
 }
 
-extension BoundsX on Bounds{
-
+extension BoundsX on Bounds {
   bool contains(double lat, double long) {
     final geo = Geodesy();
-    return geo.isGeoPointInBoudingBox(LatLng(lat, long),
+    return geo.isGeoPointInBoundingBox(LatLng(lat, long),
         LatLng(leftTop[0], leftTop[1]), LatLng(rightBottom[0], rightBottom[1]));
+  }
+
+  LatLng get center {
+    /* https://stackoverflow.com/a/4656937
+     http://www.movable-type.co.uk/scripts/latlong.html
+
+     coord 1: southWest
+     coord 2: northEast
+
+     phi: lat
+     lambda: lng
+  */
+
+    final phi1 = degToRadian(rightBottom[0]);
+    final lambda1 = degToRadian(rightBottom[1]);
+    final phi2 = degToRadian(leftTop[0]);
+
+    final dLambda = degToRadian(
+      leftTop[1] - rightBottom[1],
+    ); // delta lambda = lambda2-lambda1
+
+    final bx = math.cos(phi2) * math.cos(dLambda);
+    final by = math.cos(phi2) * math.sin(dLambda);
+    final phi3 = math.atan2(math.sin(phi1) + math.sin(phi2),
+        math.sqrt((math.cos(phi1) + bx) * (math.cos(phi1) + bx) + by * by));
+    final lambda3 = lambda1 + math.atan2(by, math.cos(phi1) + bx);
+
+    // phi3 and lambda3 are actually in radians and LatLng wants degrees
+    return LatLng(radianToDeg(phi3), radianToDeg(lambda3));
   }
 }
 

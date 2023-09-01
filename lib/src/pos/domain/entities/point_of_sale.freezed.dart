@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'point_of_sale.dart';
 
@@ -20,6 +20,8 @@ mixin _$PointOfSale {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   bool get isActive => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  CoverPicture? get cover => throw _privateConstructorUsedError;
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
@@ -40,9 +42,13 @@ abstract class $PointOfSaleCopyWith<$Res> {
       String id,
       String name,
       bool isActive,
+      String? description,
+      CoverPicture? cover,
       double? latitude,
       double? longitude,
       String? url});
+
+  $CoverPictureCopyWith<$Res>? get cover;
 }
 
 /// @nodoc
@@ -62,6 +68,8 @@ class _$PointOfSaleCopyWithImpl<$Res, $Val extends PointOfSale>
     Object? id = null,
     Object? name = null,
     Object? isActive = null,
+    Object? description = freezed,
+    Object? cover = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? url = freezed,
@@ -83,6 +91,14 @@ class _$PointOfSaleCopyWithImpl<$Res, $Val extends PointOfSale>
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cover: freezed == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as CoverPicture?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -96,6 +112,18 @@ class _$PointOfSaleCopyWithImpl<$Res, $Val extends PointOfSale>
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CoverPictureCopyWith<$Res>? get cover {
+    if (_value.cover == null) {
+      return null;
+    }
+
+    return $CoverPictureCopyWith<$Res>(_value.cover!, (value) {
+      return _then(_value.copyWith(cover: value) as $Val);
+    });
   }
 }
 
@@ -112,9 +140,14 @@ abstract class _$$_PointOfSaleCopyWith<$Res>
       String id,
       String name,
       bool isActive,
+      String? description,
+      CoverPicture? cover,
       double? latitude,
       double? longitude,
       String? url});
+
+  @override
+  $CoverPictureCopyWith<$Res>? get cover;
 }
 
 /// @nodoc
@@ -132,6 +165,8 @@ class __$$_PointOfSaleCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? isActive = null,
+    Object? description = freezed,
+    Object? cover = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
     Object? url = freezed,
@@ -153,6 +188,14 @@ class __$$_PointOfSaleCopyWithImpl<$Res>
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
               as bool,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cover: freezed == cover
+          ? _value.cover
+          : cover // ignore: cast_nullable_to_non_nullable
+              as CoverPicture?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -177,6 +220,8 @@ class _$_PointOfSale implements _PointOfSale {
       required this.id,
       required this.name,
       required this.isActive,
+      this.description,
+      this.cover,
       this.latitude,
       this.longitude,
       this.url});
@@ -190,6 +235,10 @@ class _$_PointOfSale implements _PointOfSale {
   @override
   final bool isActive;
   @override
+  final String? description;
+  @override
+  final CoverPicture? cover;
+  @override
   final double? latitude;
   @override
   final double? longitude;
@@ -198,7 +247,7 @@ class _$_PointOfSale implements _PointOfSale {
 
   @override
   String toString() {
-    return 'PointOfSale(privateKey: $privateKey, id: $id, name: $name, isActive: $isActive, latitude: $latitude, longitude: $longitude, url: $url)';
+    return 'PointOfSale(privateKey: $privateKey, id: $id, name: $name, isActive: $isActive, description: $description, cover: $cover, latitude: $latitude, longitude: $longitude, url: $url)';
   }
 
   @override
@@ -212,6 +261,9 @@ class _$_PointOfSale implements _PointOfSale {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isActive, isActive) ||
                 other.isActive == isActive) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.cover, cover) || other.cover == cover) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
@@ -220,8 +272,8 @@ class _$_PointOfSale implements _PointOfSale {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, privateKey, id, name, isActive, latitude, longitude, url);
+  int get hashCode => Object.hash(runtimeType, privateKey, id, name, isActive,
+      description, cover, latitude, longitude, url);
 
   @JsonKey(ignore: true)
   @override
@@ -236,6 +288,8 @@ abstract class _PointOfSale implements PointOfSale {
       required final String id,
       required final String name,
       required final bool isActive,
+      final String? description,
+      final CoverPicture? cover,
       final double? latitude,
       final double? longitude,
       final String? url}) = _$_PointOfSale;
@@ -248,6 +302,10 @@ abstract class _PointOfSale implements PointOfSale {
   String get name;
   @override
   bool get isActive;
+  @override
+  String? get description;
+  @override
+  CoverPicture? get cover;
   @override
   double? get latitude;
   @override

@@ -1,7 +1,5 @@
-import 'package:dart_wom_connector/src/core/utils/utils.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/simple_filter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'request_payment_payload.freezed.dart';
 

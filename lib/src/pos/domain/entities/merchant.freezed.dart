@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'merchant.dart';
 
@@ -20,6 +20,7 @@ mixin _$Merchant {
   String get name => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String get zipCode => throw _privateConstructorUsedError;
+  MerchantAccess get access => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get country => throw _privateConstructorUsedError;
   String get fiscalCode => throw _privateConstructorUsedError;
@@ -42,6 +43,7 @@ abstract class $MerchantCopyWith<$Res> {
       String name,
       String address,
       String zipCode,
+      MerchantAccess access,
       String city,
       String country,
       String fiscalCode,
@@ -67,6 +69,7 @@ class _$MerchantCopyWithImpl<$Res, $Val extends Merchant>
     Object? name = null,
     Object? address = null,
     Object? zipCode = null,
+    Object? access = null,
     Object? city = null,
     Object? country = null,
     Object? fiscalCode = null,
@@ -91,6 +94,10 @@ class _$MerchantCopyWithImpl<$Res, $Val extends Merchant>
           ? _value.zipCode
           : zipCode // ignore: cast_nullable_to_non_nullable
               as String,
+      access: null == access
+          ? _value.access
+          : access // ignore: cast_nullable_to_non_nullable
+              as MerchantAccess,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -131,6 +138,7 @@ abstract class _$$_MerchantCopyWith<$Res> implements $MerchantCopyWith<$Res> {
       String name,
       String address,
       String zipCode,
+      MerchantAccess access,
       String city,
       String country,
       String fiscalCode,
@@ -154,6 +162,7 @@ class __$$_MerchantCopyWithImpl<$Res>
     Object? name = null,
     Object? address = null,
     Object? zipCode = null,
+    Object? access = null,
     Object? city = null,
     Object? country = null,
     Object? fiscalCode = null,
@@ -178,6 +187,10 @@ class __$$_MerchantCopyWithImpl<$Res>
           ? _value.zipCode
           : zipCode // ignore: cast_nullable_to_non_nullable
               as String,
+      access: null == access
+          ? _value.access
+          : access // ignore: cast_nullable_to_non_nullable
+              as MerchantAccess,
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -214,6 +227,7 @@ class _$_Merchant implements _Merchant {
       required this.name,
       required this.address,
       required this.zipCode,
+      required this.access,
       required this.city,
       required this.country,
       required this.fiscalCode,
@@ -231,6 +245,8 @@ class _$_Merchant implements _Merchant {
   @override
   final String zipCode;
   @override
+  final MerchantAccess access;
+  @override
   final String city;
   @override
   final String country;
@@ -239,6 +255,7 @@ class _$_Merchant implements _Merchant {
   final List<PointOfSale> _posList;
   @override
   List<PointOfSale> get posList {
+    if (_posList is EqualUnmodifiableListView) return _posList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_posList);
   }
@@ -250,7 +267,7 @@ class _$_Merchant implements _Merchant {
 
   @override
   String toString() {
-    return 'Merchant(id: $id, name: $name, address: $address, zipCode: $zipCode, city: $city, country: $country, fiscalCode: $fiscalCode, posList: $posList, description: $description, url: $url)';
+    return 'Merchant(id: $id, name: $name, address: $address, zipCode: $zipCode, access: $access, city: $city, country: $country, fiscalCode: $fiscalCode, posList: $posList, description: $description, url: $url)';
   }
 
   @override
@@ -262,6 +279,7 @@ class _$_Merchant implements _Merchant {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.zipCode, zipCode) || other.zipCode == zipCode) &&
+            (identical(other.access, access) || other.access == access) &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.country, country) || other.country == country) &&
             (identical(other.fiscalCode, fiscalCode) ||
@@ -279,6 +297,7 @@ class _$_Merchant implements _Merchant {
       name,
       address,
       zipCode,
+      access,
       city,
       country,
       fiscalCode,
@@ -299,6 +318,7 @@ abstract class _Merchant implements Merchant {
       required final String name,
       required final String address,
       required final String zipCode,
+      required final MerchantAccess access,
       required final String city,
       required final String country,
       required final String fiscalCode,
@@ -314,6 +334,8 @@ abstract class _Merchant implements Merchant {
   String get address;
   @override
   String get zipCode;
+  @override
+  MerchantAccess get access;
   @override
   String get city;
   @override

@@ -36,6 +36,8 @@ abstract class PocketRemoteDataSources {
     required double ury,
     required double urx,
   });
+
+  Future<OfferPagination> getVirtualPos(int page, {int pageSize = 10});
 }
 
 class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
@@ -46,7 +48,8 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
   @override
   Future<Map<String, dynamic>> createNewMigration(
       List<int> bytes, String password) async {
-    final uri = Uri.parse('http://$domain/api/v1/migration');
+    final url = 'https://$domain/api/v1/migration';
+    final uri = Uri.parse(url);
     final request = http.MultipartRequest('POST', uri)
       ..fields['password'] = password
       ..files.add(
@@ -92,7 +95,7 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
   Future<Map<String, dynamic>> getInfoAboutMigration(
       String guid, String password) async {
     final responseBody = await HttpHelper.genericHttpPost(
-      'http://$domain/api/v1/migration/$guid/info',
+      'https://$domain/api/v1/migration/$guid/info',
       {'password': password},
     );
     return json.decode(responseBody);
@@ -101,7 +104,7 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
   @override
   Future<Uint8List> retrieveMigrationPayload(
       String guid, String password) async {
-    final url = 'http://$domain/api/v1/migration/$guid/retrieve';
+    final url = 'https://$domain/api/v1/migration/$guid/retrieve';
     final response = await http.post(
       Uri.parse(url),
       body: json.encode({'password': password}),
@@ -111,24 +114,12 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
     if (response.statusCode == 200) {
       return response.bodyBytes;
     }
-    String? error;
-    try {
-      final jsonError = json.decode(response.body) as Map<String, dynamic>;
-      error = jsonError['error'];
-    } finally {
-      throw ServerException(
-          url: url, error: error ?? 'unknown-error', type: '');
-    }
-    // final responseBody = await HttpHelper.genericHttpPost(
-    //     'http://$domain/api/v1/migration/$guid/retrieve',
-    //     {'password': password});
-    // print(responseBody);
-    // return responseBody as List<int>;
+    throw HttpHelper.handleError(url, response);
   }
 
   @override
   Future<void> completeMigration(String guid, String password) async {
-    final url = 'http://$domain/api/v1/migration/$guid/complete';
+    final url = 'https://$domain/api/v1/migration/$guid/complete';
     final response = await http.post(
       Uri.parse(url),
       body: json.encode({'password': password}),
@@ -138,21 +129,14 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
     if (response.statusCode == 200) {
       return;
     }
-    String? error;
-    try {
-      final jsonError = json.decode(response.body) as Map<String, dynamic>;
-      error = jsonError['error'];
-    } finally {
-      throw ServerException(
-          url: url, error: error ?? 'unknown-error', type: '');
-    }
+    throw HttpHelper.handleError(url, response);
   }
 
   @override
   Future<List<OfferPOS>> getOffers(
       {required double latitude, required double longitude}) async {
     final url =
-        'http://$domain/api/v1/offer/search/distance?latitude=$latitude&longitude=$longitude&range=30';
+        'https://$domain/api/v1/offer/search/distance?latitude=$latitude&longitude=$longitude&range=30';
     final response = await http.post(
       Uri.parse(url),
       headers: {'content-type': 'application/json'},
@@ -164,14 +148,7 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
       final list = List.from(data);
       return list.map((e) => OfferPOS.fromJson(e)).toList();
     }
-    String? error;
-    try {
-      final jsonError = json.decode(response.body) as Map<String, dynamic>;
-      error = jsonError['error'];
-    } finally {
-      throw ServerException(
-          url: url, error: error ?? 'unknown-error', type: '');
-    }
+    throw HttpHelper.handleError(url, response);
   }
 
   @override
@@ -182,7 +159,7 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
     required double urx,
   }) async {
     final url =
-        'http://$domain/api/v1/offer/search/box?lly=$lly&llx=$llx&ury=$ury&urx=$urx';
+        'https://$domain/api/v1/offer/search/box?lly=$lly&llx=$llx&ury=$ury&urx=$urx';
     final response = await http.post(
       Uri.parse(url),
       headers: {'content-type': 'application/json'},
@@ -194,13 +171,22 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
       final list = List.from(data);
       return list.map((e) => OfferPOS.fromJson(e)).toList();
     }
-    String? error;
-    try {
-      final jsonError = json.decode(response.body) as Map<String, dynamic>;
-      error = jsonError['error'];
-    } finally {
-      throw ServerException(
-          url: url, error: error ?? 'unknown-error', type: '');
+    throw HttpHelper.handleError(url, response);
+  }
+
+  @override
+  Future<OfferPagination> getVirtualPos(int page, {int pageSize = 10}) async {
+    final url = 'https://$domain/api/v1/pos/virtual?page=$page&=pageSize=$pageSize';
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {'content-type': 'application/json'},
+    );
+    print('$url => status code: ${response.statusCode}');
+    if (response.statusCode == 200) {
+      print(response.body);
+      final data = Map<String,dynamic>.from(jsonDecode(response.body));
+      return OfferPagination.fromJson(data);
     }
+    throw HttpHelper.handleError(url, response);
   }
 }

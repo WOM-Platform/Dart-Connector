@@ -102,4 +102,29 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
       rethrow;
     }
   }
+
+  @override
+  Future requestBatchWomCreation({
+    required int wom,
+    required List<String> emails,
+    required double lat,
+    required double long,
+    required String aim,
+    required String title,
+    required String sourceId,
+    required String username,
+    required String password,
+  }) {
+    return instrumentRemoteDataSources.requestBatchWomCreation(
+      wom: wom,
+      emails: emails,
+      lat: lat,
+      long: long,
+      aim: aim,
+      title: title,
+      sourceId: sourceId,
+      username: username,
+      password: password,
+    );
+  }
 }

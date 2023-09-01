@@ -22,6 +22,7 @@ _$_AimDTO _$$_AimDTOFromJson(Map<String, dynamic> json) => _$_AimDTO(
       code: json['code'] as String,
       titles: Map<String, String>.from(json['titles'] as Map),
       iconFile: json['iconFile'] as String?,
+      hidden: json['hidden'] as bool? ?? false,
       children: (json['children'] as List<dynamic>?)
           ?.map((e) => AimDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -31,5 +32,6 @@ Map<String, dynamic> _$$_AimDTOToJson(_$_AimDTO instance) => <String, dynamic>{
       'code': instance.code,
       'titles': instance.titles,
       'iconFile': instance.iconFile,
+      'hidden': instance.hidden,
       'children': instance.children,
     };

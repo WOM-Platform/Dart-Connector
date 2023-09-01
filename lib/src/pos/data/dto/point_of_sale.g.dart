@@ -12,6 +12,10 @@ _$_PointOfSaleDTO _$$_PointOfSaleDTOFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       isActive: json['isActive'] as bool,
+      description: json['description'] as String?,
+      cover: json['cover'] == null
+          ? null
+          : CoverPicture.fromJson(json['cover'] as Map<String, dynamic>),
       latitude: (json['latitude'] as num?)?.toDouble(),
       longitude: (json['longitude'] as num?)?.toDouble(),
       url: json['url'] as String?,
@@ -23,6 +27,8 @@ Map<String, dynamic> _$$_PointOfSaleDTOToJson(_$_PointOfSaleDTO instance) =>
       'id': instance.id,
       'name': instance.name,
       'isActive': instance.isActive,
+      'description': instance.description,
+      'cover': instance.cover,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'url': instance.url,

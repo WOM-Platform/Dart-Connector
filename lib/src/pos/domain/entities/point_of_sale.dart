@@ -1,3 +1,4 @@
+import 'package:dart_wom_connector/src/pocket/domain/entities/offer.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'point_of_sale.freezed.dart';
@@ -9,6 +10,8 @@ class PointOfSale with _$PointOfSale {
     required String id,
     required String name,
     required bool isActive,
+    String? description,
+    CoverPicture? cover,
     double? latitude,
     double? longitude,
     String? url,

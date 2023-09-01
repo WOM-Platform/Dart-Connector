@@ -33,6 +33,7 @@ part 'aim.freezed.dart';
 class Aim with _$Aim {
   const factory Aim({
     required String code,
+    @Default(false) bool hidden,
     required Map<String, dynamic> titles,
     List<Aim>? children,
     String? iconFile,

@@ -1,13 +1,10 @@
 import 'package:dart_wom_connector/dart_wom_connector.dart';
 import 'package:dart_wom_connector/src/registry/data/remote/registry_remote_data_source.dart';
 import 'package:dart_wom_connector/src/registry/data/repositories/registry_repo.dart';
-import 'package:dart_wom_connector/src/registry/domain/entities/voucher_stats.dart';
 
 import '../../core/controller/client.dart';
-import 'entities/pos_map.dart';
-import 'entities/stats.dart';
 
-class RegistryClient extends Client {
+class RegistryClient extends WomClient {
   late RegistryRepository _registryRepository;
 
   RegistryClient(String domain) : super(domain: domain) {

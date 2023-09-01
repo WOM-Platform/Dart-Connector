@@ -1,6 +1,4 @@
-
 import 'package:dart_wom_connector/src/pos/domain/entities/merchant.dart';
-import 'package:dart_wom_connector/src/pos/domain/entities/point_of_sale.dart';
 import 'package:dart_wom_connector/src/pos/data/dto/point_of_sale.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,10 +11,12 @@ class MerchantDTO with _$MerchantDTO {
   const factory MerchantDTO({
     required String id,
     required String name,
-    required String address,
-    required String zipCode,
-    required String city,
-    required String country,
+    required AddressDetailsDTO addressDetails,
+    // required String address,
+    // required String zipCode,
+    // required String city,
+    // required String country,
+    required String access,
     required String fiscalCode,
     required List<PointOfSaleDTO> pos,
     String? description,
@@ -27,19 +27,38 @@ class MerchantDTO with _$MerchantDTO {
       _$MerchantDTOFromJson(json);
 }
 
+@freezed
+class AddressDetailsDTO with _$AddressDetailsDTO {
+  const factory AddressDetailsDTO({
+    required String streetName,
+    required String zipCode,
+    required String city,
+    required String country,
+    String? streetNumber,
+    String? formattedAddress,
+    String? googleMapsPlaceId,
+  }) = _AddressDetailsDTO;
+
+  factory AddressDetailsDTO.fromJson(Map<String, dynamic> json) =>
+      _$AddressDetailsDTOFromJson(json);
+}
+
 extension MerchantDTOX on MerchantDTO {
   Merchant toDomain() {
     return Merchant(
       id: id,
-      address: address,
-      country: country,
+      address: addressDetails.formattedAddress ?? '',
+      country: addressDetails.country,
       url: url,
       name: name,
-      zipCode: zipCode,
+      zipCode: addressDetails.zipCode,
       description: description,
-      city: city,
+      city: addressDetails.city,
       fiscalCode: fiscalCode,
       posList: pos.map((e) => e.toDomain()).toList(),
+      access: MerchantAccess.values.byName(
+        access.toLowerCase()
+      ),
     );
   }
 }

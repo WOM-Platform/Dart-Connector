@@ -11,19 +11,16 @@ class InstrumentUser extends User implements Equatable {
     required String name,
     required String surname,
     required String email,
+    required bool verified,
   }) : super(
           name: name,
           surname: surname,
           email: email,
+          verified: verified,
         );
 
   @override
-  List<Object?> get props => [
-        name,
-        surname,
-        email,
-        instruments,
-      ];
+  List<Object?> get props => [name, surname, email, instruments, verified];
 
   @override
   bool? get stringify => throw UnimplementedError();

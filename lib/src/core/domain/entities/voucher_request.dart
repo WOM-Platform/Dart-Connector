@@ -1,8 +1,6 @@
 import 'package:dart_wom_connector/dart_wom_connector.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../domain/entities/voucher.dart';
-
 part 'voucher_request.freezed.dart';
 
 part 'voucher_request.g.dart';
@@ -15,6 +13,7 @@ class VoucherRequest with _$VoucherRequest {
     required String aim,
     required int count,
     @VoucherTimestampConverter() required DateTime timestamp,
+    @CreationModeConverter() CreationMode? creationMode,
   }) = _VoucherRequest;
 
   factory VoucherRequest.fromJson(Map<String, dynamic> json) =>

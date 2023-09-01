@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'voucher_request.dart';
 
@@ -26,6 +26,8 @@ mixin _$VoucherRequest {
   int get count => throw _privateConstructorUsedError;
   @VoucherTimestampConverter()
   DateTime get timestamp => throw _privateConstructorUsedError;
+  @CreationModeConverter()
+  CreationMode? get creationMode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,7 +46,8 @@ abstract class $VoucherRequestCopyWith<$Res> {
       double longitude,
       String aim,
       int count,
-      @VoucherTimestampConverter() DateTime timestamp});
+      @VoucherTimestampConverter() DateTime timestamp,
+      @CreationModeConverter() CreationMode? creationMode});
 }
 
 /// @nodoc
@@ -65,6 +68,7 @@ class _$VoucherRequestCopyWithImpl<$Res, $Val extends VoucherRequest>
     Object? aim = null,
     Object? count = null,
     Object? timestamp = null,
+    Object? creationMode = freezed,
   }) {
     return _then(_value.copyWith(
       latitude: null == latitude
@@ -87,6 +91,10 @@ class _$VoucherRequestCopyWithImpl<$Res, $Val extends VoucherRequest>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      creationMode: freezed == creationMode
+          ? _value.creationMode
+          : creationMode // ignore: cast_nullable_to_non_nullable
+              as CreationMode?,
     ) as $Val);
   }
 }
@@ -104,7 +112,8 @@ abstract class _$$_VoucherRequestCopyWith<$Res>
       double longitude,
       String aim,
       int count,
-      @VoucherTimestampConverter() DateTime timestamp});
+      @VoucherTimestampConverter() DateTime timestamp,
+      @CreationModeConverter() CreationMode? creationMode});
 }
 
 /// @nodoc
@@ -123,6 +132,7 @@ class __$$_VoucherRequestCopyWithImpl<$Res>
     Object? aim = null,
     Object? count = null,
     Object? timestamp = null,
+    Object? creationMode = freezed,
   }) {
     return _then(_$_VoucherRequest(
       latitude: null == latitude
@@ -145,6 +155,10 @@ class __$$_VoucherRequestCopyWithImpl<$Res>
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      creationMode: freezed == creationMode
+          ? _value.creationMode
+          : creationMode // ignore: cast_nullable_to_non_nullable
+              as CreationMode?,
     ));
   }
 }
@@ -157,7 +171,8 @@ class _$_VoucherRequest implements _VoucherRequest {
       required this.longitude,
       required this.aim,
       required this.count,
-      @VoucherTimestampConverter() required this.timestamp});
+      @VoucherTimestampConverter() required this.timestamp,
+      @CreationModeConverter() this.creationMode});
 
   factory _$_VoucherRequest.fromJson(Map<String, dynamic> json) =>
       _$$_VoucherRequestFromJson(json);
@@ -173,10 +188,13 @@ class _$_VoucherRequest implements _VoucherRequest {
   @override
   @VoucherTimestampConverter()
   final DateTime timestamp;
+  @override
+  @CreationModeConverter()
+  final CreationMode? creationMode;
 
   @override
   String toString() {
-    return 'VoucherRequest(latitude: $latitude, longitude: $longitude, aim: $aim, count: $count, timestamp: $timestamp)';
+    return 'VoucherRequest(latitude: $latitude, longitude: $longitude, aim: $aim, count: $count, timestamp: $timestamp, creationMode: $creationMode)';
   }
 
   @override
@@ -191,13 +209,15 @@ class _$_VoucherRequest implements _VoucherRequest {
             (identical(other.aim, aim) || other.aim == aim) &&
             (identical(other.count, count) || other.count == count) &&
             (identical(other.timestamp, timestamp) ||
-                other.timestamp == timestamp));
+                other.timestamp == timestamp) &&
+            (identical(other.creationMode, creationMode) ||
+                other.creationMode == creationMode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, latitude, longitude, aim, count, timestamp);
+  int get hashCode => Object.hash(
+      runtimeType, latitude, longitude, aim, count, timestamp, creationMode);
 
   @JsonKey(ignore: true)
   @override
@@ -219,7 +239,8 @@ abstract class _VoucherRequest implements VoucherRequest {
           required final double longitude,
           required final String aim,
           required final int count,
-          @VoucherTimestampConverter() required final DateTime timestamp}) =
+          @VoucherTimestampConverter() required final DateTime timestamp,
+          @CreationModeConverter() final CreationMode? creationMode}) =
       _$_VoucherRequest;
 
   factory _VoucherRequest.fromJson(Map<String, dynamic> json) =
@@ -236,6 +257,9 @@ abstract class _VoucherRequest implements VoucherRequest {
   @override
   @VoucherTimestampConverter()
   DateTime get timestamp;
+  @override
+  @CreationModeConverter()
+  CreationMode? get creationMode;
   @override
   @JsonKey(ignore: true)
   _$$_VoucherRequestCopyWith<_$_VoucherRequest> get copyWith =>

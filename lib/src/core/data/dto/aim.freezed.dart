@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'aim.dart';
 
@@ -105,6 +105,7 @@ class _$_AimResponse implements _AimResponse {
   final List<AimDTO> _aims;
   @override
   List<AimDTO> get aims {
+    if (_aims is EqualUnmodifiableListView) return _aims;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_aims);
   }
@@ -165,6 +166,7 @@ mixin _$AimDTO {
   String get code => throw _privateConstructorUsedError;
   Map<String, String> get titles => throw _privateConstructorUsedError;
   String? get iconFile => throw _privateConstructorUsedError;
+  bool get hidden => throw _privateConstructorUsedError;
   List<AimDTO>? get children => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -181,6 +183,7 @@ abstract class $AimDTOCopyWith<$Res> {
       {String code,
       Map<String, String> titles,
       String? iconFile,
+      bool hidden,
       List<AimDTO>? children});
 }
 
@@ -200,6 +203,7 @@ class _$AimDTOCopyWithImpl<$Res, $Val extends AimDTO>
     Object? code = null,
     Object? titles = null,
     Object? iconFile = freezed,
+    Object? hidden = null,
     Object? children = freezed,
   }) {
     return _then(_value.copyWith(
@@ -215,6 +219,10 @@ class _$AimDTOCopyWithImpl<$Res, $Val extends AimDTO>
           ? _value.iconFile
           : iconFile // ignore: cast_nullable_to_non_nullable
               as String?,
+      hidden: null == hidden
+          ? _value.hidden
+          : hidden // ignore: cast_nullable_to_non_nullable
+              as bool,
       children: freezed == children
           ? _value.children
           : children // ignore: cast_nullable_to_non_nullable
@@ -233,6 +241,7 @@ abstract class _$$_AimDTOCopyWith<$Res> implements $AimDTOCopyWith<$Res> {
       {String code,
       Map<String, String> titles,
       String? iconFile,
+      bool hidden,
       List<AimDTO>? children});
 }
 
@@ -249,6 +258,7 @@ class __$$_AimDTOCopyWithImpl<$Res>
     Object? code = null,
     Object? titles = null,
     Object? iconFile = freezed,
+    Object? hidden = null,
     Object? children = freezed,
   }) {
     return _then(_$_AimDTO(
@@ -264,6 +274,10 @@ class __$$_AimDTOCopyWithImpl<$Res>
           ? _value.iconFile
           : iconFile // ignore: cast_nullable_to_non_nullable
               as String?,
+      hidden: null == hidden
+          ? _value.hidden
+          : hidden // ignore: cast_nullable_to_non_nullable
+              as bool,
       children: freezed == children
           ? _value._children
           : children // ignore: cast_nullable_to_non_nullable
@@ -279,6 +293,7 @@ class _$_AimDTO implements _AimDTO {
       {required this.code,
       required final Map<String, String> titles,
       this.iconFile,
+      this.hidden = false,
       final List<AimDTO>? children})
       : _titles = titles,
         _children = children;
@@ -291,24 +306,29 @@ class _$_AimDTO implements _AimDTO {
   final Map<String, String> _titles;
   @override
   Map<String, String> get titles {
+    if (_titles is EqualUnmodifiableMapView) return _titles;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_titles);
   }
 
   @override
   final String? iconFile;
+  @override
+  @JsonKey()
+  final bool hidden;
   final List<AimDTO>? _children;
   @override
   List<AimDTO>? get children {
     final value = _children;
     if (value == null) return null;
+    if (_children is EqualUnmodifiableListView) return _children;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'AimDTO(code: $code, titles: $titles, iconFile: $iconFile, children: $children)';
+    return 'AimDTO(code: $code, titles: $titles, iconFile: $iconFile, hidden: $hidden, children: $children)';
   }
 
   @override
@@ -320,6 +340,7 @@ class _$_AimDTO implements _AimDTO {
             const DeepCollectionEquality().equals(other._titles, _titles) &&
             (identical(other.iconFile, iconFile) ||
                 other.iconFile == iconFile) &&
+            (identical(other.hidden, hidden) || other.hidden == hidden) &&
             const DeepCollectionEquality().equals(other._children, _children));
   }
 
@@ -330,6 +351,7 @@ class _$_AimDTO implements _AimDTO {
       code,
       const DeepCollectionEquality().hash(_titles),
       iconFile,
+      hidden,
       const DeepCollectionEquality().hash(_children));
 
   @JsonKey(ignore: true)
@@ -351,6 +373,7 @@ abstract class _AimDTO implements AimDTO {
       {required final String code,
       required final Map<String, String> titles,
       final String? iconFile,
+      final bool hidden,
       final List<AimDTO>? children}) = _$_AimDTO;
 
   factory _AimDTO.fromJson(Map<String, dynamic> json) = _$_AimDTO.fromJson;
@@ -361,6 +384,8 @@ abstract class _AimDTO implements AimDTO {
   Map<String, String> get titles;
   @override
   String? get iconFile;
+  @override
+  bool get hidden;
   @override
   List<AimDTO>? get children;
   @override

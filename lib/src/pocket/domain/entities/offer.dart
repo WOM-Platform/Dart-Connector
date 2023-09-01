@@ -1,5 +1,6 @@
+import 'package:dart_wom_connector/dart_wom_connector.dart';
+import 'package:dart_wom_connector/src/pos/domain/entities/simple_filter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 
 part 'offer.freezed.dart';
 
@@ -8,7 +9,7 @@ part 'offer.g.dart';
 @freezed
 class OfferPagination with _$OfferPagination {
   const factory OfferPagination({
-    required List<OfferPOS> data,
+    required List<VirtualPOS> data,
     required int totalCount,
     required int page,
     required int pageSize,
@@ -20,14 +21,29 @@ class OfferPagination with _$OfferPagination {
       _$OfferPaginationFromJson(json);
 }
 
+
+@freezed
+class VirtualPOS with _$VirtualPOS {
+  const factory VirtualPOS({
+    required String id,
+    required String name,
+    CoverPicture? cover,
+    String? description,
+    String? url,
+  }) = _VirtualPOS;
+
+  factory VirtualPOS.fromJson(Map<String, dynamic> json) =>
+      _$VirtualPOSFromJson(json);
+}
+
 @freezed
 class OfferPOS with _$OfferPOS {
   const factory OfferPOS({
-    required String posId,
+    required String id,
     required String name,
     required List<Offer> offers,
-    required OfferPicture cover,
     required OfferPosition position,
+    CoverPicture? cover,
     String? description,
     String? url,
     String? distance,
@@ -38,13 +54,29 @@ class OfferPOS with _$OfferPOS {
 }
 
 @freezed
+class Payment with _$Payment {
+  const factory Payment({
+    required String registryUrl,
+    required String link,
+    required String otc,
+    required String password,
+  }) = _Payment;
+
+  factory Payment.fromJson(Map<String, dynamic> json) =>
+      _$PaymentFromJson(json);
+}
+
+@freezed
 class Offer with _$Offer {
   const factory Offer({
-    required String offerId,
+    required String id,
     required String title,
     required int cost,
-    required DateTime createdAt,
-    required DateTime updatedAt,
+    required DateTime createdOn,
+    required DateTime lastUpdate,
+    @Default(true) bool deactivated,
+    required Payment payment,
+    SimpleFilter? filter,
     String? description,
   }) = _Offer;
 
@@ -52,17 +84,16 @@ class Offer with _$Offer {
 }
 
 @freezed
-class OfferPicture with _$OfferPicture {
-  const factory OfferPicture({
-    required String fullSizeUrl,
-    required String midDensityFullWidthUrl,
-    required String highDensityFullWidthUrl,
-    required String squareThumbnailUrl,
-    String? blurhash
-  }) = _OfferPicture;
+class CoverPicture with _$CoverPicture {
+  const factory CoverPicture(
+      {required String fullSizeUrl,
+      required String midDensityFullWidthUrl,
+      required String highDensityFullWidthUrl,
+      required String squareThumbnailUrl,
+      String? blurhash}) = _CoverPicture;
 
-  factory OfferPicture.fromJson(Map<String, dynamic> json) =>
-      _$OfferPictureFromJson(json);
+  factory CoverPicture.fromJson(Map<String, dynamic> json) =>
+      _$CoverPictureFromJson(json);
 }
 
 @freezed
@@ -75,5 +106,3 @@ class OfferPosition with _$OfferPosition {
   factory OfferPosition.fromJson(Map<String, dynamic> json) =>
       _$OfferPositionFromJson(json);
 }
-
-

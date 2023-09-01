@@ -14,6 +14,8 @@ _$_VoucherRequest _$$_VoucherRequestFromJson(Map<String, dynamic> json) =>
       count: json['count'] as int,
       timestamp: const VoucherTimestampConverter()
           .fromJson(json['timestamp'] as String),
+      creationMode: _$JsonConverterFromJson<String, CreationMode>(
+          json['creationMode'], const CreationModeConverter().fromJson),
     );
 
 Map<String, dynamic> _$$_VoucherRequestToJson(_$_VoucherRequest instance) =>
@@ -23,4 +25,18 @@ Map<String, dynamic> _$$_VoucherRequestToJson(_$_VoucherRequest instance) =>
       'aim': instance.aim,
       'count': instance.count,
       'timestamp': const VoucherTimestampConverter().toJson(instance.timestamp),
+      'creationMode': _$JsonConverterToJson<String, CreationMode>(
+          instance.creationMode, const CreationModeConverter().toJson),
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
