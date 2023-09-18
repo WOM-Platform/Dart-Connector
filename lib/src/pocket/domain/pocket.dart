@@ -1,15 +1,21 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:dart_wom_connector/src/core/controller/client.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
 import 'package:dart_wom_connector/src/core/error/exceptions.dart';
+import 'package:dart_wom_connector/src/instrument/domain/entities/wom_creation_response.dart';
 import 'package:dart_wom_connector/src/pocket/data/data_sources/pocket_remote_data_sources.dart';
 import 'package:dart_wom_connector/src/pocket/data/repositories/pocket_repository_impl.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/auth_exchange.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/offer.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/payment_info_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/response_redeem.dart';
+import 'package:dart_wom_connector/src/pocket/domain/repositories/pocket_repository.dart';
 import 'package:dart_wom_connector/src/pos/domain/entities/bounds.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'entities/create_migration_response.dart';
 import 'entities/migration_info_response.dart';
@@ -23,8 +29,24 @@ class Pocket extends WomClient {
 
   Pocket(String domain, String registryKey)
       : super(domain: domain, registryKey: registryKey) {
-    _pocketRepository =
-        PocketRepositoryImpl(registryKey, PocketRemoteDataSourcesImpl(domain));
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: 'https://$domain',
+        headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+        },
+      ),
+    );
+    dio.interceptors.add(PrettyDioLogger(
+      requestBody: true,
+      responseBody: true,
+      requestHeader: true,
+    ));
+    _pocketRepository = PocketRepositoryImpl(
+      registryKey,
+      PocketRemoteDataSourcesImpl(domain),
+      RestClient(dio),
+    );
   }
 
   @visibleForTesting
@@ -157,4 +179,21 @@ class Pocket extends WomClient {
     return _pocketRepository.getVirtualPos(page, pageSize: pageSize);
   }
 
+  Future<AuthExchangeResponse> getExchangeKey() {
+    return _pocketRepository.getExchangeKey();
+  }
+
+  Future<WomCreationResponse> createExchangeRequest(
+    String sourceId,
+    String nonce,
+    String sourcePublicKey,
+    List<Voucher> vouchers,
+  ) {
+    return _pocketRepository.createExchangeRequest(
+      sourceId,
+      nonce,
+      sourcePublicKey,
+      vouchers,
+    );
+  }
 }

@@ -64,7 +64,10 @@ class InstrumentRepositoryImpl extends InstrumentRepository {
 
       final base64Decoder = Base64Decoder();
       final decryptedPayload = CoreUtils.decryptLongInput(
-          encrypter, base64Decoder.convert(encryptedPayload), 501);
+        encrypter,
+        base64Decoder.convert(encryptedPayload),
+        512,
+      );
 
       //decode decrypted paylod into json
       final jsonDecrypted =

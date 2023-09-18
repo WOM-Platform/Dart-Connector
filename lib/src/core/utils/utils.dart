@@ -56,8 +56,11 @@ class CoreUtils {
   }
 
   static String encryptLongInput(
-      Encrypter? encrypter, Uint8List inputBytes, int outBlockSize) {
-    final blockSize = 501;
+    Encrypter? encrypter,
+    Uint8List inputBytes,
+    int outBlockSize,
+  ) {
+    final blockSize = outBlockSize - 11;
     final blocks = (inputBytes.length / blockSize.toDouble()).ceil().toInt();
     var output = Uint8List(blocks * outBlockSize);
     var outputSize = 0;
@@ -79,8 +82,11 @@ class CoreUtils {
   }
 
   static String decryptLongInput(
-      Encrypter? encrypter, Uint8List inputBytes, int outBlockSize) {
-    final blockSize = 512;
+    Encrypter? encrypter,
+    Uint8List inputBytes,
+    int blockSize,
+  ) {
+    final outBlockSize = blockSize - 11;
     final blocks = (inputBytes.length / blockSize.toDouble()).ceil().toInt();
     var output = Uint8List(blocks * outBlockSize);
     var outputSize = 0;

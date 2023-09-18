@@ -54,7 +54,9 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
   }
 
   Future<PaymentRegisterResponse> _registerPayment(
-      RequestPaymentPayload requestPaymentPayload, String privateKey) async {
+    RequestPaymentPayload requestPaymentPayload,
+    String privateKey,
+  ) async {
     final encrypter = _getEncrypter(publicKey, privateKey);
 
     final requestPaymentPayloadJSON =
@@ -78,7 +80,10 @@ class PointOfSaleRepositoryImpl extends PointOfSaleRepository {
     final jsonResponse = json.decode(responseBody);
     final base64Decoder = Base64Decoder();
     final decryptedPayload = CoreUtils.decryptLongInput(
-        encrypter, base64Decoder.convert(jsonResponse['payload']), 501);
+      encrypter,
+      base64Decoder.convert(jsonResponse['payload']),
+      512,
+    );
 
     //decode decrypted paylod into json
     final Map<String, dynamic> jsonDecrypted = json.decode(decryptedPayload);

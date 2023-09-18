@@ -2,11 +2,18 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:dart_wom_connector/src/core/data/http_helper.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/auth_exchange.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/create_exchange_request.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/exchange_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/offer.dart';
+import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
+import 'package:retrofit/retrofit.dart';
 
 import '../../../../dart_wom_connector.dart';
+
+part 'pocket_remote_data_sources.g.dart';
 
 abstract class PocketRemoteDataSources {
   Future<Map<String, dynamic>?> redeemVouchers(Map<String, String> map);
@@ -73,7 +80,7 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
   @override
   Future<Map<String, dynamic>?> redeemVouchers(Map<String, String> map) async {
     final responseBody = await HttpHelper.genericHttpPost(
-        'http://$domain/api/v1/voucher/redeem', map);
+        'https://$domain/api/v1/voucher/redeem', map);
     return json.decode(responseBody);
   }
 
@@ -176,7 +183,8 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
 
   @override
   Future<OfferPagination> getVirtualPos(int page, {int pageSize = 10}) async {
-    final url = 'https://$domain/api/v1/pos/virtual?page=$page&=pageSize=$pageSize';
+    final url =
+        'https://$domain/api/v1/pos/virtual?page=$page&=pageSize=$pageSize';
     final response = await http.get(
       Uri.parse(url),
       headers: {'content-type': 'application/json'},
@@ -184,9 +192,21 @@ class PocketRemoteDataSourcesImpl extends PocketRemoteDataSources {
     print('$url => status code: ${response.statusCode}');
     if (response.statusCode == 200) {
       print(response.body);
-      final data = Map<String,dynamic>.from(jsonDecode(response.body));
+      final data = Map<String, dynamic>.from(jsonDecode(response.body));
       return OfferPagination.fromJson(data);
     }
     throw HttpHelper.handleError(url, response);
   }
+}
+
+@RestApi()
+abstract class RestClient {
+  factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
+
+  @GET('/api/v2/auth/exchange')
+  Future<AuthExchangeResponse> getSourceKey();
+
+  @POST('/api/v1/transfer/request')
+  Future<ExchangeResponse> createExchangeRequest(
+      @Body() CreateExchangeRequest request);
 }

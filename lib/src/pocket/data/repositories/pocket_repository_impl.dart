@@ -5,67 +5,42 @@ import 'dart:typed_data';
 import 'package:dart_wom_connector/src/core/domain/entities/transaction_type.dart';
 import 'package:dart_wom_connector/src/core/domain/entities/voucher.dart';
 import 'package:dart_wom_connector/src/core/utils/utils.dart';
+import 'package:dart_wom_connector/src/instrument/data/dto/wom_creation_response.dart';
+import 'package:dart_wom_connector/src/instrument/domain/entities/wom_creation_response.dart';
 import 'package:dart_wom_connector/src/pocket/data/data_sources/pocket_remote_data_sources.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/auth_exchange.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/create_exchange_request.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/create_migration_response.dart';
+import 'package:dart_wom_connector/src/pocket/domain/entities/exchange_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/migration_info_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/offer.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/payment_info_response.dart';
 import 'package:dart_wom_connector/src/pocket/domain/entities/response_redeem.dart';
+import 'package:dart_wom_connector/src/pocket/domain/repositories/pocket_repository.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:pointycastle/asymmetric/api.dart';
 
-abstract class PocketRepository {
-  Future<ResponseRedeem> redeemVouchers(String? otc, String? password,
-      {double? lat, double? long});
-
-  Future<PaymentInfoResponse> requestInfoPay(String? otc, String? password);
-
-  Future<String?> pay(String? otc, String? password,
-      PaymentInfoResponse infoPay, List<Voucher> vouchers);
-
-  Future<CreateMigrationResponse> createNewMigration(
-      List<int> bytes, String password);
-
-  Future<CreateMigrationResponse> createNewMigrationV2(
-      List<Voucher> vouchers, String password);
-
-  Future<MigrationInfoResponse> getInfoAboutMigration(
-      String guid, String password);
-
-  Future<Uint8List> retrieveMigrationPayload(String guid, String password);
-
-  Future<void> completeMigration(String guid, String password);
-
-  Future<List<OfferPOS>> getOffers({
-    required double latitude,
-    required double longitude,
-  });
-
-  Future<OfferPagination> getVirtualPos(int page, {int pageSize = 10});
-
-  Future<List<OfferPOS>> getOffersByBox({
-    required double lly,
-    required double llx,
-    required double ury,
-    required double urx,
-  });
-}
-
 class PocketRepositoryImpl extends PocketRepository {
   final String registryKey;
+  final RestClient restClient;
   final PocketRemoteDataSourcesImpl pocketRemoteDataSourcesImpl;
   Encrypter? encrypter;
   final rsaKeyParser = RSAKeyParser();
 
-  PocketRepositoryImpl(this.registryKey, this.pocketRemoteDataSourcesImpl) {
+  PocketRepositoryImpl(
+      this.registryKey, this.pocketRemoteDataSourcesImpl, this.restClient) {
     final publicKey = rsaKeyParser.parse(registryKey);
     encrypter =
         Encrypter(RSA(publicKey: publicKey as RSAPublicKey, privateKey: null));
   }
 
   @override
-  Future<ResponseRedeem> redeemVouchers(String? otc, String? password,
-      {double? lat, double? long}) async {
+  Future<ResponseRedeem> redeemVouchers(
+    String? otc,
+    String? password, {
+    double? lat,
+    double? long,
+  }) async {
     final jsonDecrypted = await (performRequestAndDecrypt(
       TransactionType.VOUCHERS,
       otc,
@@ -79,7 +54,9 @@ class PocketRepositoryImpl extends PocketRepository {
 
   @override
   Future<PaymentInfoResponse> requestInfoPay(
-      String? otc, String? password) async {
+    String? otc,
+    String? password,
+  ) async {
     try {
       final jsonDecrypted = await performRequestAndDecrypt(
           TransactionType.PAYMENT, otc, password);
@@ -91,8 +68,12 @@ class PocketRepositoryImpl extends PocketRepository {
   }
 
   Future<Map<String, dynamic>> performRequestAndDecrypt(
-      TransactionType type, String? otc, String? password,
-      {double? lat, double? long}) async {
+    TransactionType type,
+    String? otc,
+    String? password, {
+    double? lat,
+    double? long,
+  }) async {
     //generate temporary key from this transaction
     final key = CoreUtils.generateAsBase64String(32);
 
@@ -164,10 +145,11 @@ class PocketRepositoryImpl extends PocketRepository {
 
       //encrypt otc map with public_key
       final otcEncrypted = CoreUtils.encryptLongInput(
-          encrypter,
-          utf8.encode(mapEncoded) as Uint8List,
-          CoreUtils.outputBlockSize(
-              rsaKeyParser.parse(registryKey).modulus!.bitLength, true));
+        encrypter,
+        utf8.encode(mapEncoded) as Uint8List,
+        CoreUtils.outputBlockSize(
+            rsaKeyParser.parse(registryKey).modulus!.bitLength, true),
+      );
 
       //create payload with endrypted otc json
       final payload = <String, String>{'payload': otcEncrypted};
@@ -287,6 +269,59 @@ class PocketRepositoryImpl extends PocketRepository {
   @override
   Future<OfferPagination> getVirtualPos(int page, {int pageSize = 10}) {
     return pocketRemoteDataSourcesImpl.getVirtualPos(page, pageSize: pageSize);
+  }
+
+  @override
+  Future<WomCreationResponse> createExchangeRequest(
+    String sourceId,
+    String nonce,
+    String sourcePublicKey,
+    List<Voucher> vouchers,
+    // String password,
+  ) async {
+    //generate temporary key from this transaction
+    final sessionKey = CoreUtils.generateAsBase64String(32);
+
+    final map = <String, dynamic>{
+      // 'password': password,
+      'sessionKey': sessionKey,
+      'vouchers': vouchers
+          .map((v) => <String, String?>{'id': v.id, 'secret': v.secret})
+          .toList(),
+    };
+
+    final mapEncoded = json.encode(map);
+    final _publicKey = rsaKeyParser.parse(sourcePublicKey);
+    final _encrypter =
+        Encrypter(RSA(publicKey: _publicKey as RSAPublicKey, privateKey: null));
+    final blockSize = CoreUtils.outputBlockSize(
+      _publicKey.modulus!.bitLength,
+      true,
+    );
+    final payload = CoreUtils.encryptLongInput(
+      _encrypter,
+      utf8.encode(mapEncoded) as Uint8List,
+      blockSize,
+    );
+
+    final response = await restClient.createExchangeRequest(
+      CreateExchangeRequest(
+        sourceId: sourceId,
+        nonce: nonce,
+        payload: payload,
+      ),
+    );
+
+    final decryptedPayload = CoreUtils.decryptAES(response.payload, sessionKey);
+    final jsonDecryptedPayload =
+        json.decode(decryptedPayload) as Map<String, dynamic>;
+    final dto = WomCreationResponseDTO.fromJson(jsonDecryptedPayload);
+    return dto.toDomain();
+  }
+
+  @override
+  Future<AuthExchangeResponse> getExchangeKey() {
+    return restClient.getSourceKey();
   }
 }
 
